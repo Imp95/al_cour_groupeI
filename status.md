@@ -11,3 +11,8 @@ __16:41 30/09/2018__
 ### Tasks achived :
   - User story for Alice (**client**) using the web site
   - User story for Bob (**transporter**) using the mobile application
+  
+### Tasks planned for next week :
+  - General architecture using diagram
+  - Technology Choice
+  - External interfaces to communicate the different services
