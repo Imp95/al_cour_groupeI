@@ -9,5 +9,5 @@ __16:41 30/09/2018__
 ## Week 2
 
 ### Achived :
-  - User story for Alice (client) using the web site
-  - User story for Bob (transporter) using the mobile application
+  - User story for Alice (**client**) using the web site
+  - User story for Bob (**transporter**) using the mobile application
