@@ -1,1 +1,13 @@
-# al_cour_groupeI
+# Projet Variante 9 : Mobile App for Transporters
+# *Groupe I*
+
+### Author
+__Duminy Gaétan__
+### Updated
+__16:41 30/09/2018__
+
+## Week 2
+
+### Achived :
+  - User story for Alice (client) using the web site
+  - User story for Bob (transporter) using the mobile application
