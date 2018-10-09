@@ -8,6 +8,16 @@ __Picard Marchetto Ivan__
 __16:41 30/09/2018__
 __18:03 30/09/2018__
 
+## Week 3
+
+### Tasks achived :
+  - Component diagram
+  - Technological choices
+  - Roadmap
+  
+### Tasks planned for next week :
+  - Refine design documents (architecture, UML, ...)
+
 ## Week 2
 
 ### Tasks achived :
