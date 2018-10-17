@@ -1,4 +1,5 @@
 Service de persistance...
+Avec Symfony 4.1
 
 Prérequis,
 
@@ -21,3 +22,11 @@ importer le schéma
 ________________________________
 
 fichier brouillon, sera restructuré plus tard......
+
+quand vous poolez, copier le .env.dist en .env
+_____________________________________
+commandes utiles.....
+
+composer update
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:update --force
