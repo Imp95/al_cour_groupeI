@@ -5,8 +5,22 @@
 __Duminy Gaétan__
 __Picard Marchetto Ivan__
 ### Updated
-__16:41 30/09/2018__
-__18:03 30/09/2018__
+__17:23 17/10/2018__
+
+## Week 4
+
+### Tasks achived :
+  - Report reworking
+  - Class diagram
+  - IHM
+  - Beginning of the programming of the Android application
+  - Creation of the database
+  
+### Tasks planned for next week :
+  - Finish programming the Android application
+  - Finish the database
+  - Start the persistence layer in PHP
+  - Start communication between the Android application and the persistence service
 
 ## Week 3
 
