@@ -21,13 +21,13 @@ class Offer
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
     private $proposedDate;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $status;
 

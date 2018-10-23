@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -25,30 +24,31 @@ class Ad
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
     private $departureDate;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
     private $arrivalDate;
 
     /**
-     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $bagage;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $payment;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $status;
 
@@ -59,14 +59,12 @@ class Ad
     private $client;
 
     /**
-     * @OneToOne(targetEntity="Address")
-     * @JoinColumn(name="departure_address_id", referencedColumnName="id")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $departureAddress;
 
     /**
-     * @OneToOne(targetEntity="Address")
-     * @JoinColumn(name="arrival_address_id", referencedColumnName="id")
+     * @ORM\Column(type="text", nullable=false)
      */
     private $arrivalAddress;
 

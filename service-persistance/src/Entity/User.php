@@ -26,40 +26,40 @@ class User
      *     message = "The email '{{ value }}' is not a valid email.",
      *     checkMX = true
      * )
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
      * @Assert\NotBlank()
      * @Assert\Regex("/^([A-Za-z]+| |-)$/")
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
      * @Assert\NotBlank()
      * @Assert\Regex("/^([A-Za-z]+| |-)$/")
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $firstname;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
     private $birtiday;
 
     /**
      * @Assert\NotBlank()
      * @Assert\Regex("/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=20, nullable=false)
      */
     private $phoneNumber;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $amount;
 
