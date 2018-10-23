@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="groupei.al.blablacar.InscriptionActivity">
+
+    <TextView
+        android:id="@+id/points"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="92dp"
+        android:background="#55ffee"
+        android:gravity="center"
+        android:text="VOUS AVEZ\n XXX \nPOINTS"
+        android:textColor="#444444"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/chercher"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="42dp"
+        android:background="#50c860"
+        android:text="CHERCHER DES ANNONCES"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/points" />
+
+    <Button
+        android:id="@+id/offres"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="42dp"
+        android:background="#50c860"
+        android:text="MES OFFRES EN ATTENTE"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chercher" />
+
+    <Button
+        android:id="@+id/contrats"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="42dp"
+        android:background="#50c860"
+        android:text="MES CONTRATS"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/offres" />
+
+    <Button
+        android:id="@+id/historique"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="42dp"
+        android:background="#50c860"
+        android:text="HISTORIQUE DES CONTRATS"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contrats" />
+
+</android.support.constraint.ConstraintLayout>

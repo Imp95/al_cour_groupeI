@@ -13,11 +13,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.button);//Récuperer un buttong
-        button.setOnClickListener(new View.OnClickListener() {
+        Button connexion = (Button) findViewById(R.id.connexion);//Récuperer un button
+        connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivity(view);
+                changerActivityConnexion(view);
+            }
+        });
+
+        Button inscription = (Button) findViewById(R.id.inscription);
+        inscription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changerActivityInscription(view);
             }
         });
         // this.finish(); Comment fermé l'app
@@ -33,12 +41,15 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public void changerActivity(View view) {
+    public void changerActivityConnexion(View view) {
         Intent intent = new Intent(this, AnotherActivity.class);
         int x =10;
         intent.putExtra("key", x); //faire passer des parametre
         startActivity(intent);
     }
 
-
+    public void changerActivityInscription(View view) {
+        Intent intent = new Intent(this, InscriptionActivity.class);
+        startActivity(intent);
+    }
 }
