@@ -2,23 +2,27 @@ package groupei.al.blablacar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     LoginHandler loginHandler;
     LoginToken token;
+    TextView error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //Methode appeler a la création du l'app
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loginHandler = new LoginHandlerMock();
-
+        error = (TextView) findViewById(R.id.errorText);
+        error.setTextColor(Color.rgb(255,0,0));
 
 
 
@@ -68,8 +72,11 @@ public class MainActivity extends AppCompatActivity {
         EditText mail = (EditText) findViewById(R.id.email);
         EditText mdp = (EditText) findViewById(R.id.mdp);
         token = loginHandler.login(mail.getText().toString(),mdp.getText().toString());
-        if(token==null)
+        if(token==null){
+            error.setText("Invalid login or password");
             return;
+        }
+
         SharedPreferences mPrefs = getSharedPreferences("Blablacar", 0);
         SharedPreferences.Editor mEditor = mPrefs.edit();
         mEditor.putString("TokenMail",token.getEmail());
