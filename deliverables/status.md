@@ -3,11 +3,34 @@
 
 ### Authors
 __Duminy Gaétan__
-__Picard Marchetto Ivan__
-### Updated
-__17:23 17/10/2018__
 
-## Week 4
+__Picard Marchetto Ivan__
+
+### Updated
+__21:54 24/10/2018__
+
+## Week 43
+
+### Tasks achived :
+  - Create Activities:
+    - Main (Connexion)
+    - Inscription
+    - Acceuil
+    - Contrats
+    - Offres
+    - Recherche
+  - Mock of the connection to the application
+  
+### Tasks planned for next week :
+
+  - Create Activities:
+    - Recherche_liste
+    - Panier
+    - ZoomOffre
+    - ZoomContrat
+  - HTTP route and communication by JSON
+
+## Week 42
 
 ### Tasks achived :
   - Report reworking
@@ -22,7 +45,7 @@ __17:23 17/10/2018__
   - Start the persistence layer in PHP
   - Start communication between the Android application and the persistence service
 
-## Week 3
+## Week 41
 
 ### Tasks achived :
   - Component diagram
@@ -32,7 +55,7 @@ __17:23 17/10/2018__
 ### Tasks planned for next week :
   - Refine design documents (architecture, UML, ...)
 
-## Week 2
+## Week 40
 
 ### Tasks achived :
   - User story for Alice (**client**) using the web site
