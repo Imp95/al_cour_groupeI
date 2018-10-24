@@ -32,6 +32,18 @@
         <activity
             android:name=".AcceuilActivity"
             android:label="@string/title_activity_acceuil"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RechercheActivity"
+            android:label="@string/title_activity_recherche"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OffresActivity"
+            android:label="@string/title_activity_offres"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ContratsActivity"
+            android:label="@string/title_activity_contrats"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changerActivityConnexion(View view) {
-        Intent intent = new Intent(this, AnotherActivity.class);
+        /*Intent intent = new Intent(this, AnotherActivity.class);
         int x =10;
         intent.putExtra("key", x); //faire passer des parametre
+        startActivity(intent);*/
+        Intent intent = new Intent(this, AcceuilActivity.class);
         startActivity(intent);
     }
 

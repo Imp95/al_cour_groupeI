@@ -15,4 +15,7 @@
     </string>
     <string name="title_activity_inscription">Inscription</string>
     <string name="title_activity_acceuil">AcceuilActivity</string>
+    <string name="title_activity_recherche">RechercheActivity</string>
+    <string name="title_activity_offres">OffresActivity</string>
+    <string name="title_activity_contrats">ContratsActivity</string>
 </resources>
