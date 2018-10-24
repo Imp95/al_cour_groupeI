@@ -29,6 +29,7 @@ __21:54 24/10/2018__
     - ZoomOffre
     - ZoomContrat
   - HTTP route and communication by JSON
+  - Start communication between the Android application and the persistence service
 
 ## Week 42
 
