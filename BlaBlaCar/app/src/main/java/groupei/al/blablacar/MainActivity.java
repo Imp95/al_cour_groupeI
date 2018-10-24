@@ -1,17 +1,26 @@
 package groupei.al.blablacar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    LoginHandler loginHandler;
+    LoginToken token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //Methode appeler a la création du l'app
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loginHandler = new LoginHandlerMock();
+
+
+
 
         Button connexion = (Button) findViewById(R.id.connexion);//Récuperer un button
         connexion.setOnClickListener(new View.OnClickListener() {
@@ -20,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
                 changerActivityConnexion(view);
             }
         });
+
+        SharedPreferences mPrefs = getSharedPreferences("Blablacar", 0);
+        String tmp = mPrefs.getString("TokenMail",null);
+        if(tmp!=null){
+            long tmp2=mPrefs.getLong("TokenTime",0);
+            if(System.currentTimeMillis()<tmp2) {
+                token = new LoginToken(tmp, tmp2);
+                changerActivityConnexion(connexion);
+            }
+        }
 
         Button inscription = (Button) findViewById(R.id.inscription);
         inscription.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +65,15 @@ public class MainActivity extends AppCompatActivity {
         int x =10;
         intent.putExtra("key", x); //faire passer des parametre
         startActivity(intent);*/
+        EditText mail = (EditText) findViewById(R.id.email);
+        EditText mdp = (EditText) findViewById(R.id.mdp);
+        token = loginHandler.login(mail.getText().toString(),mdp.getText().toString());
+        if(token==null)
+            return;
+        SharedPreferences mPrefs = getSharedPreferences("Blablacar", 0);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putString("TokenMail",token.getEmail());
+        mEditor.putLong("TokenTime",token.getExpire());
         Intent intent = new Intent(this, AcceuilActivity.class);
         startActivity(intent);
     }
