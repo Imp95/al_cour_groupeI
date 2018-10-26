@@ -7,9 +7,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
+ * @UniqueEntity("email")
  */
 class User
 {
@@ -26,9 +28,15 @@ class User
      *     message = "The email '{{ value }}' is not a valid email.",
      *     checkMX = true
      * )
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false, unique=true)
      */
     private $email;
+
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $password;
 
     /**
      * @Assert\NotBlank()
@@ -97,6 +105,22 @@ class User
     public function setEmail($email): void
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
     }
 
     /**
