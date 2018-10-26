@@ -14,7 +14,7 @@ class PersistenceController extends Controller
     /**
      * Endpoint du service de persistence
      *
-     * @Route("/persistence/switchmam", name="switchman")
+     * @Route("/receive_event", name="switchman")
      * @param Request $request
      * @return Response
      */
@@ -42,28 +42,28 @@ class PersistenceController extends Controller
         }
 
         switch ($data['action']) {
-            case 'connexion' :
+            case 'Connexion' :
                 return $this->connexionAction($data['body']);
                 break;
-            case 'inscription' :
+            case 'Inscription' :
                 throw new RuntimeException('non implémenté');
                 break;
-            case 'recherche_annonce' :
+            case 'RechercheAnnonce' :
                 throw new RuntimeException('non implémenté');
                 break;
-            case 'creation_offre' :
+            case 'CreationOffre' :
                 throw new RuntimeException('non implémenté');
                 break;
-            case 'voir_offres' :
+            case 'VoirOffres' :
                 throw new RuntimeException('non implémenté');
                 break;
-            case 'voir_contrats' :
+            case 'VoirContrats' :
                 throw new RuntimeException('non implémenté');
                 break;
-            case 'update_contrats' :
+            case 'UpdateContrats' :
                 throw new RuntimeException('non implémenté');
                 break;
-            case 'historique_contrats_email' :
+            case 'HistoriqueContratsEmail' :
                 throw new RuntimeException('non implémenté');
                 break;
             default :
