@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use http\Exception\RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -90,17 +91,17 @@ class PersistenceController extends Controller
         }
 
         $entityManager = $this->getDoctrine()->getManager();
+        /** @var UserRepository $repository */
         $repository = $entityManager->getRepository(User::class);
 
-        /** @var User $user */
-        $user = $repository->findOneBy(array('email' => $body['email']));
+        $user = $repository->findOneByEmail($body['email']);
         if ($user == null) {
             return $this->json(array(
                 'status' => 'false',
                 'body' => 'Cet utilisateur n\'existe pas !'
             ));
         }
-        if (strcmp($user->getPassword(), $body['mdp']) !== 0) {
+        if (strcmp($user['password'], $body['mdp']) !== 0) {
             return $this->json(array(
                 'status' => 'false',
                 'body' => 'Mot de passe incorrect !'
