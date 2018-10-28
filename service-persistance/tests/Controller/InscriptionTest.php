@@ -1,5 +1,5 @@
 <?php
-// tests/Controller/ConnexionTest.php
+// tests/Controller/InscriptionTest.php
 namespace App\Tests\Controller;
 
 use App\DataFixtures\AppFixtures;
@@ -8,9 +8,9 @@ use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ConnexionTest extends WebTestCase
+class InscriptionTest extends WebTestCase
 {
-    public static function setUpBeforeClass()
+    public function setUp()
     {
         static::$kernel = static::createKernel();
         static::$kernel->boot();
@@ -25,12 +25,12 @@ class ConnexionTest extends WebTestCase
         $executor = new ORMExecutor($em, $purger);
         $executor->execute($loader->getFixtures());
 
-        parent::setUpBeforeClass();
+        parent::setUp();
     }
 
     public function testMissingParametersRequest()
     {
-        $post_b = '{"action":"Connexion", "body":{"email":"aaa@aaa.com", "badparam":"null"}}';
+        $post_b = '{"action":"Inscription", "body":{"email":"aaa@aaa.com", "password":"null", "badparam":"tsunchun"}}';
         $client = $this->createClient();
 
         $client->request(
@@ -53,12 +53,12 @@ class ConnexionTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'false') === 0);
-        $this->assertTrue(strpos($data['body'], 'obligatoires de parsage (connexion) ne sont') !== false);
+        $this->assertTrue(strpos($data['body'], 'obligatoires de parsage (inscription) ne sont') !== false);
     }
 
-    public function testBadEmailRequest()
+    public function testAlreadyUsedMailRequest()
     {
-        $post_b = '{"action":"Connexion", "body":{"email":"aaa@aaa.com", "mdp":"strong"}}';
+        $post_b = '{"action":"Inscription", "body":{"email":"example1@email.com", "password":"pass", "name":"Chun", "firstname":"Tsun", "birthday":"2000-01-20", "phone_number":"0411223344"}}';
         $client = $this->createClient();
 
         $client->request(
@@ -81,12 +81,12 @@ class ConnexionTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'false') === 0);
-        $this->assertTrue(strpos($data['body'], 'utilisateur n\'existe pas') !== false);
+        $this->assertTrue(strpos($data['body'], 'This value is already used.') !== false);
     }
 
-    public function testBadPasswordRequest()
+    public function testWrongMailRequest()
     {
-        $post_b = '{"action":"Connexion", "body":{"email":"example1@email.com", "mdp":"azertyu"}}';
+        $post_b = '{"action":"Inscription", "body":{"email":"examplemail.com", "password":"pass", "name":"Chun", "firstname":"Tsun", "birthday":"2000-01-20", "phone_number":"0411223344"}}';
         $client = $this->createClient();
 
         $client->request(
@@ -109,12 +109,40 @@ class ConnexionTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'false') === 0);
-        $this->assertTrue(strpos($data['body'], 'Mot de passe incorrect !') !== false);
+        $this->assertTrue(strpos($data['body'], 'L\'email saisi n\'est pas valide.') !== false);
     }
 
-    public function testGoodConnexionRequest()
+    public function testEmptyFieldsRequest()
     {
-        $post_b = '{"action":"Connexion", "body":{"email":"example1@email.com", "mdp":"azerty"}}';
+        $post_b = '{"action":"Inscription", "body":{"email":"example@mail.com", "password":"pass", "name":"", "firstname":"", "birthday":"2000-01-20", "phone_number":""}}';
+        $client = $this->createClient();
+
+        $client->request(
+            'POST',
+            '/receive_event',
+            array(),
+            array(),
+            array('CONTENT_TYPE' => 'application/json'),
+            $post_b
+        );
+
+        $this->assertTrue(
+            $client->getResponse()->headers->contains(
+                'Content-Type',
+                'application/json'
+            )
+        );
+
+        $data = json_decode($client->getResponse()->getContent(), true);
+
+        $this->assertTrue(array_key_exists('status', $data));
+        $this->assertTrue(strcmp($data['status'], 'false') === 0);
+        $this->assertTrue(strpos($data['body'], 'This value should not be blank.') !== false);
+    }
+
+    public function testGoodInscriptionRequest()
+    {
+        $post_b = '{"action":"Inscription", "body":{"email":"example@mail.com", "password":"pass", "name":"Chun", "firstname":"Tsun", "birthday":"2000-01-20", "phone_number":"0411223344"}}';
         $client = $this->createClient();
 
         $client->request(
@@ -137,6 +165,9 @@ class ConnexionTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'true') === 0);
-        $this->assertTrue(strcmp(json_decode($data['body'], true)['name'], 'Doe') === 0);
+        $this->assertTrue(strcmp(json_decode($data['body'], true)['name'], 'Chun') === 0);
+        $this->assertTrue(strcmp(json_decode($data['body'], true)['phone_number'], '0411223344') === 0);
+        $this->assertTrue(strcmp(json_decode($data['body'], true)['password'], 'pass') === 0);
     }
+
 }

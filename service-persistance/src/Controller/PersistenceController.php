@@ -142,7 +142,7 @@ class PersistenceController extends Controller
         $user->setPassword($body['password']);
         $user->setName($body['name']);
         $user->setFirstname($body['firstname']);
-        $user->setBirtiday($body['birthday']);
+        $user->setBirtiday(new \DateTime($body['birthday']));
         $user->setPhoneNumber($body['phone_number']);
 
         $errors = $validator->validate($user);

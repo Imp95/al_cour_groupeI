@@ -23,9 +23,11 @@ class User
     private $id;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank()(
+     *     message = "Aucun email n'a été saisi.",
+     * )
      * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
+     *     message = "L'email saisi n'est pas valide.",
      *     checkMX = true
      * )
      * @ORM\Column(type="string", length=255, nullable=false, unique=true)
@@ -33,40 +35,49 @@ class User
     private $email;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank()(
+     *     message = "Aucun mot de passe n'a été saisi.",
+     * )
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $password;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Regex("/^([A-Za-z]+| |-)$/")
+     * @Assert\NotBlank()(
+     *     message = "Aucun nom n'a été saisi.",
+     * )
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Regex("/^([A-Za-z]+| |-)$/")
+     * @Assert\NotBlank()(
+     *     message = "Aucun prénom n'a été saisi.",
+     * )
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $firstname;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank()(
+     *     message = "Aucune date de naissance n'a été saisi.",
+     * )
      * @ORM\Column(type="date", nullable=false)
      */
     private $birtiday;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Regex("/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/")
+     * @Assert\NotBlank()(
+     *     message = "Aucun numéro de téléphone n'a été saisi.",
+     * )
      * @ORM\Column(type="string", length=20, nullable=false, name="phone_number")
      */
-    private $phoneNumber;
+    private $phone_number;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank()(
+     *     message = "Aucun montant n'a été saisi.",
+     * )
      * @ORM\Column(type="integer", nullable=false)
      */
     private $amount;
@@ -177,7 +188,7 @@ class User
      */
     public function getPhoneNumber()
     {
-        return $this->phoneNumber;
+        return $this->phone_number;
     }
 
     /**
@@ -185,7 +196,7 @@ class User
      */
     public function setPhoneNumber($phoneNumber): void
     {
-        $this->phoneNumber = $phoneNumber;
+        $this->phone_number = $phoneNumber;
     }
 
     /**
