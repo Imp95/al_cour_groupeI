@@ -4,6 +4,8 @@ import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
+import groupei.al.blablacar.Tools.JSONSerializer;
+
 import static org.junit.Assert.*;
 
 /**

@@ -14,35 +14,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AnotherActivity" />
+        <activity android:name=".Activities.AnotherActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".InscriptionActivity"
+            android:name=".Activities.InscriptionActivity"
             android:label="@string/title_activity_inscription"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AcceuilActivity"
+            android:name=".Activities.AcceuilActivity"
             android:label="@string/title_activity_acceuil"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RechercheActivity"
+            android:name=".Activities.RechercheActivity"
             android:label="@string/title_activity_recherche"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".OffresActivity"
+            android:name=".Activities.OffresActivity"
             android:label="@string/title_activity_offres"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ContratsActivity"
+            android:name=".Activities.ContratsActivity"
             android:label="@string/title_activity_contrats"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
