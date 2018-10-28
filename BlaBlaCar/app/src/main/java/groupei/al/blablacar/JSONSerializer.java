@@ -26,8 +26,24 @@ public class JSONSerializer {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //json.put("mdp", passwordHash);
-        System.out.println(json.toString());
+        return json;
+    }
+
+    static public JSONObject getInscriptionJSON(String email, String mdp, String nom, String prenom, String date_de_naissance) {
+        int passwordHash = mdp.hashCode();
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("email", email);
+            json_body.put("mdp", passwordHash);
+            json_body.put("nom", nom);
+            json_body.put("prenom", prenom);
+            json_body.put("date_de_naissance", date_de_naissance);
+            json.put("Action", "inscription");
+            json.put("Body", json_body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return json;
     }
 }
