@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class PersistenceController extends Controller
 {
@@ -17,9 +18,10 @@ class PersistenceController extends Controller
      *
      * @Route("/receive_event", name="switchman")
      * @param Request $request
+     * @param ValidatorInterface $validator
      * @return Response
      */
-    public function switchman(Request $request)
+    public function switchman(Request $request, ValidatorInterface $validator)
     {
         if ($request->getContentType() != 'json' || !$request->getContent()) {
             return $this->json(array(
@@ -47,7 +49,7 @@ class PersistenceController extends Controller
                 return $this->connexionAction($data['body']);
                 break;
             case 'Inscription' :
-                throw new RuntimeException('non implémenté');
+                return $this->inscriptionAction($data['body'], $validator);
                 break;
             case 'RechercheAnnonce' :
                 throw new RuntimeException('non implémenté');
@@ -111,6 +113,64 @@ class PersistenceController extends Controller
         return $this->json(array(
             'status' => 'true',
             'body' => json_encode($user)
+        ));
+    }
+
+    /**
+     * Action d'inscription au service
+     *
+     * @param array $body
+     * @param ValidatorInterface $validator
+     * @return Response
+     */
+    private function inscriptionAction(array $body, ValidatorInterface $validator)
+    {
+        if (!array_key_exists('email', $body) || !array_key_exists('password', $body)
+            || !array_key_exists('name', $body) || !array_key_exists('firstname', $body)
+            || !array_key_exists('birthday', $body) || !array_key_exists('phone_number', $body)) {
+            return $this->json(array(
+                'status' => 'false',
+                'body' => 'Les clés obligatoires de parsage (inscription) ne sont pas présentes.'
+            ));
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        /** @var User $user */
+        $user = new User();
+        $user->setEmail($body['email']);
+        $user->setPassword($body['password']);
+        $user->setName($body['name']);
+        $user->setFirstname($body['firstname']);
+        $user->setBirtiday($body['birthday']);
+        $user->setPhoneNumber($body['phone_number']);
+
+        $errors = $validator->validate($user);
+
+        if (count($errors) > 0) {
+            /*
+             * Uses a __toString method on the $errors variable which is a
+             * ConstraintViolationList object. This gives us a nice string
+             * for debugging.
+             */
+            $errorsString = (string)$errors;
+
+            return $this->json(array(
+                'status' => 'false',
+                'body' => json_encode($errorsString)
+            ));
+        }
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        /** @var UserRepository $repository */
+        $repository = $entityManager->getRepository(User::class);
+
+        $userCreated = $repository->findOneByEmail($body['email']);
+        return $this->json(array(
+            'status' => 'true',
+            'body' => json_encode($userCreated)
         ));
     }
 }

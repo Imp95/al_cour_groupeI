@@ -61,7 +61,7 @@ class User
     /**
      * @Assert\NotBlank()
      * @Assert\Regex("/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/")
-     * @ORM\Column(type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20, nullable=false, name="phone_number")
      */
     private $phoneNumber;
 
@@ -84,6 +84,7 @@ class User
     public function __construct() {
         $this->ads = new ArrayCollection();
         $this->offers = new ArrayCollection();
+        $this->amount = 0;
     }
 
     public function getId()
