@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="groupei.al.blablacar.RechercheActivity">
+    tools:context="groupei.al.blablacar.Activities.RechercheActivity">
 
     <Button
         android:id="@+id/rechercher"
