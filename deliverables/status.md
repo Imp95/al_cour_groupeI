@@ -7,7 +7,18 @@ __Duminy Gaétan__
 __Picard Marchetto Ivan__
 
 ### Updated
-__21:54 24/10/2018__
+__20:52 31/10/2018__
+
+## Week 44
+
+### Tasks achived :
+  - Create Android HTTP request handler
+  - Create Android JSON Generator for request
+  
+### Tasks planned for next week :
+
+  - Finish the Android App
+  - Connect Android to PHP
 
 ## Week 43
 
