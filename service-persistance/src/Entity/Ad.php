@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
  */
 class Ad
 {
@@ -59,12 +59,12 @@ class Ad
     private $client;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=false, name="departure_address")
      */
     private $departureAddress;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=false, name="arrival_address")
      */
     private $arrivalAddress;
 
