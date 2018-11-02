@@ -198,6 +198,10 @@ class PersistenceController extends Controller
 
         $resultSearch = $repository->customFindByMultiParams($body['departure_town'], $body['arrival_town'], $body['bagage']);
 
+        if ($resultSearch === null) {
+            $resultSearch = array();
+        }
+
         return $this->json(array(
             'status' => 'true',
             'body' => json_encode($resultSearch)

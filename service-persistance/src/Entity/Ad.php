@@ -26,13 +26,13 @@ class Ad
      * @Assert\NotBlank()
      * @ORM\Column(type="date", nullable=false)
      */
-    private $departureDate;
+    private $departure_date;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="date", nullable=false)
      */
-    private $arrivalDate;
+    private $arrival_date;
 
     /**
      * @Assert\NotBlank()
@@ -61,12 +61,12 @@ class Ad
     /**
      * @ORM\Column(type="text", nullable=false, name="departure_address")
      */
-    private $departureAddress;
+    private $departure_address;
 
     /**
      * @ORM\Column(type="text", nullable=false, name="arrival_address")
      */
-    private $arrivalAddress;
+    private $arrival_address;
 
     /**
      * @OneToMany(targetEntity="Offer", mappedBy="ad")
@@ -87,7 +87,7 @@ class Ad
      */
     public function getDepartureDate()
     {
-        return $this->departureDate;
+        return $this->departure_date;
     }
 
     /**
@@ -95,7 +95,7 @@ class Ad
      */
     public function setDepartureDate($departureDate): void
     {
-        $this->departureDate = $departureDate;
+        $this->departure_date = $departureDate;
     }
 
     /**
@@ -103,7 +103,7 @@ class Ad
      */
     public function getArrivalDate()
     {
-        return $this->arrivalDate;
+        return $this->arrival_date;
     }
 
     /**
@@ -111,7 +111,7 @@ class Ad
      */
     public function setArrivalDate($arrivalDate): void
     {
-        $this->arrivalDate = $arrivalDate;
+        $this->arrival_date = $arrivalDate;
     }
 
     /**
@@ -183,7 +183,7 @@ class Ad
      */
     public function getDepartureAddress()
     {
-        return $this->departureAddress;
+        return $this->departure_address;
     }
 
     /**
@@ -191,7 +191,7 @@ class Ad
      */
     public function setDepartureAddress($departureAddress): void
     {
-        $this->departureAddress = $departureAddress;
+        $this->departure_address = $departureAddress;
     }
 
     /**
@@ -199,7 +199,7 @@ class Ad
      */
     public function getArrivalAddress()
     {
-        return $this->arrivalAddress;
+        return $this->arrival_address;
     }
 
     /**
@@ -207,7 +207,7 @@ class Ad
      */
     public function setArrivalAddress($arrivalAddress): void
     {
-        $this->arrivalAddress = $arrivalAddress;
+        $this->arrival_address = $arrivalAddress;
     }
 
     /**
