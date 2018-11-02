@@ -2,7 +2,9 @@
 // src/Controller/PersistenceController.php
 namespace App\Controller;
 
+use App\Entity\Ad;
 use App\Entity\User;
+use App\Repository\AdRepository;
 use App\Repository\UserRepository;
 use http\Exception\RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,7 +54,7 @@ class PersistenceController extends Controller
                 return $this->inscriptionAction($data['body'], $validator);
                 break;
             case 'RechercheAnnonce' :
-                throw new RuntimeException('non implémenté');
+                return $this->findAdAction($data['body']);
                 break;
             case 'CreationOffre' :
                 throw new RuntimeException('non implémenté');
@@ -171,6 +173,38 @@ class PersistenceController extends Controller
         return $this->json(array(
             'status' => 'true',
             'body' => json_encode($userCreated)
+        ));
+    }
+
+    /**
+     * Action de recherche d'annonce
+     *
+     * @param array $body
+     * @return Response
+     */
+    private function findAdAction(array $body)
+    {
+        if (!array_key_exists('departure_town', $body) || !array_key_exists('arrival_town', $body)
+            || !array_key_exists('bagage', $body)) {
+            return $this->json(array(
+                'status' => 'false',
+                'body' => 'Les clés obligatoires de parsage (recherche d\'annonce) ne sont pas présentes.'
+            ));
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        /** @var AdRepository $repository */
+        $repository = $entityManager->getRepository(Ad::class);
+
+        $resultSearch = $repository->customFindByMultiParams($body['departure_town'], $body['arrival_town'], $body['bagage']);
+
+        if ($resultSearch === null) {
+            $resultSearch = array();
+        }
+
+        return $this->json(array(
+            'status' => 'true',
+            'body' => json_encode($resultSearch)
         ));
     }
 }
