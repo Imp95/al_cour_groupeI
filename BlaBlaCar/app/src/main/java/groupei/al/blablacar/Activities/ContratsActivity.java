@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +14,10 @@ import android.widget.TextView;
 import groupei.al.blablacar.R;
 
 public class ContratsActivity extends AppCompatActivity {
+
+    RecyclerView liste;
+    RecyclerView.Adapter mAdapter;
+    RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,15 @@ public class ContratsActivity extends AppCompatActivity {
             String new_name = (String) bundle.get("titre");
             titre.setText(new_name);
         }
+        liste = (RecyclerView) findViewById(R.id.listContrats);
+        liste.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        liste.setLayoutManager(mLayoutManager);
+
+        /*mAdapter = new MyAdapter(myDataset);
+        liste.setAdapter(mAdapter);*/
+
+
     }
 
     @Override
