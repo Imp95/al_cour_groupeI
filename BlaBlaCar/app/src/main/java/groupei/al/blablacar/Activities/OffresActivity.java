@@ -1,16 +1,16 @@
 package groupei.al.blablacar.Activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import groupei.al.blablacar.Entities.Offre;
 import groupei.al.blablacar.R;
-import groupei.al.blablacar.Tools.MyAdapter;
+import groupei.al.blablacar.Tools.OffreAdapter;
 
 public class OffresActivity extends AppCompatActivity {
 
@@ -26,9 +26,9 @@ public class OffresActivity extends AppCompatActivity {
         liste.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         liste.setLayoutManager(mLayoutManager);
-
-        /*mAdapter = new MyAdapter(myDataset);
-        liste.setAdapter(mAdapter);*/
+        List<Offre> myDataset = new ArrayList<>();
+        mAdapter = new OffreAdapter(myDataset);
+        liste.setAdapter(mAdapter);
 
 
 
