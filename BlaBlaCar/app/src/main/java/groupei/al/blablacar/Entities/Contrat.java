@@ -54,4 +54,16 @@ public class Contrat {
     public void setOffre_acceptee(Offre offre_acceptee) {
         Offre_acceptee = offre_acceptee;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Contrat : ");
+        stringBuilder.append(getID());
+        stringBuilder.append(", Status : ");
+        stringBuilder.append(getStatus());
+        stringBuilder.append(", Offre concerené : ");
+        stringBuilder.append(getOffre_acceptee().getID());
+        return stringBuilder.toString();
+    }
 }

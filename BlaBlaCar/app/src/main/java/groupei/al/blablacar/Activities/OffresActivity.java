@@ -6,9 +6,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
+import groupei.al.blablacar.Entities.Adresse;
+import groupei.al.blablacar.Entities.Annonce;
 import groupei.al.blablacar.Entities.Offre;
+import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
 import groupei.al.blablacar.Tools.OffreAdapter;
 
@@ -27,6 +32,19 @@ public class OffresActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         liste.setLayoutManager(mLayoutManager);
         List<Offre> myDataset = new ArrayList<>();
+        //test stuff
+        Utilisateur user= new Utilisateur("test","test","test",new Date(),"test",0);
+        Annonce annonce = new Annonce(0, new Date(), new Date(),"test",0,0,user
+                ,new Adresse(0,"test","test","test","test"),new Adresse(0,"test","test","test","test")
+        ,new LinkedList<Offre>());
+        Offre offre = new Offre(0,new Date(),"test",annonce,user);
+        myDataset.add(offre);
+        myDataset.add(offre);
+        myDataset.add(offre);myDataset.add(offre);
+        myDataset.add(offre);
+        myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);
+
+        //stop test stuff
         mAdapter = new OffreAdapter(myDataset);
         liste.setAdapter(mAdapter);
 

@@ -2,6 +2,7 @@ package groupei.al.blablacar.Tools;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -38,6 +39,12 @@ public class OffreAdapter extends RecyclerView.Adapter<OffreAdapter.MyViewHolder
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.my_text_view, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
         return vh;
     }
 
