@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\OfferRepository")
  */
 class Offer
 {
@@ -20,7 +20,9 @@ class Offer
     private $id;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank()(
+     *     message = "Aucune date de disponibilité n'a été saisi.",
+     * )
      * @ORM\Column(type="date", nullable=false)
      */
     private $proposedDate;

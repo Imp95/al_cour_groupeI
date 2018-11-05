@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\Offer;
 use App\Entity\User;
 use App\Repository\AdRepository;
+use App\Repository\OfferRepository;
 use App\Repository\UserRepository;
 use http\Exception\RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -57,7 +59,7 @@ class PersistenceController extends Controller
                 return $this->findAdAction($data['body']);
                 break;
             case 'CreationOffre' :
-                throw new RuntimeException('non implémenté');
+                return $this->creationOffreAction($data['body'], $validator);
                 break;
             case 'VoirOffres' :
                 throw new RuntimeException('non implémenté');
@@ -205,6 +207,65 @@ class PersistenceController extends Controller
         return $this->json(array(
             'status' => 'true',
             'body' => json_encode($resultSearch)
+        ));
+    }
+
+    /**
+     * Action de création d'offre
+     *
+     * @param array $body
+     * @param ValidatorInterface $validator
+     * @return Response
+     */
+    private function creationOffreAction(array $body, ValidatorInterface $validator)
+    {
+        if (!array_key_exists('ad_id', $body) || !array_key_exists('proposed_date', $body)
+            || !array_key_exists('carrier_email', $body)) {
+            return $this->json(array(
+                'status' => 'false',
+                'body' => 'Les clés obligatoires de parsage (création d\'offre) ne sont pas présentes.'
+            ));
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        /** @var AdRepository $repositoryAd */
+        $repositoryAd = $entityManager->getRepository(Ad::class);
+        /** @var UserRepository $repositoryUser */
+        $repositoryUser = $entityManager->getRepository(User::class);
+
+        /** @var Offer $offer */
+        $offer = new Offer();
+        $offer->setProposedDate(new \DateTime($body['proposed_date']));
+        $offer->setCarrier($repositoryUser->findOneBy(array('email' => $body['carrier_email'])));
+        $offer->setAd($repositoryAd->find(intval($body['ad_id'])));
+
+        $errors = $validator->validate($offer);
+
+        if (count($errors) > 0) {
+            /*
+             * Uses a __toString method on the $errors variable which is a
+             * ConstraintViolationList object. This gives us a nice string
+             * for debugging.
+             */
+            $errorsString = (string)$errors;
+
+            return $this->json(array(
+                'status' => 'false',
+                'body' => json_encode($errorsString)
+            ));
+        }
+
+        $entityManager->persist($offer);
+        $entityManager->flush();
+
+        /** @var OfferRepository $repository */
+        $repository = $entityManager->getRepository(Offer::class);
+
+        $userCreated = $repository->findOneById($offer->getId());
+        return $this->json(array(
+            'status' => 'true',
+            'body' => json_encode($userCreated)
         ));
     }
 }
