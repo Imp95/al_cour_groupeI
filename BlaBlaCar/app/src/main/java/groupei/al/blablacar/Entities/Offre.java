@@ -56,4 +56,18 @@ public class Offre {
     public void setTransporteur(Utilisateur transporteur) {
         Transporteur = transporteur;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Offre : ");
+        stringBuilder.append(getID());
+        stringBuilder.append(", Status : ");
+        stringBuilder.append(getStatus());
+        stringBuilder.append(", Date proposée : ");
+        stringBuilder.append(getDate_proposee());
+        stringBuilder.append(", Annonce repondu : ");
+        stringBuilder.append(getAnnonce_repondu().getID());
+        return stringBuilder.toString();
+    }
 }
