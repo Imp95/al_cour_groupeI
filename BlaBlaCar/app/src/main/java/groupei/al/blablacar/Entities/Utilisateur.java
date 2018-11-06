@@ -1,8 +1,9 @@
 package groupei.al.blablacar.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Utilisateur {
+public class Utilisateur implements Serializable {
     private String Email;
     private String Nom;
     private String Prenom;

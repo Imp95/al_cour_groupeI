@@ -1,5 +1,6 @@
 package groupei.al.blablacar.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -17,11 +18,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
+import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.Tools.JSONSerializer;
 import groupei.al.blablacar.Tools.LoginHandler;
 import groupei.al.blablacar.Tools.LoginHandlerMock;
@@ -100,12 +107,30 @@ public class MainActivity extends AppCompatActivity {
 
         JSONObject js = JSONSerializer.getConnexionJSON(mail.getText().toString(), mdp.getText().toString());
         String url = "http://192.168.0.41:80/service-persistance/public/index.php/receive_event";
+        final Activity act = this;
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("connexion", response.toString());
+                        try {
+                            System.out.println(response.get("body").getClass().getName());
+                            JSONObject body = new JSONObject((String) response.get("body"));
+                            JSONObject dateJson = new JSONObject(body.getString("birtiday"));
+                            String dateTime = ((String) dateJson.get("date"));
+                            SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.FRANCE);
+                            Date date = dateParser.parse(dateTime);
+                            Utilisateur user = new Utilisateur(body.getString("email"), body.getString("name"), body.getString("firstname"),
+                                    date, body.getString("phone_number"), body.getInt("amount"));
+                            Intent intent = new Intent(act, AcceuilActivity.class);
+                            intent.putExtra("user", user); //faire passer des parametre
+                            startActivity(intent);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
 
