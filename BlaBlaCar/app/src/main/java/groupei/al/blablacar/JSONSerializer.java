@@ -15,14 +15,14 @@ public class JSONSerializer {
     }
 
     static public JSONObject getConnexionJSON(String email, String mdp) {
-        int passwordHash = mdp.hashCode();
+        //int passwordHash = mdp.hashCode();
         JSONObject json_body = new JSONObject();
         JSONObject json = new JSONObject();
         try {
             json_body.put("email", email);
-            json_body.put("mdp", passwordHash);
-            json.put("Action", "connexion");
-            json.put("Body", json_body);
+            json_body.put("mdp", mdp);
+            json.put("action", "Connexion");
+            json.put("body", json_body);
         } catch (JSONException e) {
             e.printStackTrace();
         }
