@@ -15,7 +15,6 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
@@ -107,13 +106,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("connexion", response.toString());
-
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("connexion", "Error: " + error.getMessage());
+                Log.d("connexion", "Error: " + error.getMessage());
             }
         }) {
 
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 return headers;
             }
         };
-
+        System.out.println(jsonObjReq.toString());
         requestHandler.addToRequestQueue(jsonObjReq);
     }
 

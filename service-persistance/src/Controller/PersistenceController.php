@@ -27,7 +27,7 @@ class PersistenceController extends Controller
      */
     public function switchman(Request $request, ValidatorInterface $validator)
     {
-        if ($request->getContentType() != 'json' || !$request->getContent()) {
+        if (!$request->getContent()) {
             return $this->json(array(
                 'status' => 'false',
                 'body' => 'Le contenu de la requête n\'est pas valide.'
