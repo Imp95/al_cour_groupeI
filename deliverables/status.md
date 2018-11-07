@@ -7,7 +7,30 @@ __Duminy Gaétan__
 __Picard Marchetto Ivan__
 
 ### Updated
-__20:52 31/10/2018__
+__23:22 07/11/2018__
+
+## Week 45
+
+### Tasks achived :
+  - Communication between Android app and PHP service
+  - Sign In/Up with Android App
+  - Ad research wyth Android App
+  - Create Activities:
+    - AnnonceViewActivity
+    - ChoixAnnoncesActivity
+    - ContratViewActivity
+    - OffreViewActivity
+    - RechercheActivity
+  
+### Tasks planned for next week :
+
+  - Add PHP requests (order creation, ...)
+  - Finish order creation
+  - Hash password
+  - Add Activity to check remaining space
+  - View actual offers
+  - View actual contract and interract with for the delivery
+  - View contract history
 
 ## Week 44
 
