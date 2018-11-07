@@ -85,25 +85,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause(){ //Methode appeler lorsque qu'on quitte l'app sans la refermer
         super.onPause();
-
     }
+
     @Override
     protected void onResume(){ //Methode appeler lorsque qu'on reviens sur l'app, est inclus dans le onCreate
         super.onResume();
     }
 
+    // CHANGE ACTIVITY
+
     public void changerActivityConnexion(View view) {
-        /*Intent intent = new Intent(this, AnotherActivity.class);
-        int x =10;
-        intent.putExtra("key", x); //faire passer des parametre
-        startActivity(intent);*/
+
         EditText mail = (EditText) findViewById(R.id.email);
         EditText mdp = (EditText) findViewById(R.id.mdp);
-        /*token = loginHandler.login(mail.getText().toString(), mdp.getText().toString());
-        if (token == null) {
-            error.setText("Invalid login or password");
-            return;
-        }*/
 
         JSONObject js = JSONSerializer.getConnexionJSON(mail.getText().toString(), mdp.getText().toString());
         String url = "http://192.168.0.41:80/service-persistance/public/index.php/receive_event";
@@ -124,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                             Utilisateur user = new Utilisateur(body.getString("email"), body.getString("name"), body.getString("firstname"),
                                     date, body.getString("phone_number"), body.getInt("amount"));
                             Intent intent = new Intent(act, AcceuilActivity.class);
-                            intent.putExtra("user", user); //faire passer des parametre
+                            intent.putExtra("user", user); //faire passer des parametres
                             startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -140,8 +134,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }) {
 
-            // Passing some request headers
-
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
@@ -149,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 return headers;
             }
         };
+
         System.out.println(jsonObjReq.toString());
         requestHandler.addToRequestQueue(jsonObjReq);
     }
@@ -157,26 +150,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InscriptionActivity.class);
         startActivity(intent);
     }
-
-        /*
-        token = loginHandler.login(mail.getText().toString(),mdp.getText().toString());
-        if(token==null){
-            error.setText("Invalid login or password");
-            return;
-        }
-
-        SharedPreferences mPrefs = getSharedPreferences("Blablacar", 0);
-        SharedPreferences.Editor mEditor = mPrefs.edit();
-        mEditor.putString("TokenMail",token.getEmail());
-        mEditor.putLong("TokenTime",token.getExpire());
-
-
-        SharedPreferences mPrefs = getSharedPreferences("Blablacar", 0);
-        SharedPreferences.Editor mEditor = mPrefs.edit();
-        mEditor.putString("TokenMail",token.getEmail());
-        mEditor.putLong("TokenTime",token.getExpire());
-        Intent intent = new Intent(this, AcceuilActivity.class);
-        startActivity(intent);
-    }*/
-
 }

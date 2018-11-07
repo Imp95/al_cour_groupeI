@@ -19,14 +19,14 @@ public class AcceuilActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         TextView nombre = (TextView) findViewById(R.id.nombre);
-        Utilisateur user = (Utilisateur) bundle.get("user");
+        final Utilisateur user = (Utilisateur) bundle.get("user");
         nombre.setText("" + user.getSolde());
 
         Button chercher = (Button) findViewById(R.id.chercher);
         chercher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityChercher(view);
+                changerActivityChercher(view, user);
             }
         });
 
@@ -34,7 +34,7 @@ public class AcceuilActivity extends AppCompatActivity {
         offres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityOffres(view);
+                changerActivityOffres(view, user);
             }
         });
 
@@ -42,7 +42,7 @@ public class AcceuilActivity extends AppCompatActivity {
         contrats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityContrats(view);
+                changerActivityContrats(view, user);
             }
         });
 
@@ -50,7 +50,7 @@ public class AcceuilActivity extends AppCompatActivity {
         historique.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityHistorique(view);
+                changerActivityHistorique(view, user);
             }
         });
     }
@@ -65,24 +65,28 @@ public class AcceuilActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public void changerActivityChercher(View view) {
+    public void changerActivityChercher(View view, Utilisateur user) {
         Intent intent = new Intent(this, RechercheActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
-    public void changerActivityOffres(View view) {
+    public void changerActivityOffres(View view, Utilisateur user) {
         Intent intent = new Intent(this, OffresActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
-    public void changerActivityContrats(View view) {
+    public void changerActivityContrats(View view, Utilisateur user) {
         Intent intent = new Intent(this, ContratsActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
-    public void changerActivityHistorique(View view) {
+    public void changerActivityHistorique(View view, Utilisateur user) {
         Intent intent = new Intent(this, ContratsActivity.class);
-        intent.putExtra("titre", "Historique des contrats"); //faire passer des parametre
+        intent.putExtra("titre", "Historique des contrats");
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
