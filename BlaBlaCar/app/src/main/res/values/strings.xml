@@ -19,4 +19,5 @@
     <string name="title_activity_offres">OffresActivity</string>
     <string name="title_activity_contrats">ContratsActivity</string>
     <string name="title_activity_choix_offres">ChoixOffresActivity</string>
+    <string name="title_activity_create_order">CreateOrderActivity</string>
 </resources>
