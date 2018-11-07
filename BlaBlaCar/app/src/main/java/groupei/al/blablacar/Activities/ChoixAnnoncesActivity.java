@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -20,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,6 +36,9 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
     RecyclerView liste;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
+    Button cart;
+
+    LinkedList<Annonce> panier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +46,11 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choix_annonces);
         liste = (RecyclerView) findViewById(R.id.listeAnnonces);
         liste.setHasFixedSize(true);
+        cart = (Button) findViewById(R.id.cart);
         mLayoutManager = new LinearLayoutManager(this);
         liste.setLayoutManager(mLayoutManager);
         List<Annonce> listAnnonces = new ArrayList<>();
+        panier = new LinkedList<>();
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         Utilisateur user = (Utilisateur) bundle.get("user");
@@ -82,7 +89,7 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
 
         //stop test stuff
         Log.d("test_annonces", String.valueOf(listAnnonces.size()));
-        mAdapter = new AnnonceAdapter(listAnnonces,this);
+        mAdapter = new AnnonceAdapter(listAnnonces,panier,this);
         liste.setAdapter(mAdapter);
     }
 
@@ -95,4 +102,6 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
     protected void onResume(){ //Methode appeler lorsque qu'on reviens sur l'app, est inclus dans le onCreate
         super.onResume();
     }
+
+    public Button getCart(){return cart;}
 }

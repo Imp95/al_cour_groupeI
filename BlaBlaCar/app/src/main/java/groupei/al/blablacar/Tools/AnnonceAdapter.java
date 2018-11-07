@@ -8,16 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import groupei.al.blablacar.Activities.AnnonceViewActivity;
+import groupei.al.blablacar.Activities.ChoixAnnoncesActivity;
 import groupei.al.blablacar.Activities.OffreViewActivity;
 import groupei.al.blablacar.Entities.Annonce;
 import groupei.al.blablacar.R;
 
 public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.MyViewHolder> {
     private List<Annonce> mDataset;
-    private Activity parent;
+    private LinkedList<Annonce> panier;
+    private ChoixAnnoncesActivity parent;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -32,8 +35,9 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.MyViewHo
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AnnonceAdapter(List<Annonce> myDataset, Activity activity) {
+    public AnnonceAdapter(List<Annonce> myDataset, LinkedList<Annonce> list, ChoixAnnoncesActivity activity) {
         mDataset = myDataset;
+        panier=list;
         parent=activity;
     }
 
@@ -57,8 +61,8 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.MyViewHo
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(parent,AnnonceViewActivity.class);
-                intent.putExtra("annonce",mDataset.get(position));
+                panier.add(mDataset.get(position));
+                parent.getCart().setText(""+panier.size());
             }
         });
 

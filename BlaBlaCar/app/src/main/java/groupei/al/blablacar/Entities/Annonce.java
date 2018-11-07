@@ -79,4 +79,15 @@ public class Annonce implements Serializable {
     public void setAdresse_arrivee(String adresse_arrivee) {
         Adresse_arrivee = adresse_arrivee;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Départ : ");stringBuilder.append(getAdresse_depart());stringBuilder.append('\n');
+        stringBuilder.append("Arrivé : ");stringBuilder.append(getAdresse_arrivee());stringBuilder.append('\n');
+        stringBuilder.append("Dimension bagage : ");stringBuilder.append(getBagage());stringBuilder.append('\n');
+        stringBuilder.append("Paiment : ");stringBuilder.append(getPaiement());stringBuilder.append('\n');
+        stringBuilder.append("Date : Entre le ");stringBuilder.append(getDate_Debut());stringBuilder.append(" et le ");;stringBuilder.append(getDate_Fin());
+        return stringBuilder.toString();
+    }
 }
