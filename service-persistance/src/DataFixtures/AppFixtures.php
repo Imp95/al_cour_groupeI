@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
         $user1->setPassword('azerty');
         $user1->setName('Doe');
         $user1->setFirstname('John');
-        $user1->setBirtiday(new \DateTime('1980-01-20'));
+        $user1->setBirthday(new \DateTime('1980-01-20'));
         $user1->setPhoneNumber('0122334455');
         $user1->setAmount(0);
         $manager->persist($user1);
@@ -29,7 +29,7 @@ class AppFixtures extends Fixture
         $user2->setPassword('password');
         $user2->setName('Bon');
         $user2->setFirstname('Jean');
-        $user2->setBirtiday(new \DateTime('1977-03-18'));
+        $user2->setBirthday(new \DateTime('1977-03-18'));
         $user2->setPhoneNumber('0322334459');
         $user2->setAmount(50);
         $manager->persist($user2);

@@ -81,7 +81,7 @@ class FindAdTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'true') === 0);
-        $this->assertTrue(count(json_decode($data['body'], true)) === 0);
+        $this->assertTrue(count($data['body']) === 0);
     }
 
     public function testFindAllRequest()
@@ -109,7 +109,7 @@ class FindAdTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'true') === 0);
-        $this->assertTrue(count(json_decode($data['body'], true)) === 3);
+        $this->assertTrue(count($data['body']) === 3);
     }
 
     public function testFindCustom1Request()
@@ -137,7 +137,7 @@ class FindAdTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'true') === 0);
-        $this->assertTrue(count(json_decode($data['body'], true)) === 1);
+        $this->assertTrue(count($data['body']) === 1);
     }
 
     public function testFindCustom2Request()
@@ -165,6 +165,6 @@ class FindAdTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'true') === 0);
-        $this->assertTrue(count(json_decode($data['body'], true)) === 2);
+        $this->assertTrue(count($data['body']) === 2);
     }
 }

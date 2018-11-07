@@ -114,9 +114,11 @@ class PersistenceController extends Controller
             ));
         }
 
+        $user['birthday'] = $user['birthday']->format("Y-m-d");
+
         return $this->json(array(
             'status' => 'true',
-            'body' => json_encode($user)
+            'body' => $user
         ));
     }
 
@@ -146,7 +148,7 @@ class PersistenceController extends Controller
         $user->setPassword($body['password']);
         $user->setName($body['name']);
         $user->setFirstname($body['firstname']);
-        $user->setBirtiday(new \DateTime($body['birthday']));
+        $user->setBirthday(new \DateTime($body['birthday']));
         $user->setPhoneNumber($body['phone_number']);
 
         $errors = $validator->validate($user);
@@ -172,9 +174,10 @@ class PersistenceController extends Controller
         $repository = $entityManager->getRepository(User::class);
 
         $userCreated = $repository->findOneByEmail($body['email']);
+        $userCreated['birthday'] = $userCreated['birthday']->format("Y-m-d");
         return $this->json(array(
             'status' => 'true',
-            'body' => json_encode($userCreated)
+            'body' => $userCreated
         ));
     }
 
@@ -206,7 +209,7 @@ class PersistenceController extends Controller
 
         return $this->json(array(
             'status' => 'true',
-            'body' => json_encode($resultSearch)
+            'body' => $resultSearch
         ));
     }
 
@@ -262,10 +265,11 @@ class PersistenceController extends Controller
         /** @var OfferRepository $repository */
         $repository = $entityManager->getRepository(Offer::class);
 
-        $userCreated = $repository->findOneById($offer->getId());
+        $offerCreated = $repository->findOneById($offer->getId());
+        $offerCreated['proposedDate'] = $offerCreated['proposedDate']->format("Y-m-d");
         return $this->json(array(
             'status' => 'true',
-            'body' => json_encode($userCreated)
+            'body' => $offerCreated
         ));
     }
 }

@@ -53,7 +53,7 @@ class BadSwitchmanTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'false') === 0);
-        $this->assertTrue(strpos($data['body'], 'contenu de la requête n\'est pas valide') !== false);
+        $this->assertTrue(strpos($data['body'], 'Le contenu JSON est mal formé.') !== false);
 
         $client->request(
             'POST',

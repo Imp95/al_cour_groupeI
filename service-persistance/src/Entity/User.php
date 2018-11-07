@@ -64,7 +64,7 @@ class User
      * )
      * @ORM\Column(type="date", nullable=false)
      */
-    private $birtiday;
+    private $birthday;
 
     /**
      * @Assert\NotBlank()(
@@ -170,17 +170,17 @@ class User
     /**
      * @return mixed
      */
-    public function getBirtiday()
+    public function getBirthday()
     {
-        return $this->birtiday;
+        return $this->birthday;
     }
 
     /**
-     * @param mixed $birtiday
+     * @param mixed $birthday
      */
-    public function setBirtiday($birtiday): void
+    public function setBirthday($birthday): void
     {
-        $this->birtiday = $birtiday;
+        $this->birthday = $birthday;
     }
 
     /**

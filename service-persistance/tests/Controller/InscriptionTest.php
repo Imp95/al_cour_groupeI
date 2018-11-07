@@ -165,9 +165,9 @@ class InscriptionTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'true') === 0);
-        $this->assertTrue(strcmp(json_decode($data['body'], true)['name'], 'Chun') === 0);
-        $this->assertTrue(strcmp(json_decode($data['body'], true)['phone_number'], '0411223344') === 0);
-        $this->assertTrue(strcmp(json_decode($data['body'], true)['password'], 'pass') === 0);
+        $this->assertTrue(strcmp($data['body']['name'], 'Chun') === 0);
+        $this->assertTrue(strcmp($data['body']['phone_number'], '0411223344') === 0);
+        $this->assertTrue(strcmp($data['body']['password'], 'pass') === 0);
     }
 
 }

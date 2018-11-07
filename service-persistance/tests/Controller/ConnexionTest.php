@@ -137,6 +137,6 @@ class ConnexionTest extends WebTestCase
 
         $this->assertTrue(array_key_exists('status', $data));
         $this->assertTrue(strcmp($data['status'], 'true') === 0);
-        $this->assertTrue(strcmp(json_decode($data['body'], true)['name'], 'Doe') === 0);
+        $this->assertTrue(strcmp($data['body']['name'], 'Doe') === 0);
     }
 }
