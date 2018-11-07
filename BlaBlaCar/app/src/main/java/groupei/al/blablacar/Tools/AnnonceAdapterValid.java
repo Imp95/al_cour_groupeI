@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -21,7 +22,6 @@ import groupei.al.blablacar.R;
 
 public class AnnonceAdapterValid extends RecyclerView.Adapter<AnnonceAdapterValid.MyViewHolder> {
     private List<Annonce> mDataset;
-    private LinkedList<Annonce> panier;
     private ChoixAnnoncesActivity parent;
     private HashMap<Annonce,String> disponiblity;
     // Provide a reference to the views for each data item
@@ -31,19 +31,20 @@ public class AnnonceAdapterValid extends RecyclerView.Adapter<AnnonceAdapterVali
         // each data item is just a string in this case
         public TextView mTextView;
         public EditText mEditView;
-        public ConstraintLayout layout;
-        public MyViewHolder(ConstraintLayout v) {
+        public LinearLayout layout;
+        public MyViewHolder(LinearLayout v, TextView textView, EditText editText) {
             super(v);
             layout = v;
-            mTextView = (TextView) v.findViewById(R.id.annonce);
-            mEditView = (EditText) v.findViewById(R.id.dispo);
+            mTextView = textView;
+            layout.addView(mTextView);
+            mEditView = editText;
+            layout.addView(mEditView);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AnnonceAdapterValid(List<Annonce> myDataset, LinkedList<Annonce> list, ChoixAnnoncesActivity activity) {
+    public AnnonceAdapterValid(List<Annonce> myDataset, ChoixAnnoncesActivity activity) {
         mDataset = myDataset;
-        panier=list;
         parent=activity;
     }
 
@@ -52,9 +53,13 @@ public class AnnonceAdapterValid extends RecyclerView.Adapter<AnnonceAdapterVali
     public AnnonceAdapterValid.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                                int viewType) {
         // create a new view
-        ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(parent.getContext())
+        LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.annonce_view, parent, false);
-        MyViewHolder vh = new MyViewHolder(v);
+        TextView t = (TextView) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.my_text_view, parent, false);
+        EditText e = (EditText) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.my_edit_view, parent, false);
+        MyViewHolder vh = new MyViewHolder(v,t,e);
         return vh;
     }
 
