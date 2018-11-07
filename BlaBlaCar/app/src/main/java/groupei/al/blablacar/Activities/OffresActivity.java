@@ -51,9 +51,6 @@ public class OffresActivity extends AppCompatActivity {
         mAdapter = new OffreAdapter(myDataset,this);
         liste.setAdapter(mAdapter);
 
-
-
-
     }
 
     @Override

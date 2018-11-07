@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import groupei.al.blablacar.Entities.Annonce;
 import groupei.al.blablacar.Entities.Offre;
 import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
+import groupei.al.blablacar.Tools.AnnonceAdapter;
 
 public class ChoixAnnoncesActivity extends AppCompatActivity {
 
@@ -36,33 +39,40 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choix_annonces);
-
+        liste = (RecyclerView) findViewById(R.id.listeAnnonces);
+        liste.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        liste.setLayoutManager(mLayoutManager);
+        List<Annonce> listAnnonces = new ArrayList<>();
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         Utilisateur user = (Utilisateur) bundle.get("user");
         JSONArray jsonAnnonces = new JSONArray();
+
         try {
             jsonAnnonces = new JSONArray((String) bundle.get("annonces"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        List<Annonce> listAnnonces = new ArrayList<>();
 
         for (int i = 0; i < jsonAnnonces.length(); i++) {
             try {
                 JSONObject annonce = jsonAnnonces.getJSONObject(i);
                 SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.FRANCE);
 
-                String dateTimeDepart = ((String) annonce.get("departure_date"));
-                String dateTimeArrivee = ((String) annonce.get("arrival_date"));
-                Date depart = dateParser.parse(dateTimeDepart);
-                Date arrivee = dateParser.parse(dateTimeArrivee);
+                JSONObject jsonDate = annonce.getJSONObject("departure_date");
+                String dateTime = jsonDate.get("date").toString();
+                Date depart = dateParser.parse(dateTime);
+                jsonDate = annonce.getJSONObject("arrival_date");
+                dateTime = jsonDate.get("date").toString();
+                Date arrivee = dateParser.parse(dateTime);
 
-                listAnnonces.add(new Annonce(annonce.getInt("id"),
+                Annonce tmp = new Annonce(annonce.getInt("id"),
                         depart, arrivee,
                         annonce.getString("bagage"), annonce.getInt("payment"),
                         annonce.getString("departure_address"), annonce.getString("arrival_address")
-                ));
+                );
+                listAnnonces.add(tmp);
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
@@ -70,8 +80,10 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
             }
         }
 
-        liste = (RecyclerView) findViewById(R.id.listeAnnonces);
-        liste.setHasFixedSize(true);
+        //stop test stuff
+        Log.d("test_annonces", String.valueOf(listAnnonces.size()));
+        mAdapter = new AnnonceAdapter(listAnnonces,this);
+        liste.setAdapter(mAdapter);
     }
 
     @Override

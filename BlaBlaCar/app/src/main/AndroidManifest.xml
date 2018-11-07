@@ -24,9 +24,6 @@
         </activity>
         <activity android:name=".Activities.AnotherActivity" />
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".Activities.InscriptionActivity"
             android:label="@string/title_activity_inscription"
             android:theme="@style/AppTheme.NoActionBar" />

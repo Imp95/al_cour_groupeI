@@ -9,13 +9,13 @@
 
     <TextView
         android:id="@+id/titre"
-        android:layout_width="220dp"
+        android:layout_width="270dp"
         android:layout_height="60dp"
-        android:layout_marginStart="154dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="154dp"
+        android:layout_marginEnd="130dp"
         android:gravity="center"
-        android:text="Offres Disponible"
+        android:text="Annonces Disponibles"
         android:textColor="#444444"
         android:textSize="26sp"
         android:textStyle="bold"
