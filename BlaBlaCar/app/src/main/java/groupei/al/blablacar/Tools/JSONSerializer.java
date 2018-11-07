@@ -1,4 +1,6 @@
 package groupei.al.blablacar.Tools;
+import android.widget.EditText;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,6 +54,21 @@ public class JSONSerializer {
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    public static JSONObject getRechercheJSON(String depart, String arrivee, String bagage) {
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("departure_town", depart);
+            json_body.put("arrival_town", arrivee);
+            json_body.put("bagage", bagage);
+            json.put("action", "RechercheAnnonce");
+            json.put("body", json_body);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return json;
