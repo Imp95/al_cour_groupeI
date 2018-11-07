@@ -2,6 +2,11 @@ package groupei.al.blablacar.Tools;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class JSONSerializer {
     static private JSONSerializer instance;
 
@@ -29,19 +34,24 @@ public class JSONSerializer {
         return json;
     }
 
-    static public JSONObject getInscriptionJSON(String email, String mdp, String nom, String prenom, String date_de_naissance) {
-        int passwordHash = mdp.hashCode();
+    static public JSONObject getInscriptionJSON(String email, String mdp, String nom, String prenom, String date_de_naissance, String tel) {
+        //int passwordHash = mdp.hashCode();
         JSONObject json_body = new JSONObject();
         JSONObject json = new JSONObject();
         try {
             json_body.put("email", email);
-            json_body.put("mdp", passwordHash);
-            json_body.put("nom", nom);
-            json_body.put("prenom", prenom);
-            json_body.put("date_de_naissance", date_de_naissance);
-            json.put("Action", "inscription");
-            json.put("Body", json_body);
+            json_body.put("password", mdp);
+            json_body.put("name", nom);
+            json_body.put("firstname", prenom);
+            SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd",Locale.FRANCE);
+            Date date = dateParser.parse(date_de_naissance);
+            json_body.put("birthday", date);
+            json_body.put("phone_number", tel);
+            json.put("action", "Inscription");
+            json.put("body", json_body);
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return json;
