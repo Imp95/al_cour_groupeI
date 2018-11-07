@@ -53,7 +53,7 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
         panier = new LinkedList<>();
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        Utilisateur user = (Utilisateur) bundle.get("user");
+        final Utilisateur user = (Utilisateur) bundle.get("user");
         JSONArray jsonAnnonces = new JSONArray();
 
         try {
@@ -91,6 +91,21 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
         Log.d("test_annonces", String.valueOf(listAnnonces.size()));
         mAdapter = new AnnonceAdapter(listAnnonces,panier,this);
         liste.setAdapter(mAdapter);
+
+        Button cart = (Button) findViewById(R.id.cart);
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changerActivityCreateOrder(view, user, panier);
+            }
+        });
+    }
+
+    private void changerActivityCreateOrder(View view, Utilisateur user, LinkedList<Annonce> panier) {
+        Intent intent = new Intent(this, CreateOrderActivity.class);
+        intent.putExtra("user", user);
+        intent.putExtra("panier", panier);
+        startActivity(intent);
     }
 
     @Override
