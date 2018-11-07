@@ -1,17 +1,22 @@
 package groupei.al.blablacar.Tools;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
 
+import groupei.al.blablacar.Activities.OffreViewActivity;
 import groupei.al.blablacar.Entities.Contrat;
 import groupei.al.blablacar.R;
 
 public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHolder> {
     private List<Contrat> mDataset;
+    private Activity parent;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -26,8 +31,9 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ContratAdapter(List<Contrat> myDataset) {
+    public ContratAdapter(List<Contrat> myDataset, Activity activity) {
         mDataset = myDataset;
+        parent=activity;
     }
 
     // Create new views (invoked by the layout manager)
@@ -43,10 +49,17 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTextView.setText(mDataset.get(position).toString());
+        holder.mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(parent,OffreViewActivity.class);
+                intent.putExtra("contrat",mDataset.get(position));
+            }
+        });
 
     }
 

@@ -45,7 +45,7 @@ public class OffresActivity extends AppCompatActivity {
         myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);
 
         //stop test stuff
-        mAdapter = new OffreAdapter(myDataset);
+        mAdapter = new OffreAdapter(myDataset,this);
         liste.setAdapter(mAdapter);
 
 

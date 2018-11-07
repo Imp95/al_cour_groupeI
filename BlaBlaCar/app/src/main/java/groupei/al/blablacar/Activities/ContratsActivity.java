@@ -58,7 +58,7 @@ public class ContratsActivity extends AppCompatActivity {
         myDataset.add(contrat);
         myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);
         //stop test stuff
-        mAdapter = new ContratAdapter(myDataset);
+        mAdapter = new ContratAdapter(myDataset,this);
         liste.setAdapter(mAdapter);
 
 
