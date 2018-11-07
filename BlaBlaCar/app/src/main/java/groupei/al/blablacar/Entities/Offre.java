@@ -1,8 +1,9 @@
 package groupei.al.blablacar.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Offre {
+public class Offre implements Serializable {
     private int ID;
     private Date Date_proposee;
     private String Status;

@@ -1,9 +1,10 @@
 package groupei.al.blablacar.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class Annonce {
+public class Annonce implements Serializable {
 
     private int ID;
     private Date Date_Debut;

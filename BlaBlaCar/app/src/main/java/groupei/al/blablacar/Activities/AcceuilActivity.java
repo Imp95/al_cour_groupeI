@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
 
 public class AcceuilActivity extends AppCompatActivity {
@@ -14,6 +16,11 @@ public class AcceuilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceuil);
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        TextView nombre = (TextView) findViewById(R.id.nombre);
+        Utilisateur user = (Utilisateur) bundle.get("user");
+        nombre.setText("" + user.getSolde());
 
         Button chercher = (Button) findViewById(R.id.chercher);
         chercher.setOnClickListener(new View.OnClickListener() {

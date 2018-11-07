@@ -1,6 +1,8 @@
 package groupei.al.blablacar.Entities;
 
-public class Adresse {
+import java.io.Serializable;
+
+public class Adresse implements Serializable {
     private int Numero_de_Rue;
     private String Nom_De_Rue;
     private String Complement;

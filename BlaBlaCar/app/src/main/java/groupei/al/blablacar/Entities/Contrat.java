@@ -1,6 +1,8 @@
 package groupei.al.blablacar.Entities;
 
-public class Contrat {
+import java.io.Serializable;
+
+public class Contrat implements Serializable {
     private int ID;
     private String Status;
     private int Accuse_de_depot;
