@@ -110,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("connexion", response.toString());
                         try {
                             System.out.println(response.get("body").getClass().getName());
-                            JSONObject body = new JSONObject((String) response.get("body"));
-                            JSONObject dateJson = new JSONObject(body.getString("birtiday"));
-                            String dateTime = ((String) dateJson.get("date"));
-                            SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.FRANCE);
+                            JSONObject body = response.getJSONObject("body");
+                            System.out.println(body.get("birthday").getClass().getName());
+                            String dateTime = ((String) body.get("birthday"));
+                            SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd",Locale.FRANCE);
                             Date date = dateParser.parse(dateTime);
                             Utilisateur user = new Utilisateur(body.getString("email"), body.getString("name"), body.getString("firstname"),
                                     date, body.getString("phone_number"), body.getInt("amount"));
