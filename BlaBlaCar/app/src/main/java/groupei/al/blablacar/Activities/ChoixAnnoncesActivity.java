@@ -10,6 +10,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import groupei.al.blablacar.Entities.Annonce;
+import groupei.al.blablacar.Entities.Offre;
 import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
 
@@ -26,7 +39,36 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        final Utilisateur user = (Utilisateur) bundle.get("user");
+        Utilisateur user = (Utilisateur) bundle.get("user");
+        JSONArray jsonAnnonces = new JSONArray();
+        try {
+            jsonAnnonces = new JSONArray((String) bundle.get("annonces"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        List<Annonce> listAnnonces = new ArrayList<>();
+
+        for (int i = 0; i < jsonAnnonces.length(); i++) {
+            try {
+                JSONObject annonce = jsonAnnonces.getJSONObject(i);
+                SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.FRANCE);
+
+                String dateTimeDepart = ((String) annonce.get("departure_date"));
+                String dateTimeArrivee = ((String) annonce.get("arrival_date"));
+                Date depart = dateParser.parse(dateTimeDepart);
+                Date arrivee = dateParser.parse(dateTimeArrivee);
+
+                listAnnonces.add(new Annonce(annonce.getInt("id"),
+                        depart, arrivee,
+                        annonce.getString("bagage"), annonce.getInt("payment"),
+                        annonce.getString("departure_address"), annonce.getString("arrival_address")
+                ));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
 
         liste = (RecyclerView) findViewById(R.id.listeAnnonces);
         liste.setHasFixedSize(true);

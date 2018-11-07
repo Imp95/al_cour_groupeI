@@ -34,9 +34,12 @@ public class OffresActivity extends AppCompatActivity {
         List<Offre> myDataset = new ArrayList<>();
         //test stuff
         Utilisateur user= new Utilisateur("test","test","test",new Date(),"test",0);
-        Annonce annonce = new Annonce(0, new Date(), new Date(),"test",0,0,user
+        /*Annonce annonce = new Annonce(0, new Date(), new Date(),"test",0,0,user
                 ,new Adresse(0,"test","test","test","test"),new Adresse(0,"test","test","test","test")
-        ,new LinkedList<Offre>());
+        ,new LinkedList<Offre>());*/ // A modifier
+
+        Annonce annonce = new Annonce(0, new Date(), new Date(), "0x0x0" ,0 , "depart", "arrivee");
+
         Offre offre = new Offre(0,new Date(),"test",annonce,user);
         myDataset.add(offre);
         myDataset.add(offre);

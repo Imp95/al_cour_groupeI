@@ -9,25 +9,19 @@ public class Annonce implements Serializable {
     private int ID;
     private Date Date_Debut;
     private Date Date_Fin;
-    private String Bagages;
+    private String Bagage;
     private int Paiement;
-    private int Status;
-    private Utilisateur Client;
-    private Adresse Adresse_depart;
-    private Adresse Adresse_arrivee;
-    private LinkedList<Offre> Liste_d_offre;
+    private String Adresse_depart;  // A changer pour Address
+    private String Adresse_arrivee; // A changer pour Address
 
-    public Annonce(int ID, Date date_Debut, Date date_Fin, String bagages, int paiement, int status, Utilisateur client, Adresse adresse_depart, Adresse adresse_arrivee, LinkedList<Offre> liste_d_offre) {
+    public Annonce(int ID, Date date_Debut, Date date_Fin, String bagage, int paiement, String adresse_depart, String adresse_arrivee) {
         this.ID = ID;
         Date_Debut = date_Debut;
         Date_Fin = date_Fin;
-        Bagages = bagages;
+        Bagage = bagage;
         Paiement = paiement;
-        Status = status;
-        Client = client;
         Adresse_depart = adresse_depart;
         Adresse_arrivee = adresse_arrivee;
-        Liste_d_offre = liste_d_offre;
     }
 
     public int getID() {
@@ -54,12 +48,12 @@ public class Annonce implements Serializable {
         Date_Fin = date_Fin;
     }
 
-    public String getBagages() {
-        return Bagages;
+    public String getBagage() {
+        return Bagage;
     }
 
-    public void setBagages(String bagages) {
-        Bagages = bagages;
+    public void setBagage(String bagage) {
+        Bagage = bagage;
     }
 
     public int getPaiement() {
@@ -70,43 +64,19 @@ public class Annonce implements Serializable {
         Paiement = paiement;
     }
 
-    public int getStatus() {
-        return Status;
-    }
-
-    public void setStatus(int status) {
-        Status = status;
-    }
-
-    public Utilisateur getClient() {
-        return Client;
-    }
-
-    public void setClient(Utilisateur client) {
-        Client = client;
-    }
-
-    public Adresse getAdresse_depart() {
+    public String getAdresse_depart() {
         return Adresse_depart;
     }
 
-    public void setAdresse_depart(Adresse adresse_depart) {
+    public void setAdresse_depart(String adresse_depart) {
         Adresse_depart = adresse_depart;
     }
 
-    public Adresse getAdresse_arrivee() {
+    public String getAdresse_arrivee() {
         return Adresse_arrivee;
     }
 
-    public void setAdresse_arrivee(Adresse adresse_arrivee) {
+    public void setAdresse_arrivee(String adresse_arrivee) {
         Adresse_arrivee = adresse_arrivee;
-    }
-
-    public LinkedList<Offre> getListe_d_offre() {
-        return Liste_d_offre;
-    }
-
-    public void setListe_d_offre(LinkedList<Offre> liste_d_offre) {
-        Liste_d_offre = liste_d_offre;
     }
 }
