@@ -18,4 +18,5 @@
     <string name="title_activity_recherche">RechercheActivity</string>
     <string name="title_activity_offres">OffresActivity</string>
     <string name="title_activity_contrats">ContratsActivity</string>
+    <string name="title_activity_choix_offres">ChoixOffresActivity</string>
 </resources>

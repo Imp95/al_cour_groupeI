@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,6 +37,7 @@ import groupei.al.blablacar.Tools.RequestHandler;
 
 public class RechercheActivity extends AppCompatActivity {
     RequestHandler requestHandler;
+    Utilisateur user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +46,13 @@ public class RechercheActivity extends AppCompatActivity {
         requestHandler = RequestHandler.getInstance(getApplicationContext());
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        final Utilisateur user = (Utilisateur) bundle.get("user");
+        user = (Utilisateur) bundle.get("user");
 
         Button rechercher = (Button) findViewById(R.id.rechercher);
         rechercher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                doRequest();
+                changerActivityConnexion(view);
             }
         });
     }
@@ -65,7 +67,7 @@ public class RechercheActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void doRequest() {
+    public void changerActivityConnexion(View view) {
         System.out.println("ok ok ok ok ok");
         EditText depart = (EditText) findViewById(R.id.depart);
         EditText arrivee = (EditText) findViewById(R.id.arrivee);
@@ -81,7 +83,12 @@ public class RechercheActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d("recherche", response.toString());
                         try {
-                            System.out.println(response.get("body").toString());
+                            if(!response.get("body").toString().equals("[]")) {
+                                Intent intent = new Intent(act, ChoixAnnoncesActivity.class);
+                                intent.putExtra("user", user);
+                                intent.putExtra("annonces", response.get("body").toString()); // Passage du JSONArray en String
+                                startActivity(intent);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
