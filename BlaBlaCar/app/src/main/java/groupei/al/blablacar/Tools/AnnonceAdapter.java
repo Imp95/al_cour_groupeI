@@ -61,8 +61,10 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.MyViewHo
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                panier.add(mDataset.get(position));
-                parent.getCart().setText(""+panier.size());
+                if(!panier.contains(mDataset.get(position))){
+                    panier.add(mDataset.get(position));
+                    parent.getCart().setText(""+panier.size());
+                }
             }
         });
 
