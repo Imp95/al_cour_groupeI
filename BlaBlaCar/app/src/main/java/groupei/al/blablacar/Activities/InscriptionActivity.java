@@ -70,7 +70,7 @@ public class InscriptionActivity extends AppCompatActivity {
         if (mdp.getText().toString().equals(mdp2.getText().toString())) {
             JSONObject js = JSONSerializer.getInscriptionJSON(mail.getText().toString(), mdp.getText().toString(), nom.getText().toString(), prenom.getText().toString(),
                     naissance.getText().toString(), tel.getText().toString());
-            String url = "http://192.168.0.41:80/service-persistance/public/index.php/receive_event";
+            String url = "http://192.168.1.82:80/service-persistance/public/index.php/receive_event";
             final Activity act = this;
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                     Request.Method.POST, url, js,
