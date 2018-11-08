@@ -92,11 +92,13 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
         mAdapter = new AnnonceAdapter(listAnnonces,panier,this);
         liste.setAdapter(mAdapter);
 
-        Button cart = (Button) findViewById(R.id.cart);
+        final Button cart = (Button) findViewById(R.id.cart);
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityCreateOrder(view, user, panier);
+                if (panier.size() != 0) {
+                    changerActivityCreateOrder(view, user, panier);
+                }
             }
         });
     }

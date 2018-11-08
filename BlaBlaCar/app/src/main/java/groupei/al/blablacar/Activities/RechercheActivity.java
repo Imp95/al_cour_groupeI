@@ -68,7 +68,6 @@ public class RechercheActivity extends AppCompatActivity {
     }
 
     public void changerActivityConnexion(View view) {
-        System.out.println("ok ok ok ok ok");
         EditText depart = (EditText) findViewById(R.id.depart);
         EditText arrivee = (EditText) findViewById(R.id.arrivee);
         EditText bagage = (EditText) findViewById(R.id.dimension);

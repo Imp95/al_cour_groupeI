@@ -17,12 +17,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import groupei.al.blablacar.Activities.ChoixAnnoncesActivity;
+import groupei.al.blablacar.Activities.CreateOrderActivity;
 import groupei.al.blablacar.Entities.Annonce;
 import groupei.al.blablacar.R;
 
 public class AnnonceAdapterValid extends RecyclerView.Adapter<AnnonceAdapterValid.MyViewHolder> {
     private List<Annonce> mDataset;
-    private ChoixAnnoncesActivity parent;
+    private CreateOrderActivity parent;
     private HashMap<Annonce,String> disponiblity;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -43,7 +44,7 @@ public class AnnonceAdapterValid extends RecyclerView.Adapter<AnnonceAdapterVali
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AnnonceAdapterValid(List<Annonce> myDataset, ChoixAnnoncesActivity activity) {
+    public AnnonceAdapterValid(List<Annonce> myDataset, CreateOrderActivity activity) {
         mDataset = myDataset;
         parent=activity;
     }
