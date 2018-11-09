@@ -45,7 +45,6 @@
         android:ems="10"
         android:hint="Mot de passe"
         android:inputType="textPassword"
-        android:text="koukou"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tel" />
@@ -60,7 +59,6 @@
         android:ems="10"
         android:hint="Confirmer mot de passe"
         android:inputType="textPassword"
-        android:text="koukou"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mdp" />
@@ -75,7 +73,6 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:text="example4@mail.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titre" />
@@ -90,7 +87,6 @@
         android:ems="10"
         android:hint="Nom"
         android:inputType="textPersonName"
-        android:text="Kounalis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
@@ -105,7 +101,6 @@
         android:ems="10"
         android:hint="Prénom"
         android:inputType="textPersonName"
-        android:text="Emmanuel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nom" />
@@ -120,7 +115,6 @@
         android:ems="10"
         android:hint="Téléphone"
         android:inputType="textPersonName"
-        android:text="0612131415"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/naissance" />
@@ -135,7 +129,6 @@
         android:ems="10"
         android:hint="Date de naissance (AAAA-MM-JJ)"
         android:inputType="date"
-        android:text="1960-10-13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prenom" />
