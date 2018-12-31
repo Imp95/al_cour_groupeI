@@ -1,12 +1,7 @@
 from .switchman import app
 from flask import json
-from .models import init_db
 
 import pytest
-
-@pytest.fixture
-def fix():
-    models.init_db()
 
 def test_missing_parameters():        
     response = app.test_client().post(
@@ -24,7 +19,7 @@ def test_missing_parameters():
 def test_bad_email():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"Connexion", "body":{"email":"aaa@aaa.com", "mdp":"strong"}}',
+        data='{"action":"Connexion", "body":{"email":"aaa@aaa.com", "password":"strong"}}',
         content_type='application/json',
     )
 
@@ -37,7 +32,7 @@ def test_bad_email():
 def test_bad_password():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"Connexion", "body":{"email":"example1@email.com", "mdp":"azertyu"}}',
+        data='{"action":"Connexion", "body":{"email":"example1@email.com", "password":"azertyu"}}',
         content_type='application/json',
     )
 
@@ -50,7 +45,7 @@ def test_bad_password():
 def test_ok():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"Connexion", "body":{"email":"example1@email.com", "mdp":"azerty"}}',
+        data='{"action":"Connexion", "body":{"email":"example1@email.com", "password":"azerty"}}',
         content_type='application/json',
     )
 

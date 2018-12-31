@@ -63,6 +63,20 @@ class Ad(db.Model):
         self.arrival_address = arrival_address
         self.client_id = client_id
 
+    def toJSON(self):
+        json = {
+            "id":self.id,
+            "departure_date":self.departure_date.strftime("%Y-%m-%d"),
+            "arrival_date":self.arrival_date.strftime("%Y-%m-%d"),
+            "bagage":self.bagage,
+            "payment":self.payment,
+            "status":self.status,
+            "departure_address":self.departure_address,
+            "arrival_address":self.arrival_address,
+            "client_id":self.client_id
+        }
+        return json
+
 class Offer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     proposedDate = db.Column(db.DateTime, nullable=False)

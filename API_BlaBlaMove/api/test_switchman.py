@@ -1,12 +1,7 @@
 from .switchman import app
 from flask import json
-from .models import init_db
 
 import pytest
-
-@pytest.fixture
-def fix():
-    models.init_db()
 
 def test_no_json():        
     response = app.test_client().post(
