@@ -70,7 +70,7 @@ public class InscriptionActivity extends AppCompatActivity {
         if (mdp.getText().toString().equals(mdp2.getText().toString())) {
             JSONObject js = JSONSerializer.getInscriptionJSON(mail.getText().toString(), mdp.getText().toString(), nom.getText().toString(), prenom.getText().toString(),
                     naissance.getText().toString(), tel.getText().toString());
-            String url = "http://192.168.1.82:80/service-persistance/public/index.php/receive_event";
+            String url = "http://192.168.0.42:80/receive_event";
             final Activity act = this;
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                     Request.Method.POST, url, js,
@@ -85,6 +85,7 @@ public class InscriptionActivity extends AppCompatActivity {
                                 String dateTime = ((String) body.get("birthday"));
                                 SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
                                 Date date = dateParser.parse(dateTime);
+                                System.out.println("date_inscription " + date.toString());
                                 Utilisateur user = new Utilisateur(body.getString("email"), body.getString("name"), body.getString("firstname"),
                                         date, body.getString("phone_number"), body.getInt("amount"));
                                 Intent intent = new Intent(act, AcceuilActivity.class);

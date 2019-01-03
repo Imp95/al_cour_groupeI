@@ -47,15 +47,11 @@ public class JSONSerializer {
             json_body.put("password", mdp);
             json_body.put("name", nom);
             json_body.put("firstname", prenom);
-            SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd",Locale.FRANCE);
-            Date date = dateParser.parse(date_de_naissance);
-            json_body.put("birthday", date);
+            json_body.put("birthday", date_de_naissance);
             json_body.put("phone_number", tel);
             json.put("action", "Inscription");
             json.put("body", json_body);
         } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         }
         return json;

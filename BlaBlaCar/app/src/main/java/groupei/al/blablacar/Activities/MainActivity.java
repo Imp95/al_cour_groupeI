@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         EditText mdp = (EditText) findViewById(R.id.mdp);
 
         JSONObject js = JSONSerializer.getConnexionJSON(mail.getText().toString(), mdp.getText().toString());
-        String url = "http://192.168.1.82:80/service-persistance/public/index.php/receive_event";
+        String url = "http://192.168.0.42:80/receive_event";
         final Activity act = this;
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, url, js,
