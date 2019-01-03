@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/contratId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contrat n°X"
+        android:textSize="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        />
+    <RelativeLayout
+        android:id="@+id/attfields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contratId"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey">
+        <TextView
+            android:id="@+id/departTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Depart"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+        <TextView
+            android:id="@+id/ariveeTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arrivee"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/departTextField"/>
+        <TextView
+            android:id="@+id/dateTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/ariveeTextField"/>
+        <TextView
+            android:id="@+id/payTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paiment"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/dateTextField"/>
+        <TextView
+            android:id="@+id/telClTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telephone client"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/payTextField"/>
+        <TextView
+            android:id="@+id/telDestTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telephone destinataire"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/telClTextField"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/statusfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status :
+En attente de depot"
+        android:textSize="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/attfields"
+        />
+    <EditText
+        android:id="@+id/codeField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Entrer le code de depot"
+        android:layout_below="@id/statusfield"/>
+    <Button
+        android:id="@+id/validButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valider"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/codeField"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
