@@ -2,4 +2,4 @@ import api
 from api import app
 
 if __name__ == "__main__":
-    app.run(host='localhost',port='9999',debug=True)
+    app.run(host='192.168.0.42',port='80',debug=True)

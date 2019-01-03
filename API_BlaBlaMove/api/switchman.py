@@ -19,11 +19,6 @@ session = Session()
 
 @app.route('/receive_event', methods=['POST'])
 def receiveEvent():
-    if not request.json:
-        return jsonify(status = False, body = "Le contenu de la requete n'est pas valide")
-    
-    if request == None:
-        return jsonify(status = False, body = "Requete vide")
 
     jsonData = request.get_json(force=True)
     

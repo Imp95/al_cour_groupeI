@@ -27,7 +27,7 @@ public class JSONSerializer {
         JSONObject json = new JSONObject();
         try {
             json_body.put("email", email);
-            json_body.put("mdp", mdp);
+            json_body.put("password", mdp);
             json.put("action", "Connexion");
             json.put("body", json_body);
         } catch (JSONException e) {
