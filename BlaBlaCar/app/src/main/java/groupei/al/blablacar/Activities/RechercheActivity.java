@@ -73,7 +73,7 @@ public class RechercheActivity extends AppCompatActivity {
         EditText bagage = (EditText) findViewById(R.id.dimension);
 
         JSONObject js = JSONSerializer.getRechercheJSON(depart.getText().toString(), arrivee.getText().toString(), bagage.getText().toString());
-        String url = "http://192.168.1.82:80/service-persistance/public/index.php/receive_event";
+        String url = "http://192.168.0.42:80/receive_event";
         final Activity act = this;
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, url, js,
