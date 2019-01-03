@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import groupei.al.blablacar.Entities.Annonce;
 import groupei.al.blablacar.Entities.Contrat;
 
 public class JSONSerializer {
@@ -78,6 +79,21 @@ public class JSONSerializer {
             json_body.put("contrat",c.getID());
             json_body.put("code",code);
             json.put("action", "UpdateContrats");
+            json.put("body", json_body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    public static JSONObject getCreateOfferJSON(int id_annonce, String email, String dispo) {
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("annonce", id_annonce);
+            json_body.put("transporteur", email);
+            json_body.put("dispo", dispo);
+            json.put("action", "CreationOffre");
             json.put("body", json_body);
         } catch (JSONException e) {
             e.printStackTrace();
