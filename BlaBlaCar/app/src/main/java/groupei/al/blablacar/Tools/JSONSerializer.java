@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import groupei.al.blablacar.Entities.Contrat;
+
 public class JSONSerializer {
     static private JSONSerializer instance;
 
@@ -67,6 +69,19 @@ public class JSONSerializer {
             json_body.put("arrival_town", arrivee);
             json_body.put("bagage", bagage);
             json.put("action", "RechercheAnnonce");
+            json.put("body", json_body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+    public static JSONObject getUpdateContratJSON(Contrat c,String code) {
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("contrat",c.getID());
+            json_body.put("code",code);
+            json.put("action", "UpdateContrats");
             json.put("body", json_body);
         } catch (JSONException e) {
             e.printStackTrace();
