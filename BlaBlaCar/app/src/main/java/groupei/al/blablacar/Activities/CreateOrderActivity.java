@@ -14,17 +14,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import groupei.al.blablacar.Entities.Annonce;
 import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
 import groupei.al.blablacar.Tools.AnnonceAdapterValid;
+import groupei.al.blablacar.Tools.JSONSerializer;
+import groupei.al.blablacar.Tools.RequestHandler;
 
 public class CreateOrderActivity extends AppCompatActivity {
+    RequestHandler requestHandler;
     Button valider;
     Button refuser;
     TextView id;
@@ -41,6 +55,7 @@ public class CreateOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
+        requestHandler = RequestHandler.getInstance(getApplicationContext());
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         final Utilisateur user = (Utilisateur) bundle.get("user");
@@ -82,6 +97,34 @@ public class CreateOrderActivity extends AppCompatActivity {
 
     private void changerActivityValider(View view, List<Annonce> panier, Utilisateur user, Annonce annonce) {
         // A implementer quand la route sera disponible
+        EditText dispo = (EditText) findViewById(R.id.dispo);
+        JSONObject js = JSONSerializer.getCreateOfferJSON(annonce.getID(), user.getEmail(), dispo.getText().toString());
+        String url = "http://192.168.0.42:80/receive_event";
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST, url, js,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("createOffer", response.toString());
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("createOffer", "Error: " + error.getMessage());
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "/application/json; charset=utf-8");
+                return headers;
+            }
+        };
+        System.out.println(jsonObjReq.toString());
+        requestHandler.addToRequestQueue(jsonObjReq);
+        changerActivityRefuser(view, panier, user);
     }
 
     private void changerActivityRefuser(View view, List<Annonce> panier, Utilisateur user) {
