@@ -32,7 +32,7 @@ def receiveEvent():
     elif jsonData["action"] == "RechercheAnnonce":
         return findAdAction(jsonData["body"])
     elif jsonData["action"] == "CreationOffre":
-        return "Non implemente"
+        return createOfferAction(jsonData["body"])
     elif jsonData["action"] == "VoirOffres":
         return "Non implemente"
     elif jsonData["action"] == "VoirContrats":
@@ -89,3 +89,25 @@ def findAdAction(body):
         result.append(item)
     
     return jsonify(status = True, body = result)
+
+def createOfferAction(body):
+    from .models import Offer
+    from .models import User
+    if not 'ad_id' in body or not 'proposed_date' in body or not 'carrier_email' in body:
+        return jsonify(status = False, body = "Les cles obligatoires de parsage (creation d'offre) ne sont pas presentes.")
+    
+    user = session.query(User).filter(User.email==body["carrier_email"]).first()
+    if user is None:
+        return jsonify(status = False, body = "Cet email n'existe pas !")
+
+    offerToCreate = Offer(body["proposed_date"], user.id, body["ad_id"])
+
+    try:
+        session.add(offerToCreate)
+        session.commit()
+    except exc.IntegrityError as e:
+        print(e)
+        session.rollback()
+        return jsonify(status = False, body = "Probleme d'integrite de la requete.")
+
+    return jsonify(status = True, body = offerToCreate.toJSON())

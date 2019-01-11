@@ -8,6 +8,7 @@ if __name__ == "__main__":
 
     argv = sys.argv[1:]
 
+    # Example python3 run.py host=192.168.0.2 port=9999
     for i in range(0, len(argv)):
         splitted = argv[i].split('=', 1)
         if splitted[0] == 'host':

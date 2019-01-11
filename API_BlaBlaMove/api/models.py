@@ -79,31 +79,41 @@ class Ad(db.Model):
 
 class Offer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    proposedDate = db.Column(db.DateTime, nullable=False)
+    proposed_date = db.Column(db.DateTime, nullable=False)
     status = db.Column(db.Integer, nullable=False)
 
     carrier_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     ad_id = db.Column(db.Integer, db.ForeignKey('ad.id'), nullable=False)
 
-    def __init__(self, proposedDate, status, carrier_id, ad_id):
-        self.proposedDate = proposedDate
-        self.status = status
+    def __init__(self, proposed_date, carrier_id, ad_id):
+        self.proposed_date = proposed_date
+        self.status = 0
         self.carrier_id = carrier_id
         self.ad_id = ad_id
 
+    def toJSON(self):
+        json = {
+            "id":self.id,
+            "proposed_date":self.proposed_date.strftime("%Y-%m-%d"),
+            "status":self.status,
+            "carrier_id":self.carrier_id,
+            "ad_id":self.ad_id
+        }
+        return json
+
 class Contract(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    proposedDate = db.Column(db.DateTime, nullable=False)
+    proposed_date = db.Column(db.DateTime, nullable=False)
     status = db.Column(db.Integer, nullable=False)
-    depositAccused = db.Column(db.Integer, nullable=False)
+    deposit_accused = db.Column(db.Integer, nullable=False)
     acknowledgement = db.Column(db.Integer, nullable=False)
 
     offer_id = db.Column(db.Integer, db.ForeignKey('offer.id'), nullable=False)
 
-    def __init__(self, proposedDate, status, depositAccused, acknowledgement, offer_id):
-        self.proposedDate = proposedDate
+    def __init__(self, proposed_date, status, deposit_accused, acknowledgement, offer_id):
+        self.proposed_date = proposed_date
         self.status = status
-        self.depositAccused = depositAccused
+        self.deposit_accused = deposit_accused
         self.acknowledgement = acknowledgement
         self.offer_id = offer_id
 
