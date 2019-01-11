@@ -34,7 +34,7 @@ def receiveEvent():
     elif jsonData["action"] == "CreationOffre":
         return createOfferAction(jsonData["body"])
     elif jsonData["action"] == "VoirOffres":
-        return "Non implemente"
+        return seeOffersAction(jsonData["body"])
     elif jsonData["action"] == "VoirContrats":
         return "Non implemente"
     elif jsonData["action"] == "UpdateContrats":
@@ -111,3 +111,22 @@ def createOfferAction(body):
         return jsonify(status = False, body = "Probleme d'integrite de la requete.")
 
     return jsonify(status = True, body = offerToCreate.toJSON())
+
+def seeOffersAction(body):
+    from .models import Offer
+    from .models import User
+    if not 'user_email' in body:
+        return jsonify(status = False, body = "Les cles obligatoires de parsage (voir offres) ne sont pas presentes.")
+    
+    user = session.query(User).filter(User.email==body["user_email"]).first()
+    if user is None:
+        return jsonify(status = False, body = "Cet email n'existe pas !")
+
+    offers = session.query(Offer).filter(Offer.carrier_id == user.id).all()
+
+    result = []
+    for offer in offers:
+        item = offer.toJSON()
+        result.append(item)
+
+    return jsonify(status = True, body = result)

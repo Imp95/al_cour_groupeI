@@ -125,12 +125,19 @@ def init_db():
     # Users
     user1 = User('example1@email.com', 'azerty', 'Doe', 'John', datetime.strptime('1980-01-20', '%Y-%m-%d'), '0122334455', 0)
     user2 = User('example2@email.com', 'password', 'Bon', 'Jean', datetime.strptime('1977-03-18', '%Y-%m-%d'), '0322334459', 50)
+    user3 = User('example3@email.com', 'pass', 'Nyan', 'Cat', datetime.strptime('1999-11-22', '%Y-%m-%d'), '0999999999', 999)
     db.session.add(user1)
     db.session.add(user2)
+    db.session.add(user3)
     db.session.commit()
     # Ads
-    db.session.add(Ad(datetime.strptime('2018-01-13', '%Y-%m-%d'), datetime.strptime('2018-01-14', '%Y-%m-%d'), '15x15x15', 50, 0, '3 rue swag 03333 Magic Town', '3 rue nulle 09333 Meat City', user1.id))
+    ad1 = Ad(datetime.strptime('2018-01-13', '%Y-%m-%d'), datetime.strptime('2018-01-14', '%Y-%m-%d'), '15x15x15', 50, 0, '3 rue swag 03333 Magic Town', '3 rue nulle 09333 Meat City', user1.id)
+    db.session.add(ad1)
     db.session.add(Ad(datetime.strptime('2018-01-18', '%Y-%m-%d'), datetime.strptime('2018-01-19', '%Y-%m-%d'), '15x15x30', 50, 0, '3 rue swag 03333 Ville', '3 rue nulle 09333 Villeuuu', user2.id))
     db.session.add(Ad(datetime.strptime('2018-01-22', '%Y-%m-%d'), datetime.strptime('2018-01-24', '%Y-%m-%d'), '15x15x74', 45, 0, '3 rue swag 03333 Ville', '3 rue nulle 09333 Meat City', user1.id))
+    db.session.commit()
+    # Offers
+    db.session.add(Offer(datetime.strptime('2018-01-13', '%Y-%m-%d'), user2.id, ad1.id))
+    db.session.add(Offer(datetime.strptime('2018-01-18', '%Y-%m-%d'), user2.id, ad1.id))
     db.session.commit()
     lg.warning('Database initialized!')
