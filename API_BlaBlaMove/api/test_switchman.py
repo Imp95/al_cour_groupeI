@@ -10,11 +10,7 @@ def test_no_json():
         content_type='application/text',
     )
 
-    data = json.loads(response.get_data(as_text=True))
-
-    assert response.status_code == 200
-    assert data['status'] == False
-    assert data['body'] == "Le contenu de la requete n'est pas valide"
+    assert response.status_code == 400
 
 def test_empty():        
     response = app.test_client().post(
