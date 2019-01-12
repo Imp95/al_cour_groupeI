@@ -39,8 +39,8 @@ def receiveEvent():
         return seeContractsAction(jsonData["body"])
     elif jsonData["action"] == "UpdateContrat":
         return updateContractAction(jsonData["body"])
-    elif jsonData["action"] == "HistoriqueContratsEmail":
-        return "Non implemente"
+    elif jsonData["action"] == "HistoriqueContrats":
+        return logContractsAction(jsonData["body"])
     else:
         return jsonify(status = False, body = "L'action demandee n'existe pas.")
 
@@ -138,11 +138,11 @@ def seeContractsAction(body):
     if user is None:
         return jsonify(status = False, body = "Cet email n'existe pas !")
 
-    offers = session.query(Offer).filter(and_(Offer.carrier_id == user.id, Offer.status == 0)).all()
+    offers = session.query(Offer).filter(Offer.carrier_id == user.id).all()
 
     contracts = []
     for offer in offers:
-        contract = session.query(Contract).filter(Contract.offer_id==offer.id).first()
+        contract = session.query(Contract).filter(and_(Contract.offer_id==offer.id, Contract.status == 0)).first()
         if not contract is None:
             contracts.append(contract.toJSON())
 
@@ -173,3 +173,22 @@ def updateContractAction(body):
         return jsonify(status = False, body = "Le contrat ne peut etre mis a jour !")
 
     return jsonify(status = True, body = contract.toJSON())
+
+def logContractsAction(body):
+    from .models import Contract, Offer, User
+    if not 'user_email' in body:
+        return jsonify(status = False, body = "Les cles obligatoires de parsage (historique contrats) ne sont pas presentes.")
+    
+    user = session.query(User).filter(User.email==body["user_email"]).first()
+    if user is None:
+        return jsonify(status = False, body = "Cet email n'existe pas !")
+
+    offers = session.query(Offer).filter(Offer.carrier_id == user.id).all()
+
+    contracts = []
+    for offer in offers:
+        contract = session.query(Contract).filter(and_(Contract.offer_id==offer.id, Contract.status == 2)).first()
+        if not contract is None:
+            contracts.append(contract.toJSON())
+
+    return jsonify(status = True, body = contracts)

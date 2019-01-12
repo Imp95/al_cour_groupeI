@@ -6,7 +6,7 @@ import pytest
 def test_missing_parameters():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"VoirContrats", "body":{"bad_param":"naaaab"}}',
+        data='{"action":"HistoriqueContrats", "body":{"bad_param":"naaaab"}}',
         content_type='application/json',
     )
 
@@ -14,12 +14,12 @@ def test_missing_parameters():
 
     assert response.status_code == 200
     assert data['status'] == False
-    assert data['body'] == "Les cles obligatoires de parsage (voir contrats) ne sont pas presentes."
+    assert data['body'] == "Les cles obligatoires de parsage (historique contrats) ne sont pas presentes."
 
 def test_bad_user_mail():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"VoirContrats", "body":{"user_email":"bad.email@naze.lol"}}',
+        data='{"action":"HistoriqueContrats", "body":{"user_email":"bad.email@naze.lol"}}',
         content_type='application/json',
     )
 
@@ -32,7 +32,7 @@ def test_bad_user_mail():
 def test_see_empty():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"VoirContrats", "body":{"user_email":"example3@email.com"}}',
+        data='{"action":"HistoriqueContrats", "body":{"user_email":"example3@email.com"}}',
         content_type='application/json',
     )
 
@@ -45,7 +45,7 @@ def test_see_empty():
 def test_regular_see():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"VoirContrats", "body":{"user_email":"example1@email.com"}}',
+        data='{"action":"HistoriqueContrats", "body":{"user_email":"example4@email.com"}}',
         content_type='application/json',
     )
 

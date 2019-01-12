@@ -40,7 +40,7 @@ def test_find_all():
 
     assert response.status_code == 200
     assert data['status'] == True
-    assert len(data['body']) == 3
+    assert len(data['body']) == 5
 
 def test_regular_find_1():        
     response = app.test_client().post(
