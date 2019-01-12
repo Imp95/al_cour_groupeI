@@ -37,8 +37,8 @@ def receiveEvent():
         return seeOffersAction(jsonData["body"])
     elif jsonData["action"] == "VoirContrats":
         return seeContractsAction(jsonData["body"])
-    elif jsonData["action"] == "UpdateContrats":
-        return "Non implemente"
+    elif jsonData["action"] == "UpdateContrat":
+        return updateContractAction(jsonData["body"])
     elif jsonData["action"] == "HistoriqueContratsEmail":
         return "Non implemente"
     else:
@@ -147,3 +147,29 @@ def seeContractsAction(body):
             contracts.append(contract.toJSON())
 
     return jsonify(status = True, body = contracts)
+
+def updateContractAction(body):
+    from .models import Contract
+    if not 'id_contract' in body or not 'preuve' in body:
+        return jsonify(status = False, body = "Les cles obligatoires de parsage (mise a jour contrat) ne sont pas presentes.")
+    
+    contract = session.query(Contract).filter(Contract.id==body["id_contract"]).first()
+    if contract is None:
+        return jsonify(status = False, body = "Ce contrat n'existe pas !")
+
+    if contract.status == 0:
+        if contract.deposit_accused == body["preuve"]:
+            contract.status = 1
+            session.commit()
+        else:
+            return jsonify(status = False, body = "Preuve de depot incorrecte !")
+    elif contract.status == 1:
+        if contract.acknowledgement == body["preuve"]:
+            contract.status = 2
+            session.commit()
+        else:
+            return jsonify(status = False, body = "Preuve de reception incorrecte !")
+    else:
+        return jsonify(status = False, body = "Le contrat ne peut etre mis a jour !")
+
+    return jsonify(status = True, body = contract.toJSON())
