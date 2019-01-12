@@ -36,7 +36,7 @@ def receiveEvent():
     elif jsonData["action"] == "VoirOffres":
         return seeOffersAction(jsonData["body"])
     elif jsonData["action"] == "VoirContrats":
-        return "Non implemente"
+        return seeContractsAction(jsonData["body"])
     elif jsonData["action"] == "UpdateContrats":
         return "Non implemente"
     elif jsonData["action"] == "HistoriqueContratsEmail":
@@ -91,8 +91,7 @@ def findAdAction(body):
     return jsonify(status = True, body = result)
 
 def createOfferAction(body):
-    from .models import Offer
-    from .models import User
+    from .models import Offer, User
     if not 'ad_id' in body or not 'proposed_date' in body or not 'carrier_email' in body:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (creation d'offre) ne sont pas presentes.")
     
@@ -113,8 +112,7 @@ def createOfferAction(body):
     return jsonify(status = True, body = offerToCreate.toJSON())
 
 def seeOffersAction(body):
-    from .models import Offer
-    from .models import User
+    from .models import Offer, User
     if not 'user_email' in body:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (voir offres) ne sont pas presentes.")
     
@@ -122,7 +120,7 @@ def seeOffersAction(body):
     if user is None:
         return jsonify(status = False, body = "Cet email n'existe pas !")
 
-    offers = session.query(Offer).filter(Offer.carrier_id == user.id).all()
+    offers = session.query(Offer).filter(and_(Offer.carrier_id == user.id, Offer.status == 0)).all()
 
     result = []
     for offer in offers:
@@ -130,3 +128,22 @@ def seeOffersAction(body):
         result.append(item)
 
     return jsonify(status = True, body = result)
+
+def seeContractsAction(body):
+    from .models import Contract, Offer, User
+    if not 'user_email' in body:
+        return jsonify(status = False, body = "Les cles obligatoires de parsage (voir contrats) ne sont pas presentes.")
+    
+    user = session.query(User).filter(User.email==body["user_email"]).first()
+    if user is None:
+        return jsonify(status = False, body = "Cet email n'existe pas !")
+
+    offers = session.query(Offer).filter(and_(Offer.carrier_id == user.id, Offer.status == 0)).all()
+
+    contracts = []
+    for offer in offers:
+        contract = session.query(Contract).filter(Contract.offer_id==offer.id).first()
+        if not contract is None:
+            contracts.append(contract.toJSON())
+
+    return jsonify(status = True, body = contracts)

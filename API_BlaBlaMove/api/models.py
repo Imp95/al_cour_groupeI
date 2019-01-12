@@ -108,16 +108,25 @@ class Contract(db.Model):
     deposit_accused = db.Column(db.Integer, nullable=False)
     acknowledgement = db.Column(db.Integer, nullable=False)
 
-    offer_id = db.Column(db.Integer, db.ForeignKey('offer.id'), nullable=False)
+    offer_id = db.Column(db.Integer, db.ForeignKey('offer.id'), nullable=False, unique=True)
 
-    def __init__(self, proposed_date, status, deposit_accused, acknowledgement, offer_id):
+    def __init__(self, proposed_date, deposit_accused, acknowledgement, offer_id):
         self.proposed_date = proposed_date
-        self.status = status
+        self.status = 0
         self.deposit_accused = deposit_accused
         self.acknowledgement = acknowledgement
         self.offer_id = offer_id
 
-db.create_all()
+    def toJSON(self):
+        json = {
+            "id":self.id,
+            "proposed_date":self.proposed_date.strftime("%Y-%m-%d"),
+            "status":self.status,
+            "deposit_accused":self.deposit_accused,
+            "acknowledgement":self.acknowledgement,
+            "offer_id":self.offer_id
+        }
+        return json
 
 def init_db():
     db.drop_all()
@@ -137,7 +146,11 @@ def init_db():
     db.session.add(Ad(datetime.strptime('2018-01-22', '%Y-%m-%d'), datetime.strptime('2018-01-24', '%Y-%m-%d'), '15x15x74', 45, 0, '3 rue swag 03333 Ville', '3 rue nulle 09333 Meat City', user1.id))
     db.session.commit()
     # Offers
-    db.session.add(Offer(datetime.strptime('2018-01-13', '%Y-%m-%d'), user2.id, ad1.id))
+    offer1 = Offer(datetime.strptime('2018-01-13', '%Y-%m-%d'), user2.id, ad1.id)
+    db.session.add(offer1)
     db.session.add(Offer(datetime.strptime('2018-01-18', '%Y-%m-%d'), user2.id, ad1.id))
+    db.session.commit()
+    # Contracts
+    db.session.add(Contract('2018-01-14', 579, 975, offer1.id))
     db.session.commit()
     lg.warning('Database initialized!')
