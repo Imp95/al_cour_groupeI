@@ -101,7 +101,8 @@ En attente de depot"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:text="Entrer le code de depot"
-        android:layout_below="@id/statusfield"/>
+        android:layout_below="@id/statusfield"
+        android:visibility="gone"/>
     <Button
         android:id="@+id/validButton"
         android:layout_width="wrap_content"
@@ -110,5 +111,6 @@ En attente de depot"
         android:text="Valider"
         android:layout_marginTop="20dp"
         android:layout_below="@id/codeField"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
 </RelativeLayout>
