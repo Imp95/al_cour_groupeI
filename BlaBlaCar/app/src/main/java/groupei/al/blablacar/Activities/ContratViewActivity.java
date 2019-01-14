@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,7 +33,7 @@ public class ContratViewActivity extends AppCompatActivity {
     private TextView telClTextField;
     private TextView telDestTextField;
     private TextView statusfield;
-    private TextView codeField;
+    private EditText codeField;
     private Button validButton;
 
     @Override
@@ -48,7 +50,7 @@ public class ContratViewActivity extends AppCompatActivity {
         telClTextField = (TextView) findViewById(R.id.telClTextField);
         telDestTextField = (TextView) findViewById(R.id.telDestTextField);
         statusfield = (TextView) findViewById(R.id.statusfield);
-        codeField = (TextView) findViewById(R.id.codeField);
+        codeField = (EditText) findViewById(R.id.codeField);
         validButton = (Button) findViewById(R.id.validButton);
         contratId.setText("Contrat n°"+contrat.getID());
         departTextField.setText("Depart : "+contrat.getOffre_acceptee().getAnnonce_repondu().getAdresse_depart());
@@ -58,10 +60,24 @@ public class ContratViewActivity extends AppCompatActivity {
         telClTextField.setText("Telephone client : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());
         telDestTextField.setText("Telephone destinataire : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());
         statusfield.setText("Status :\n"+contrat.getStatus());
+        if(contrat.getStatus()==""){
+            codeField.setVisibility(View.VISIBLE);
+            validButton.setVisibility(View.VISIBLE);
+        }else{
+            codeField.setVisibility(View.GONE);
+            validButton.setVisibility(View.GONE);
+        }
+        validButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendValidationCode();
+                validButton.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void sendValidationCode(){
-        JSONObject js=JSONSerializer.getUpdateContratJSON(contrat,"");
+        JSONObject js=JSONSerializer.getUpdateContratJSON(contrat,codeField.getText().toString());
         String url ="";
         JsonObjectRequest jsonObjReq =  new JsonObjectRequest(Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>(){
