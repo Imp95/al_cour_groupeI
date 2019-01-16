@@ -6,8 +6,33 @@ __Duminy Gaétan__
 
 __Picard Marchetto Ivan__
 
+__Ritrovato Dylan__
+
 ### Updated
-__23:22 07/11/2018__
+__23:22 16/01/2019__
+
+## Week 03
+
+### Tasks achived :
+  - Interprétation des nouveaux besoins du client
+  - Création d’une nouvelle User Story
+  - Choix des technologies à utiliser
+  - Mise à jour du diagramme de composants
+  - Créations des architectures des composants à implémenter
+  - Création d’une IHM pour le nouveau module
+  - Création de la nouvelle roadmap
+  - Mise à jour du document d’architecture
+  - Migration du service de persistance en PHP vers une API côté serveur implémentée en Flask
+  - Terminer les routes de l’API côté serveur
+  - Terminer les routes de l’application mobile pour les particuliers
+  
+### Tasks planned for next week :
+
+  -  Modification des algorithmes de tri des annonces côté serveur
+  - Création d’un algorithme permettant de limiter la taille du panier en fonction de la place disponible dans le véhicule
+  - Ajout de messages d’erreur dans l’application mobile
+  - Création de tests unitaire pour l’application mobile
+  - Ajout d’un outil d’intégration continue
 
 ## Week 45
 
