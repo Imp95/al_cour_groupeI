@@ -133,7 +133,7 @@ public class JSONSerializer {
         JSONObject json = new JSONObject();
         try {
             json_body.put("user_email", email);
-            json.put("action", "VoirContrats");
+            json.put("action", "HistoriqueContrats");
             json.put("body", json_body);
         } catch (JSONException e) {
             e.printStackTrace();
