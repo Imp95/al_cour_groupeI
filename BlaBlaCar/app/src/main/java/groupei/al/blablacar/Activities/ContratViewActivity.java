@@ -53,12 +53,12 @@ public class ContratViewActivity extends AppCompatActivity {
         codeField = (EditText) findViewById(R.id.codeField);
         validButton = (Button) findViewById(R.id.validButton);
         contratId.setText("Contrat n°"+contrat.getID());
-        departTextField.setText("Depart : "+contrat.getOffre_acceptee().getAnnonce_repondu().getAdresse_depart());
+        /*departTextField.setText("Depart : "+contrat.getOffre_acceptee().getAnnonce_repondu().getAdresse_depart());
         ariveeTextField.setText("Arrivee : "+contrat.getOffre_acceptee().getAnnonce_repondu().getAdresse_arrivee());
         dateTextField.setText("Date : "+contrat.getOffre_acceptee().getDate_proposee());
         payTextField.setText("Paiment : "+contrat.getOffre_acceptee().getAnnonce_repondu().getPaiement());
         telClTextField.setText("Telephone client : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());
-        telDestTextField.setText("Telephone destinataire : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());
+        telDestTextField.setText("Telephone destinataire : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());*/
         statusfield.setText("Status :\n"+contrat.getStatus());
         if(contrat.getStatus()!="2"){
             codeField.setVisibility(View.VISIBLE);

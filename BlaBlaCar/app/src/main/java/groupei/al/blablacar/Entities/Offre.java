@@ -7,10 +7,10 @@ public class Offre implements Serializable {
     private int ID;
     private Date Date_proposee;
     private String Status;
-    private Annonce Annonce_repondu;
-    private Utilisateur Transporteur;
+    private int Annonce_repondu;
+    private int Transporteur;
 
-    public Offre(int ID, Date date_proposee, String status, Annonce annonce_repondu, Utilisateur transporteur) {
+    public Offre(int ID, Date date_proposee, String status, int annonce_repondu, int transporteur) {
         this.ID = ID;
         Date_proposee = date_proposee;
         Status = status;
@@ -42,19 +42,19 @@ public class Offre implements Serializable {
         Status = status;
     }
 
-    public Annonce getAnnonce_repondu() {
+    public int getAnnonce_repondu() {
         return Annonce_repondu;
     }
 
-    public void setAnnonce_repondu(Annonce annonce_repondu) {
+    public void setAnnonce_repondu(int annonce_repondu) {
         Annonce_repondu = annonce_repondu;
     }
 
-    public Utilisateur getTransporteur() {
+    public int getTransporteur() {
         return Transporteur;
     }
 
-    public void setTransporteur(Utilisateur transporteur) {
+    public void setTransporteur(int transporteur) {
         Transporteur = transporteur;
     }
 
@@ -68,7 +68,7 @@ public class Offre implements Serializable {
         stringBuilder.append(", Date proposée : ");
         stringBuilder.append(getDate_proposee());
         stringBuilder.append(", Annonce repondu : ");
-        stringBuilder.append(getAnnonce_repondu().getID());
+        stringBuilder.append(getAnnonce_repondu());
         return stringBuilder.toString();
     }
 }
