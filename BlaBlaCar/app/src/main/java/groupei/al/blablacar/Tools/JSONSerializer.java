@@ -76,9 +76,9 @@ public class JSONSerializer {
         JSONObject json_body = new JSONObject();
         JSONObject json = new JSONObject();
         try {
-            json_body.put("contrat",c.getID());
-            json_body.put("code",code);
-            json.put("action", "UpdateContrats");
+            json_body.put("id_contract",c.getID());
+            json_body.put("preuve",code);
+            json.put("action", "UpdateContrat");
             json.put("body", json_body);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -90,10 +90,50 @@ public class JSONSerializer {
         JSONObject json_body = new JSONObject();
         JSONObject json = new JSONObject();
         try {
-            json_body.put("annonce", id_annonce);
-            json_body.put("transporteur", email);
-            json_body.put("dispo", dispo);
+            json_body.put("ad_id", id_annonce);
+            json_body.put("carrier_email", email);
+            json_body.put("proposed_date", dispo);
             json.put("action", "CreationOffre");
+            json.put("body", json_body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    public static JSONObject seeOffersJSON(String email) {
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("user_email", email);
+            json.put("action", "VoirOffres");
+            json.put("body", json_body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    public static JSONObject seeContratsJSON(String email) {
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("user_email", email);
+            json.put("action", "VoirContrats");
+            json.put("body", json_body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+
+    public static JSONObject seeHistoriqueContratsJSON(String email) {
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("user_email", email);
+            json.put("action", "VoirContrats");
             json.put("body", json_body);
         } catch (JSONException e) {
             e.printStackTrace();

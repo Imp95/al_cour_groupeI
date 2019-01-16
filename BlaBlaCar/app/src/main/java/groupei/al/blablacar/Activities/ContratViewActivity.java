@@ -60,7 +60,7 @@ public class ContratViewActivity extends AppCompatActivity {
         telClTextField.setText("Telephone client : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());
         telDestTextField.setText("Telephone destinataire : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());
         statusfield.setText("Status :\n"+contrat.getStatus());
-        if(contrat.getStatus()==""){
+        if(contrat.getStatus()!="2"){
             codeField.setVisibility(View.VISIBLE);
             validButton.setVisibility(View.VISIBLE);
         }else{
@@ -78,7 +78,7 @@ public class ContratViewActivity extends AppCompatActivity {
 
     private void sendValidationCode(){
         JSONObject js=JSONSerializer.getUpdateContratJSON(contrat,codeField.getText().toString());
-        String url ="";
+        String url ="http://192.168.0.42:80/receive_event";
         JsonObjectRequest jsonObjReq =  new JsonObjectRequest(Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>(){
                     @Override
