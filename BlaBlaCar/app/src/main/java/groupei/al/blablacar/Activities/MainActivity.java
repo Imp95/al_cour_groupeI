@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import groupei.al.blablacar.Entities.Info;
+import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.Tools.JSONSerializer;
 import groupei.al.blablacar.Tools.LoginHandler;
 import groupei.al.blablacar.Tools.LoginHandlerMock;
@@ -109,16 +111,27 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d("connexion", response.toString());
                         try {
-                            System.out.println(response.get("body").getClass().getName());
                             JSONObject body = response.getJSONObject("body");
+
+                            String dateTime = ((String) body.get("birthday"));
+                            SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+                            Date date = dateParser.parse(dateTime);
                             String email = body.getString("email");
                             int amount = body.getInt("amount");
+
+                            Utilisateur user = new Utilisateur(email, body.getString("name"), body.getString("firstname"),
+                                    date, body.getString("phone_number"), amount);
+                            Info.getInstance();
+                            Info.setUser(user);
+
                             Intent intent = new Intent(act, AcceuilActivity.class);
                             intent.putExtra("email", email); //faire passer des parametres
                             intent.putExtra("amount", amount);
                             intent.putExtra("url", url);
                             startActivity(intent);
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
                     }
