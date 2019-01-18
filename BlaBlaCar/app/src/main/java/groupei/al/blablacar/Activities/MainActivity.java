@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.Tools.JSONSerializer;
 import groupei.al.blablacar.Tools.LoginHandler;
 import groupei.al.blablacar.Tools.LoginHandlerMock;
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     LoginToken token;
     TextView error;
     RequestHandler requestHandler;
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //Methode appeler a la création du l'app
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         loginHandler = new LoginHandlerMock();
         error = (TextView) findViewById(R.id.errorText);
         error.setTextColor(Color.rgb(255,0,0));
+        url = "http://192.168.43.134:5555/receive_event";
 
 
 
@@ -96,11 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void changerActivityConnexion(View view) {
 
-        EditText mail = (EditText) findViewById(R.id.email);
+        final EditText mail = (EditText) findViewById(R.id.email);
         EditText mdp = (EditText) findViewById(R.id.mdp);
 
         JSONObject js = JSONSerializer.getConnexionJSON(mail.getText().toString(), mdp.getText().toString());
-        String url = "http://192.168.0.42:80/receive_event";
         final Activity act = this;
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, url, js,
@@ -111,18 +111,14 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             System.out.println(response.get("body").getClass().getName());
                             JSONObject body = response.getJSONObject("body");
-                            System.out.println(body.get("birthday").getClass().getName());
-                            String dateTime = ((String) body.get("birthday"));
-                            SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd",Locale.FRANCE);
-                            Date date = dateParser.parse(dateTime);
-                            Utilisateur user = new Utilisateur(body.getString("email"), body.getString("name"), body.getString("firstname"),
-                                    date, body.getString("phone_number"), body.getInt("amount"));
+                            String email = body.getString("email");
+                            int amount = body.getInt("amount");
                             Intent intent = new Intent(act, AcceuilActivity.class);
-                            intent.putExtra("user", user); //faire passer des parametres
+                            intent.putExtra("email", email); //faire passer des parametres
+                            intent.putExtra("amount", amount);
+                            intent.putExtra("url", url);
                             startActivity(intent);
                         } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
                     }
@@ -148,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void changerActivityInscription(View view) {
         Intent intent = new Intent(this, InscriptionActivity.class);
+        intent.putExtra("url", url);
         startActivity(intent);
     }
 }

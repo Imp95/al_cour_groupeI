@@ -3,15 +3,11 @@ package groupei.al.blablacar.Activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -19,34 +15,31 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
-import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
 import groupei.al.blablacar.Tools.JSONSerializer;
 import groupei.al.blablacar.Tools.RequestHandler;
 
 public class RechercheActivity extends AppCompatActivity {
     RequestHandler requestHandler;
-    Utilisateur user;
+    String url;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recherche);
         requestHandler = RequestHandler.getInstance(getApplicationContext());
+
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        user = (Utilisateur) bundle.get("user");
+        url = (String) bundle.get("url");
+        email = (String) bundle.get("email");
 
         Button rechercher = (Button) findViewById(R.id.rechercher);
         rechercher.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +66,6 @@ public class RechercheActivity extends AppCompatActivity {
         EditText bagage = (EditText) findViewById(R.id.dimension);
 
         JSONObject js = JSONSerializer.getRechercheJSON(depart.getText().toString(), arrivee.getText().toString(), bagage.getText().toString());
-        String url = "http://192.168.0.42:80/receive_event";
         final Activity act = this;
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, url, js,
@@ -84,7 +76,8 @@ public class RechercheActivity extends AppCompatActivity {
                         try {
                             if(!response.get("body").toString().equals("[]")) {
                                 Intent intent = new Intent(act, ChoixAnnoncesActivity.class);
-                                intent.putExtra("user", user);
+                                intent.putExtra("email", email);
+                                intent.putExtra("url", url);
                                 intent.putExtra("annonces", response.get("body").toString()); // Passage du JSONArray en String
                                 startActivity(intent);
                             }

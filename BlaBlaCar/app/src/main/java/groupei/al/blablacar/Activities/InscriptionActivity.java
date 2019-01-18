@@ -18,27 +18,25 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
-import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
 import groupei.al.blablacar.Tools.JSONSerializer;
 import groupei.al.blablacar.Tools.RequestHandler;
 
 public class InscriptionActivity extends AppCompatActivity {
     RequestHandler requestHandler;
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //Methode appeler a la création du l'app
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
         requestHandler = RequestHandler.getInstance(getApplicationContext());
-
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        url = (String) bundle.get("url");
         Button confirmer = (Button) findViewById(R.id.confirmer);
         confirmer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +68,6 @@ public class InscriptionActivity extends AppCompatActivity {
         if (mdp.getText().toString().equals(mdp2.getText().toString())) {
             JSONObject js = JSONSerializer.getInscriptionJSON(mail.getText().toString(), mdp.getText().toString(), nom.getText().toString(), prenom.getText().toString(),
                     naissance.getText().toString(), tel.getText().toString());
-            String url = "http://192.168.0.42:80/receive_event";
             final Activity act = this;
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                     Request.Method.POST, url, js,
@@ -79,21 +76,15 @@ public class InscriptionActivity extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             Log.d("inscription", response.toString());
                             try {
-                                System.out.println(response.get("body").getClass().getName());
                                 JSONObject body = response.getJSONObject("body");
-                                System.out.println(body.get("birthday").getClass().getName());
-                                String dateTime = ((String) body.get("birthday"));
-                                SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
-                                Date date = dateParser.parse(dateTime);
-                                System.out.println("date_inscription " + date.toString());
-                                Utilisateur user = new Utilisateur(body.getString("email"), body.getString("name"), body.getString("firstname"),
-                                        date, body.getString("phone_number"), body.getInt("amount"));
+                                String email = body.getString("email");
+                                int amount = body.getInt("amount");
                                 Intent intent = new Intent(act, AcceuilActivity.class);
-                                intent.putExtra("user", user); //faire passer des parametres
+                                intent.putExtra("email", email); //faire passer des parametres
+                                intent.putExtra("amount", amount);
+                                intent.putExtra("url", url);
                                 startActivity(intent);
                             } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (ParseException e) {
                                 e.printStackTrace();
                             }
                         }
