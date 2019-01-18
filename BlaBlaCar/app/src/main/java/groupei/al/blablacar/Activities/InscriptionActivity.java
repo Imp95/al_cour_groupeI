@@ -40,9 +40,9 @@ public class InscriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
         requestHandler = RequestHandler.getInstance(getApplicationContext());
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        url = (String) bundle.get("url");
+
+        Info.getInstance();
+        url = Info.getUrl();
         Button confirmer = (Button) findViewById(R.id.confirmer);
         confirmer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,13 +92,9 @@ public class InscriptionActivity extends AppCompatActivity {
 
                                 Utilisateur user = new Utilisateur(email, body.getString("name"), body.getString("firstname"),
                                         date, body.getString("phone_number"), amount);
-                                Info.getInstance();
                                 Info.setUser(user);
 
                                 Intent intent = new Intent(act, AcceuilActivity.class);
-                                intent.putExtra("email", email); //faire passer des parametres
-                                intent.putExtra("amount", amount);
-                                intent.putExtra("url", url);
                                 startActivity(intent);
                             } catch (JSONException e) {
                                 e.printStackTrace();

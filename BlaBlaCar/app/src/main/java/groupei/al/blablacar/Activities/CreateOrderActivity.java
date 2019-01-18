@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import groupei.al.blablacar.Entities.Annonce;
+import groupei.al.blablacar.Entities.Info;
 import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
 import groupei.al.blablacar.Tools.AnnonceAdapterValid;
@@ -50,17 +51,19 @@ public class CreateOrderActivity extends AppCompatActivity {
     EditText dispo;
     List<Annonce> panier;
     Annonce annonce;
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
         requestHandler = RequestHandler.getInstance(getApplicationContext());
+        Info.getInstance();
+        url = Info.getUrl();
+
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        final Utilisateur user = (Utilisateur) bundle.get("user");
         panier = (List<Annonce>) getIntent().getSerializableExtra("panier");
-        Log.d("size-panier", String.valueOf(panier.size()));
         annonce = panier.get(0);
         panier.remove(0);
 
@@ -83,23 +86,22 @@ public class CreateOrderActivity extends AppCompatActivity {
         valider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityValider(view, panier, user, annonce);
+                changerActivityValider(view, panier, annonce);
             }
         });
 
         refuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityRefuser(view, panier, user);
+                changerActivityRefuser(view, panier);
             }
         });
     }
 
-    private void changerActivityValider(View view, List<Annonce> panier, Utilisateur user, Annonce annonce) {
+    private void changerActivityValider(View view, List<Annonce> panier, Annonce annonce) {
         // A implementer quand la route sera disponible
         EditText dispo = (EditText) findViewById(R.id.dispo);
-        JSONObject js = JSONSerializer.getCreateOfferJSON(annonce.getID(), user.getEmail(), dispo.getText().toString());
-        String url = "http://192.168.0.42:80/receive_event";
+        JSONObject js = JSONSerializer.getCreateOfferJSON(annonce.getID(), Info.getUser().getEmail(), dispo.getText().toString());
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>() {
@@ -124,18 +126,16 @@ public class CreateOrderActivity extends AppCompatActivity {
         };
         System.out.println(jsonObjReq.toString());
         requestHandler.addToRequestQueue(jsonObjReq);
-        changerActivityRefuser(view, panier, user);
+        changerActivityRefuser(view, panier);
     }
 
-    private void changerActivityRefuser(View view, List<Annonce> panier, Utilisateur user) {
+    private void changerActivityRefuser(View view, List<Annonce> panier) {
         if (panier.size() == 0) {
             Intent intent = new Intent(this, AcceuilActivity.class);
-            intent.putExtra("user", user);
             startActivity(intent);
         }
         else {
             Intent intent = new Intent(this, CreateOrderActivity.class);
-            intent.putExtra("user", user);
             intent.putExtra("panier", (Serializable) panier);
             startActivity(intent);
         }

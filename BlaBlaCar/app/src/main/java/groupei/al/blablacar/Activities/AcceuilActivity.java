@@ -6,29 +6,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import groupei.al.blablacar.Entities.Info;
 import groupei.al.blablacar.R;
 
 public class AcceuilActivity extends AppCompatActivity {
-
-    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceuil);
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
+        Info.getInstance();
+
         TextView nombre = (TextView) findViewById(R.id.nombre);
-        final String email = (String) bundle.get("email");
-        final int amount = (int) bundle.get("amount");
-        url = (String) bundle.get("url");
-        nombre.setText("" + amount);
+        nombre.setText("" + Info.getUser().getSolde());
 
         Button chercher = (Button) findViewById(R.id.chercher);
         chercher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityChercher(view, email);
+                changerActivityChercher(view);
             }
         });
 
@@ -36,7 +33,7 @@ public class AcceuilActivity extends AppCompatActivity {
         offres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityOffres(view, email);
+                changerActivityOffres(view);
             }
         });
 
@@ -44,7 +41,7 @@ public class AcceuilActivity extends AppCompatActivity {
         contrats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityContrats(view, email);
+                changerActivityContrats(view);
             }
         });
 
@@ -52,7 +49,7 @@ public class AcceuilActivity extends AppCompatActivity {
         historique.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changerActivityHistorique(view, email);
+                changerActivityHistorique(view);
             }
         });
     }
@@ -67,32 +64,24 @@ public class AcceuilActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public void changerActivityChercher(View view, String email) {
+    public void changerActivityChercher(View view) {
         Intent intent = new Intent(this, RechercheActivity.class);
-        intent.putExtra("email", email);
-        intent.putExtra("url", url);
         startActivity(intent);
     }
 
-    public void changerActivityOffres(View view, String email) {
+    public void changerActivityOffres(View view) {
         Intent intent = new Intent(this, OffresActivity.class);
-        intent.putExtra("email", email);
-        intent.putExtra("url", url);
         startActivity(intent);
     }
 
-    public void changerActivityContrats(View view, String email) {
+    public void changerActivityContrats(View view) {
         Intent intent = new Intent(this, ContratsActivity.class);
-        intent.putExtra("email", email);
-        intent.putExtra("url", url);
         startActivity(intent);
     }
 
-    public void changerActivityHistorique(View view, String email) {
+    public void changerActivityHistorique(View view) {
         Intent intent = new Intent(this, ContratsActivity.class);
         intent.putExtra("titre", "Historique des contrats");
-        intent.putExtra("email", email);
-        intent.putExtra("url", url);
         startActivity(intent);
     }
 

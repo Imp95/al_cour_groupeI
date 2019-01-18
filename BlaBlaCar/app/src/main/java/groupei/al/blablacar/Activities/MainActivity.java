@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         error = (TextView) findViewById(R.id.errorText);
         error.setTextColor(Color.rgb(255,0,0));
         url = "http://192.168.43.134:5555/receive_event";
-
-
+        Info.getInstance();
+        Info.setUrl(url);
 
         Button connexion = (Button) findViewById(R.id.connexion);//Récuperer un button
         connexion.setOnClickListener(new View.OnClickListener() {
@@ -121,13 +121,9 @@ public class MainActivity extends AppCompatActivity {
 
                             Utilisateur user = new Utilisateur(email, body.getString("name"), body.getString("firstname"),
                                     date, body.getString("phone_number"), amount);
-                            Info.getInstance();
                             Info.setUser(user);
 
                             Intent intent = new Intent(act, AcceuilActivity.class);
-                            intent.putExtra("email", email); //faire passer des parametres
-                            intent.putExtra("amount", amount);
-                            intent.putExtra("url", url);
                             startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -157,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void changerActivityInscription(View view) {
         Intent intent = new Intent(this, InscriptionActivity.class);
-        intent.putExtra("url", url);
         startActivity(intent);
     }
 }

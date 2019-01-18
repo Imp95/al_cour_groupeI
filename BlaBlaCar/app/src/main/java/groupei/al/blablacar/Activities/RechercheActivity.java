@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import groupei.al.blablacar.Entities.Info;
 import groupei.al.blablacar.R;
 import groupei.al.blablacar.Tools.JSONSerializer;
 import groupei.al.blablacar.Tools.RequestHandler;
@@ -28,18 +29,15 @@ import groupei.al.blablacar.Tools.RequestHandler;
 public class RechercheActivity extends AppCompatActivity {
     RequestHandler requestHandler;
     String url;
-    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recherche);
         requestHandler = RequestHandler.getInstance(getApplicationContext());
+        Info.getInstance();
 
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        url = (String) bundle.get("url");
-        email = (String) bundle.get("email");
+        url = Info.getUrl();
 
         Button rechercher = (Button) findViewById(R.id.rechercher);
         rechercher.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +74,6 @@ public class RechercheActivity extends AppCompatActivity {
                         try {
                             if(!response.get("body").toString().equals("[]")) {
                                 Intent intent = new Intent(act, ChoixAnnoncesActivity.class);
-                                intent.putExtra("email", email);
-                                intent.putExtra("url", url);
                                 intent.putExtra("annonces", response.get("body").toString()); // Passage du JSONArray en String
                                 startActivity(intent);
                             }

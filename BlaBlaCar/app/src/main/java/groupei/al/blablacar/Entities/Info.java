@@ -12,6 +12,7 @@ public class Info {
     }
 
     Utilisateur user;
+    String url;
 
     private Info(){
 
@@ -25,7 +26,13 @@ public class Info {
         getInstance().user = user;
     }
 
+    public static String getUrl(){
+        return getInstance().url;
+    }
 
+    public static void setUrl(String url){
+        getInstance().url = url;
+    }
 
 
 }
