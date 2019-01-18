@@ -90,7 +90,7 @@ def findAdAction(body):
         item = ad.toJSON()
         result.append(item)
     
-    lg.warning(len(result) + " annonces trouvees.")
+    lg.warning(str(len(result)) + " annonces trouvees.")
     return jsonify(status = True, body = result)
 
 def createOfferAction(body):
@@ -133,7 +133,7 @@ def seeOffersAction(body):
         item = offer.toJSON()
         result.append(item)
 
-    lg.warning(len(result) + " offres trouvees pour l'utilisateur " + body["user_email"])
+    lg.warning(str(len(result)) + " offres trouvees pour l'utilisateur " + body["user_email"])
     return jsonify(status = True, body = result)
 
 def seeContractsAction(body):
@@ -154,7 +154,7 @@ def seeContractsAction(body):
         if not contract is None:
             contracts.append(contract.toJSON())
 
-    lg.warning(len(result) + " contrats trouvees pour l'utilisateur " + body["user_email"])
+    lg.warning(str(len(result)) + " contrats trouvees pour l'utilisateur " + body["user_email"])
     return jsonify(status = True, body = contracts)
 
 def updateContractAction(body):
@@ -207,5 +207,5 @@ def logContractsAction(body):
         if not contract is None:
             contracts.append(contract.toJSON())
     
-    lg.warning(len(result) + " contrats finis trouvees pour l'utilisateur " + body["user_email"])
+    lg.warning(str(len(result)) + " contrats finis trouvees pour l'utilisateur " + body["user_email"])
     return jsonify(status = True, body = contracts)
