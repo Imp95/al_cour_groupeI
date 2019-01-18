@@ -16,10 +16,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import groupei.al.blablacar.Entities.Adresse;
 import groupei.al.blablacar.Entities.Annonce;
@@ -78,10 +81,16 @@ public class OffresActivity extends AppCompatActivity {
                             JSONArray offers = response.getJSONArray("body");
                             for(int i=0;i<offers.length();i++){
                                 JSONObject o = offers.getJSONObject(i);
-                                myDataset.add(new Offre(o.getInt("id"),new Date(o.getString("proposed_date")),o.getString("status"),o.getInt("ad_id"),o.getInt("carrier_id")));
+                                Log.d("dateOffresBug", o.getString("proposed_date"));
+                                String dateTime = o.getString("proposed_date");
+                                SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd mm:ss", Locale.FRANCE);
+                                Date date = dateParser.parse(dateTime);
+                                myDataset.add(new Offre(o.getInt("id"), date, o.getString("status"), o.getInt("ad_id"), o.getInt("carrier_id")));
                             }
 
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
                     }
@@ -89,7 +98,7 @@ public class OffresActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("seeContrats", "Error: " + error.getMessage());
+                Log.d("seeOffers", "Error: " + error.getMessage());
             }
         });
         requestHandler.addToRequestQueue(jsonObjReq);

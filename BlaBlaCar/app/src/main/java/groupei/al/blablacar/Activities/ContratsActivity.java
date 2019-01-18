@@ -29,6 +29,7 @@ import java.util.List;
 import groupei.al.blablacar.Entities.Adresse;
 import groupei.al.blablacar.Entities.Annonce;
 import groupei.al.blablacar.Entities.Contrat;
+import groupei.al.blablacar.Entities.Info;
 import groupei.al.blablacar.Entities.Offre;
 import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
@@ -42,11 +43,16 @@ public class ContratsActivity extends AppCompatActivity {
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
     RequestHandler requestHandler;
+    String url;
+    Utilisateur user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contrats);
+        Info.getInstance();
+        url = Info.getUrl();
+        user = Info.getUser();
 
         requestHandler = RequestHandler.getInstance(getApplicationContext());
         Intent intent = this.getIntent();
@@ -62,7 +68,6 @@ public class ContratsActivity extends AppCompatActivity {
         liste.setLayoutManager(mLayoutManager);
         final List<Contrat> myDataset = new ArrayList<>();
         //test stuff
-        Utilisateur user= new Utilisateur("test","test","test",new Date(),"test",0);
         /*Annonce annonce = new Annonce(0, new Date(), new Date(),"test",0,0,user
                 ,new Adresse(0,"test","test","test","test"),new Adresse(0,"test","test","test","test")
                 ,new LinkedList<Offre>());*/
@@ -74,8 +79,7 @@ public class ContratsActivity extends AppCompatActivity {
         myDataset.add(contrat);
         myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);*/
         //stop test stuff
-        JSONObject js=JSONSerializer.seeContratsJSON(((Utilisateur)bundle.get("user")).getEmail());
-        String url ="http://192.168.0.42:80/receive_event";
+        JSONObject js=JSONSerializer.seeContratsJSON(user.getEmail());
         JsonObjectRequest jsonObjReq =  new JsonObjectRequest(Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>(){
                     @Override
