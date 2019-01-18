@@ -24,6 +24,7 @@ import java.util.List;
 import groupei.al.blablacar.Entities.Adresse;
 import groupei.al.blablacar.Entities.Annonce;
 import groupei.al.blablacar.Entities.Contrat;
+import groupei.al.blablacar.Entities.Info;
 import groupei.al.blablacar.Entities.Offre;
 import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
@@ -37,13 +38,14 @@ public class OffresActivity extends AppCompatActivity {
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
     RequestHandler requestHandler;
+    String url;
+    Utilisateur user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Info.getInstance();
         setContentView(R.layout.activity_offres);
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
         requestHandler = RequestHandler.getInstance(getApplicationContext());
         liste = (RecyclerView) findViewById(R.id.listOffre);
         liste.setHasFixedSize(true);
@@ -51,7 +53,8 @@ public class OffresActivity extends AppCompatActivity {
         liste.setLayoutManager(mLayoutManager);
         final List<Offre> myDataset = new ArrayList<>();
         //test stuff
-        Utilisateur user= new Utilisateur("test","test","test",new Date(),"test",0);
+        user = Info.getUser();
+        url = Info.getUrl();
         /*Annonce annonce = new Annonce(0, new Date(), new Date(),"test",0,0,user
                 ,new Adresse(0,"test","test","test","test"),new Adresse(0,"test","test","test","test")
         ,new LinkedList<Offre>());*/ // A modifier
@@ -66,8 +69,7 @@ public class OffresActivity extends AppCompatActivity {
         myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);
         */
         //stop test stuff
-        JSONObject js=JSONSerializer.seeOffersJSON(((Utilisateur)bundle.get("user")).getEmail());
-        String url ="http://192.168.0.42:80/receive_event";
+        JSONObject js=JSONSerializer.seeOffersJSON(user.getEmail());
         JsonObjectRequest jsonObjReq =  new JsonObjectRequest(Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>(){
                     @Override
