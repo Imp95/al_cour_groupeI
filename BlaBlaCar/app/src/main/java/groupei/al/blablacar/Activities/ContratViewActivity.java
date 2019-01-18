@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import groupei.al.blablacar.Entities.Contrat;
@@ -83,7 +84,19 @@ public class ContratViewActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response) {
-
+                        try {
+                            contrat.setStatus(response.getString("status"));
+                            if(contrat.getStatus()!="2"){
+                                codeField.setVisibility(View.VISIBLE);
+                                validButton.setVisibility(View.VISIBLE);
+                            }else{
+                                codeField.setVisibility(View.GONE);
+                                validButton.setVisibility(View.GONE);
+                            }
+                            statusfield.setText("Status :\n"+contrat.getStatus());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
 
