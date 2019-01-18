@@ -152,13 +152,13 @@ def init_db():
     db.session.add(Ad(datetime.strptime('2018-01-22', '%Y-%m-%d'), datetime.strptime('2018-01-24', '%Y-%m-%d'), '15x15x74', 45, 0, '3 rue swag 03333 Ville', '3 rue nulle 09333 Meat City', user1.id))
     db.session.commit()
     # Offers
-    offer1 = Offer(datetime.strptime('2018-01-13', '%Y-%m-%d'), user2.id, ad1.id)
-    offer2 = Offer(datetime.strptime('2018-01-02', '%Y-%m-%d'), user4.id, ad2.id)
-    offer3 = Offer(datetime.strptime('2018-01-06', '%Y-%m-%d'), user1.id, ad3.id)
+    offer1 = Offer(datetime.strptime('2018-01-13 14:30', '%Y-%m-%d %M:%S'), user2.id, ad1.id)
+    offer2 = Offer(datetime.strptime('2018-01-02 13:00', '%Y-%m-%d %M:%S'), user4.id, ad2.id)
+    offer3 = Offer(datetime.strptime('2018-01-06 16:00', '%Y-%m-%d %M:%S'), user1.id, ad3.id)
     db.session.add(offer1)
     db.session.add(offer2)
     db.session.add(offer3)
-    db.session.add(Offer(datetime.strptime('2018-01-18', '%Y-%m-%d'), user2.id, ad1.id))
+    db.session.add(Offer(datetime.strptime('2018-01-18 15:50', '%Y-%m-%d %M:%S'), user2.id, ad1.id))
     db.session.commit()
     # Contracts
     contract2 = Contract('2018-01-12', 111, 222, offer2.id)
