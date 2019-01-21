@@ -74,7 +74,7 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.MyViewHo
         Annonce annonce = mDataset.get(position);
         holder.departTextField.setText("Depart : " + annonce.getAdresse_depart());
         holder.ariveeTextField.setText("Arrivee : " + annonce.getAdresse_arrivee());
-        holder.payTextField.setText("Paiment : " + annonce.getPaiement());
+        holder.payTextField.setText("Paiment : " + annonce.getPaiement()+" points");
         holder.bagageTextField.setText("Bagage : " + annonce.getBagage());
         holder.dateTextField.setText("Date : " + annonce.getDate_Debut());
         holder.addToPanierButton.setOnClickListener(new View.OnClickListener() {
