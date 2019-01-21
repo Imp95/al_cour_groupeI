@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,10 +25,21 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView mTextView;
-        public MyViewHolder(TextView v) {
+        public RelativeLayout mView;
+        public TextView departTextField,ariveeTextField,payTextField,dateTextField;
+        public Button addToPanierButton;
+        public MyViewHolder(RelativeLayout v) {
             super(v);
-            mTextView = v;
+            mView = v;
+            init();
+        }
+
+        private void init() {
+            departTextField = (TextView) mView.findViewById(R.id.departTextField);
+            ariveeTextField = (TextView) mView.findViewById(R.id.ariveeTextField);
+            payTextField = (TextView) mView.findViewById(R.id.payTextField);
+            dateTextField = (TextView) mView.findViewById(R.id.dateTextField);
+            addToPanierButton = (Button) mView.findViewById(R.id.addToPanierButton);
         }
     }
 
@@ -41,7 +54,7 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
     public ContratAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                           int viewType) {
         // create a new view
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
+        RelativeLayout v = (RelativeLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.my_text_view, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -52,8 +65,12 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset.get(position).toString());
-        holder.mTextView.setOnClickListener(new View.OnClickListener() {
+        Contrat contrat = mDataset.get(position);
+        /*holder.departTextField.setText("Depart : " + contrat.getAdresse_depart());
+        holder.ariveeTextField.setText("Arrivee : " + contrat.getAdresse_arrivee());
+        holder.payTextField.setText("Paiment : " + contrat.getPaiement()+" points");
+        holder.dateTextField.setText("Date : " + contrat.getDate_proposee());*/
+        holder.addToPanierButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(parent,OffreViewActivity.class);
