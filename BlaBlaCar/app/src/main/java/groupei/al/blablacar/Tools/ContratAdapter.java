@@ -55,7 +55,7 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
                                                           int viewType) {
         // create a new view
         RelativeLayout v = (RelativeLayout) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_text_view, parent, false);
+                .inflate(R.layout.contrat_view, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
