@@ -35,11 +35,11 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
         }
 
         private void init() {
-            departTextField = (TextView) mView.findViewById(R.id.departTextField);
-            ariveeTextField = (TextView) mView.findViewById(R.id.ariveeTextField);
-            payTextField = (TextView) mView.findViewById(R.id.payTextField);
-            dateTextField = (TextView) mView.findViewById(R.id.dateTextField);
-            addToPanierButton = (Button) mView.findViewById(R.id.addToPanierButton);
+            departTextField = (TextView) mView.findViewById(R.id.departTextField3);
+            ariveeTextField = (TextView) mView.findViewById(R.id.ariveeTextField3);
+            payTextField = (TextView) mView.findViewById(R.id.payTextField3);
+            dateTextField = (TextView) mView.findViewById(R.id.dateTextField3);
+            addToPanierButton = (Button) mView.findViewById(R.id.addToPanierButton3);
         }
     }
 

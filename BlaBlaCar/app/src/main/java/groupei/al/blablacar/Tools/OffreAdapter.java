@@ -36,12 +36,12 @@ public class OffreAdapter extends RecyclerView.Adapter<OffreAdapter.MyViewHolder
         }
 
         private void init() {
-            departTextField = (TextView) mView.findViewById(R.id.departTextField);
-            ariveeTextField = (TextView) mView.findViewById(R.id.ariveeTextField);
-            payTextField = (TextView) mView.findViewById(R.id.payTextField);
-            bagageTextField = (TextView) mView.findViewById(R.id.bagageTextField);
-            dateTextField = (TextView) mView.findViewById(R.id.dateTextField);
-            addToPanierButton = (Button) mView.findViewById(R.id.addToPanierButton);
+            departTextField = (TextView) mView.findViewById(R.id.departTextField2);
+            ariveeTextField = (TextView) mView.findViewById(R.id.ariveeTextField2);
+            payTextField = (TextView) mView.findViewById(R.id.payTextField2);
+            bagageTextField = (TextView) mView.findViewById(R.id.bagageTextField2);
+            dateTextField = (TextView) mView.findViewById(R.id.dateTextField2);
+            addToPanierButton = (Button) mView.findViewById(R.id.addToPanierButton2);
         }
     }
 

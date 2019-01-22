@@ -39,12 +39,12 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.MyViewHo
         }
 
         private void init() {
-            departTextField = (TextView) mView.findViewById(R.id.departTextField);
-            ariveeTextField = (TextView) mView.findViewById(R.id.ariveeTextField);
-            payTextField = (TextView) mView.findViewById(R.id.payTextField);
-            bagageTextField = (TextView) mView.findViewById(R.id.bagageTextField);
-            dateTextField = (TextView) mView.findViewById(R.id.dateTextField);
-            addToPanierButton = (Button) mView.findViewById(R.id.addToPanierButton);
+            departTextField = (TextView) mView.findViewById(R.id.departTextField1);
+            ariveeTextField = (TextView) mView.findViewById(R.id.ariveeTextField1);
+            payTextField = (TextView) mView.findViewById(R.id.payTextField1);
+            bagageTextField = (TextView) mView.findViewById(R.id.bagageTextField1);
+            dateTextField = (TextView) mView.findViewById(R.id.dateTextField1);
+            addToPanierButton = (Button) mView.findViewById(R.id.addToPanierButton1);
         }
     }
 

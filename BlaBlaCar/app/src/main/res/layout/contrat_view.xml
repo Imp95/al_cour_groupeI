@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/attfields"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@id/contratId"
-    android:margin="5dp"
+    android:layout_margin="5dp"
     android:background="@color/grey"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/departTextField"
+        android:id="@+id/departTextField3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Depart"
@@ -18,7 +16,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"/>
     <TextView
-        android:id="@+id/ariveeTextField"
+        android:id="@+id/ariveeTextField3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Arrivee"
@@ -26,9 +24,9 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/departTextField"/>
+        android:layout_below="@id/departTextField3"/>
     <TextView
-        android:id="@+id/payTextField"
+        android:id="@+id/payTextField3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Paiment"
@@ -36,9 +34,9 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/dateTextField"/>
+        android:layout_below="@id/dateTextField3"/>
     <TextView
-        android:id="@+id/dateTextField"
+        android:id="@+id/dateTextField3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date"
@@ -46,13 +44,13 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/ariveeTextField"/>
+        android:layout_below="@id/ariveeTextField3"/>
     <Button
-        android:id="@+id/addToPanierButton"
+        android:id="@+id/addToPanierButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+"
-        android:layout_below="@id/ariveeTextField"
+        android:layout_below="@id/ariveeTextField3"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
