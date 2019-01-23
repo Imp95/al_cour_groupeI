@@ -68,10 +68,10 @@ public class OffreAdapter extends RecyclerView.Adapter<OffreAdapter.MyViewHolder
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Offre offre = mDataset.get(position);
-        /*holder.departTextField.setText("Depart : " + offre.getAdresse_depart());
+        holder.departTextField.setText("Depart : " + offre.getAdresse_depart());
         holder.ariveeTextField.setText("Arrivee : " + offre.getAdresse_arrivee());
         holder.payTextField.setText("Paiment : " + offre.getPaiement()+" points");
-        holder.bagageTextField.setText("Bagage : " + offre.getBagage());*/
+        holder.bagageTextField.setText("Bagage : " + offre.getBagage());
         holder.dateTextField.setText("Date : " + offre.getDate_proposee());
 
     }

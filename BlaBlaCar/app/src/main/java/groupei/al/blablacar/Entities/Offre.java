@@ -9,6 +9,10 @@ public class Offre implements Serializable {
     private String Status;
     private int Annonce_repondu;
     private int Transporteur;
+    private String Bagage;
+    private int Paiement;
+    private String Adresse_depart;  // A changer pour Address
+    private String Adresse_arrivee; // A changer pour Address
 
     public Offre(int ID, Date date_proposee, String status, int annonce_repondu, int transporteur) {
         this.ID = ID;
@@ -57,6 +61,39 @@ public class Offre implements Serializable {
     public void setTransporteur(int transporteur) {
         Transporteur = transporteur;
     }
+
+    public String getBagage() {
+        return Bagage;
+    }
+
+    public void setBagage(String bagage) {
+        Bagage = bagage;
+    }
+
+    public int getPaiement() {
+        return Paiement;
+    }
+
+    public void setPaiement(int paiement) {
+        Paiement = paiement;
+    }
+
+    public String getAdresse_depart() {
+        return Adresse_depart;
+    }
+
+    public void setAdresse_depart(String adresse_depart) {
+        Adresse_depart = adresse_depart;
+    }
+
+    public String getAdresse_arrivee() {
+        return Adresse_arrivee;
+    }
+
+    public void setAdresse_arrivee(String adresse_arrivee) {
+        Adresse_arrivee = adresse_arrivee;
+    }
+
 
     @Override
     public String toString(){

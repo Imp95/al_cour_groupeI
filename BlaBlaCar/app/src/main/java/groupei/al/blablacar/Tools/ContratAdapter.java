@@ -66,10 +66,10 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Contrat contrat = mDataset.get(position);
-        /*holder.departTextField.setText("Depart : " + contrat.getAdresse_depart());
+        holder.departTextField.setText("Depart : " + contrat.getAdresse_depart());
         holder.ariveeTextField.setText("Arrivee : " + contrat.getAdresse_arrivee());
         holder.payTextField.setText("Paiment : " + contrat.getPaiement()+" points");
-        holder.dateTextField.setText("Date : " + contrat.getDate_proposee());*/
+        holder.dateTextField.setText("Date : " + contrat.getDate_proposee());
         holder.addToPanierButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
