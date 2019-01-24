@@ -9,7 +9,27 @@ __Picard Marchetto Ivan__
 __Ritrovato Dylan__
 
 ### Updated
-__23:22 16/01/2019__
+__18:19 23/01/2019__
+
+## Week 04
+
+### Tasks achived :
+  - Modification des algorithmes de tri des annonces côté serveur
+  - Ajout de messages d’erreur dans l’application mobile
+  - Ajout de logs API côté serveur
+  - Modification du document d’architecture
+  - Progression de l’application
+  - Modification des Entities en Service Interfaces
+  
+### Tasks planned for next week :
+
+  - Modification de certaines Entities pour permettre l’implémentation de la nouvelle API
+  - Création partielle de l’API pour les professionnels en requêtes Postman
+  - Modification de l’API serveur pour la rendre compatible avec l’API pro
+  - Modification de l’application mobile pour la rendre compatible et cohérente avec l’API pro
+  - Progression de l’application
+  - Création d’une API rudimentaire en Node.JS
+  - Terminer les algos de tri dans l’API côté serveur
 
 ## Week 03
 
