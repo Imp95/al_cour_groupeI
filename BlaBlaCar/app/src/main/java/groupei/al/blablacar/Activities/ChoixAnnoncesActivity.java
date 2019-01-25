@@ -91,11 +91,18 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(checkIfTooBig(panier)){
+                    return;
+                }
                 if (panier.size() != 0) {
                     changerActivityCreateOrder(view, panier);
                 }
             }
         });
+    }
+
+    private boolean checkIfTooBig(LinkedList<Annonce> panier) {
+        return false;
     }
 
     private void changerActivityCreateOrder(View view, LinkedList<Annonce> panier) {
