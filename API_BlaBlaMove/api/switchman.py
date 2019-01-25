@@ -1,10 +1,13 @@
 from flask import Flask, request
 from flask import jsonify
-import logging as lg
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from sqlalchemy import exc, and_
+
+# debug
+from pprint import pprint
+# pprint(vars(var)) to print complexe object
 
 app = Flask(__name__)
 
@@ -49,14 +52,11 @@ def connexionAction(body):
     user = session.query(User).filter(User.email==body["email"]).first()
 
     if user is None:
-        lg.warning("L'utilisateur " + body["email"] + " qui n'existe pas a tente de se connecter.")
         return jsonify(status = False, body = "Cet utilisateur n'existe pas !")
 
     if user.password != body["password"]:
-        lg.warning("L'utilisateur " + body["email"] + " a tente de se connecter mais a saisi un mot de passe incorrect.")
         return jsonify(status = False, body = "Mot de passe incorrect !")
     
-    lg.warning("L'utilisateur " + body["email"] + " s'est connecte.")
     return jsonify(status = True, body = user.toJSON())
 
 def inscriptionAction(body):
@@ -70,12 +70,10 @@ def inscriptionAction(body):
         session.add(userToCreate)
         session.commit()
     except exc.IntegrityError as e:
-        session.rollback()
         print(e)
-        lg.warning("L'utilisateur " + body["email"] + " n'a pas pu s'inscrire.")
+        session.rollback()
         return jsonify(status = False, body = "Probleme d'integrite de la requete.")
     
-    lg.warning("L'utilisateur " + body["email"] + " s'est inscrit.")
     return jsonify(status = True, body = userToCreate.toJSON())
 
 def findAdAction(body):
@@ -90,7 +88,6 @@ def findAdAction(body):
         item = ad.toJSON()
         result.append(item)
     
-    lg.warning(str(len(result)) + " annonces trouvees.")
     return jsonify(status = True, body = result)
 
 def createOfferAction(body):
@@ -108,12 +105,10 @@ def createOfferAction(body):
         session.add(offerToCreate)
         session.commit()
     except exc.IntegrityError as e:
-        session.rollback()
         print(e)
-        lg.warning("L'annonce n'a pas pu etre creee.")
+        session.rollback()
         return jsonify(status = False, body = "Probleme d'integrite de la requete.")
 
-    lg.warning("L'annonce " + body["id"] + " a ete creee.")
     return jsonify(status = True, body = offerToCreate.toJSON())
 
 def seeOffersAction(body):
@@ -123,7 +118,6 @@ def seeOffersAction(body):
     
     user = session.query(User).filter(User.email==body["user_email"]).first()
     if user is None:
-        lg.warning("L'utilisateur " + body["email"] + " qui n'existe pas a tente de voir ses offres.")
         return jsonify(status = False, body = "Cet email n'existe pas !")
 
     offers = session.query(Offer).filter(and_(Offer.carrier_id == user.id, Offer.status == 0)).all()
@@ -133,7 +127,6 @@ def seeOffersAction(body):
         item = offer.toJSON()
         result.append(item)
 
-    lg.warning(str(len(result)) + " offres trouvees pour l'utilisateur " + body["user_email"])
     return jsonify(status = True, body = result)
 
 def seeContractsAction(body):
@@ -143,7 +136,6 @@ def seeContractsAction(body):
     
     user = session.query(User).filter(User.email==body["user_email"]).first()
     if user is None:
-        lg.warning("L'utilisateur " + body["email"] + " qui n'existe pas a tente de voir ses contrats.")
         return jsonify(status = False, body = "Cet email n'existe pas !")
 
     offers = session.query(Offer).filter(Offer.carrier_id == user.id).all()
@@ -154,7 +146,6 @@ def seeContractsAction(body):
         if not contract is None:
             contracts.append(contract.toJSON())
 
-    lg.warning(str(len(result)) + " contrats trouvees pour l'utilisateur " + body["user_email"])
     return jsonify(status = True, body = contracts)
 
 def updateContractAction(body):
@@ -164,27 +155,21 @@ def updateContractAction(body):
     
     contract = session.query(Contract).filter(Contract.id==body["id_contract"]).first()
     if contract is None:
-        lg.warning("Le contrat " + body["id_contract"] + " demande n'existe pas.")
         return jsonify(status = False, body = "Ce contrat n'existe pas !")
 
     if contract.status == 0:
         if contract.deposit_accused == body["preuve"]:
             contract.status = 1
             session.commit()
-            lg.warning("Le contrat " + body["id_contract"] + " est passe du status 0 a 1.")
         else:
-            lg.warning("La preuve de depot pour le contrat " + body["id_contract"] + " est incorrecte.")
             return jsonify(status = False, body = "Preuve de depot incorrecte !")
     elif contract.status == 1:
         if contract.acknowledgement == body["preuve"]:
             contract.status = 2
             session.commit()
-            lg.warning("Le contrat " + body["id_contract"] + " est passe du status 0 a 1.")
         else:
-            lg.warning("La preuve de reception pour le contrat " + body["id_contract"] + " est incorrecte.")
             return jsonify(status = False, body = "Preuve de reception incorrecte !")
     else:
-        lg.warning("Le contrat " + body["id_contract"] + " n'est pas dans un etat suceptible d'etre mis a jour.")
         return jsonify(status = False, body = "Le contrat ne peut etre mis a jour !")
 
     return jsonify(status = True, body = contract.toJSON())
@@ -196,7 +181,6 @@ def logContractsAction(body):
     
     user = session.query(User).filter(User.email==body["user_email"]).first()
     if user is None:
-        lg.warning("L'utilisateur " + body["email"] + " qui n'existe pas a tente de voir ses contrats finis.")
         return jsonify(status = False, body = "Cet email n'existe pas !")
 
     offers = session.query(Offer).filter(Offer.carrier_id == user.id).all()
@@ -206,6 +190,5 @@ def logContractsAction(body):
         contract = session.query(Contract).filter(and_(Contract.offer_id==offer.id, Contract.status == 2)).first()
         if not contract is None:
             contracts.append(contract.toJSON())
-    
-    lg.warning(str(len(result)) + " contrats finis trouvees pour l'utilisateur " + body["user_email"])
+
     return jsonify(status = True, body = contracts)

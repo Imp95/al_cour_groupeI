@@ -84,20 +84,12 @@ class Offer(db.Model):
 
     carrier_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     ad_id = db.Column(db.Integer, db.ForeignKey('ad.id'), nullable=False)
-    bagage = db.Column(db.String(255), db.ForeignKey('ad.bagage'), nullable=False)
-    payment = db.Column(db.Integer,db. ForeignKey('ad.payment'), nullable=False)
-    departure_address = db.Column(db.Text, db.ForeignKey('ad.departure_address'), nullable=False)
-    arrival_address = db.Column(db.Text, db.ForeignKey('ad.arrival_address'), nullable=False)
 
-    def __init__(self, proposed_date, carrier_id, ad_id, bagage, payment, departure_address, arrival_address):
+    def __init__(self, proposed_date, carrier_id, ad_id):
         self.proposed_date = proposed_date
         self.status = 0
         self.carrier_id = carrier_id
         self.ad_id = ad_id
-        self.bagage = bagage
-        self.payment = payment
-        self.departure_address = departure_address
-        self.arrival_address = arrival_address
 
     def toJSON(self):
         json = {
@@ -105,10 +97,6 @@ class Offer(db.Model):
             "proposed_date":self.proposed_date.strftime("%Y-%m-%d"),
             "status":self.status,
             "carrier_id":self.carrier_id,
-            "bagage":self.bagage,
-            "payment":self.payment,
-            "departure_address":self.departure_address,
-            "arrival_address":self.arrival_address,
             "ad_id":self.ad_id
         }
         return json
@@ -121,19 +109,13 @@ class Contract(db.Model):
     acknowledgement = db.Column(db.Integer, nullable=False)
 
     offer_id = db.Column(db.Integer, db.ForeignKey('offer.id'), nullable=False, unique=True)
-    payment = db.Column(db.Integer,db. ForeignKey('ad.payment'), nullable=False)
-    departure_address = db.Column(db.Text, db.ForeignKey('ad.departure_address'), nullable=False)
-    arrival_address = db.Column(db.Text, db.ForeignKey('ad.arrival_address'), nullable=False)
 
-    def __init__(self, proposed_date, deposit_accused, acknowledgement, offer_id, payment, departure_address, arrival_address):
+    def __init__(self, proposed_date, deposit_accused, acknowledgement, offer_id):
         self.proposed_date = proposed_date
         self.status = 0
         self.deposit_accused = deposit_accused
         self.acknowledgement = acknowledgement
         self.offer_id = offer_id
-        self.payment = payment
-        self.departure_address = departure_address
-        self.arrival_address = arrival_address
 
     def toJSON(self):
         json = {
@@ -142,9 +124,6 @@ class Contract(db.Model):
             "status":self.status,
             "deposit_accused":self.deposit_accused,
             "acknowledgement":self.acknowledgement,
-            "payment":self.payment,
-            "departure_address":self.departure_address,
-            "arrival_address":self.arrival_address,
             "offer_id":self.offer_id
         }
         return json
@@ -173,19 +152,19 @@ def init_db():
     db.session.add(Ad(datetime.strptime('2018-01-22', '%Y-%m-%d'), datetime.strptime('2018-01-24', '%Y-%m-%d'), '15x15x74', 45, 0, '3 rue swag 03333 Ville', '3 rue nulle 09333 Meat City', user1.id))
     db.session.commit()
     # Offers
-    offer1 = Offer(datetime.strptime('2018-01-13 14:30', '%Y-%m-%d %M:%S'), user2.id, ad1.id, ad1.bagage, ad1.payment, ad1.departure_address, ad1.arrival_address)
-    offer2 = Offer(datetime.strptime('2018-01-02 13:00', '%Y-%m-%d %M:%S'), user4.id, ad2.id, ad2.bagage, ad2.payment, ad2.departure_address, ad2.arrival_address)
-    offer3 = Offer(datetime.strptime('2018-01-06 16:00', '%Y-%m-%d %M:%S'), user1.id, ad3.id, ad3.bagage, ad3.payment, ad3.departure_address, ad3.arrival_address)
+    offer1 = Offer(datetime.strptime('2018-01-13', '%Y-%m-%d'), user2.id, ad1.id)
+    offer2 = Offer(datetime.strptime('2018-01-02', '%Y-%m-%d'), user4.id, ad2.id)
+    offer3 = Offer(datetime.strptime('2018-01-06', '%Y-%m-%d'), user1.id, ad3.id)
     db.session.add(offer1)
     db.session.add(offer2)
     db.session.add(offer3)
-    db.session.add(Offer(datetime.strptime('2018-01-18 15:50', '%Y-%m-%d %M:%S'), user2.id, ad1.id, ad1.bagage, ad1.payment, ad1.departure_address, ad1.arrival_address))
+    db.session.add(Offer(datetime.strptime('2018-01-18', '%Y-%m-%d'), user2.id, ad1.id))
     db.session.commit()
     # Contracts
-    contract2 = Contract('2018-01-12', 111, 222, offer2.id, offer2.payment, offer2.departure_address, offer2.arrival_address)
+    contract2 = Contract('2018-01-12', 111, 222, offer2.id)
     contract2.status = 2
-    db.session.add(Contract('2018-01-14', 579, 975, offer1.id, offer1.payment, offer1.departure_address, offer1.arrival_address))
+    db.session.add(Contract('2018-01-14', 579, 975, offer1.id))
     db.session.add(contract2)
-    db.session.add(Contract('2018-01-11', 333, 444, offer3.id, offer3.payment, offer3.departure_address, offer3.arrival_address))
+    db.session.add(Contract('2018-01-11', 333, 444, offer3.id))
     db.session.commit()
     lg.warning('Database initialized!')
