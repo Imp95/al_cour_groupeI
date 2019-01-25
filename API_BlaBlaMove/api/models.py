@@ -84,9 +84,9 @@ class Offer(db.Model):
 
     carrier_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     ad_id = db.Column(db.Integer, db.ForeignKey('ad.id'), nullable=False)
-	bagage = db.Column(db.String(255), db.ForeignKey('ad.bagage'), nullable=False)
+    bagage = db.Column(db.String(255), db.ForeignKey('ad.bagage'), nullable=False)
     payment = db.Column(db.Integer,db. ForeignKey('ad.payment'), nullable=False)
-	departure_address = db.Column(db.Text, db.ForeignKey('ad.departure_address'), nullable=False)
+    departure_address = db.Column(db.Text, db.ForeignKey('ad.departure_address'), nullable=False)
     arrival_address = db.Column(db.Text, db.ForeignKey('ad.arrival_address'), nullable=False)
 
     def __init__(self, proposed_date, carrier_id, ad_id, bagage, payment, departure_address, arrival_address):
@@ -94,9 +94,9 @@ class Offer(db.Model):
         self.status = 0
         self.carrier_id = carrier_id
         self.ad_id = ad_id
-		self.bagage = bagage
+        self.bagage = bagage
         self.payment = payment
-		self.departure_address = departure_address
+        self.departure_address = departure_address
         self.arrival_address = arrival_address
 
     def toJSON(self):
@@ -105,9 +105,9 @@ class Offer(db.Model):
             "proposed_date":self.proposed_date.strftime("%Y-%m-%d"),
             "status":self.status,
             "carrier_id":self.carrier_id,
-			"bagage":self.bagage,
+            "bagage":self.bagage,
             "payment":self.payment,
-			"departure_address":self.departure_address,
+            "departure_address":self.departure_address,
             "arrival_address":self.arrival_address,
             "ad_id":self.ad_id
         }
@@ -122,7 +122,7 @@ class Contract(db.Model):
 
     offer_id = db.Column(db.Integer, db.ForeignKey('offer.id'), nullable=False, unique=True)
     payment = db.Column(db.Integer,db. ForeignKey('ad.payment'), nullable=False)
-	departure_address = db.Column(db.Text, db.ForeignKey('ad.departure_address'), nullable=False)
+    departure_address = db.Column(db.Text, db.ForeignKey('ad.departure_address'), nullable=False)
     arrival_address = db.Column(db.Text, db.ForeignKey('ad.arrival_address'), nullable=False)
 
     def __init__(self, proposed_date, deposit_accused, acknowledgement, offer_id, payment, departure_address, arrival_address):
@@ -132,7 +132,7 @@ class Contract(db.Model):
         self.acknowledgement = acknowledgement
         self.offer_id = offer_id
         self.payment = payment
-		self.departure_address = departure_address
+        self.departure_address = departure_address
         self.arrival_address = arrival_address
 
     def toJSON(self):
@@ -143,7 +143,7 @@ class Contract(db.Model):
             "deposit_accused":self.deposit_accused,
             "acknowledgement":self.acknowledgement,
             "payment":self.payment,
-			"departure_address":self.departure_address,
+            "departure_address":self.departure_address,
             "arrival_address":self.arrival_address,
             "offer_id":self.offer_id
         }

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         loginHandler = new LoginHandlerMock();
         error = (TextView) findViewById(R.id.errorText);
         error.setTextColor(Color.rgb(255,0,0));
-        url = "http://192.168.43.134:5555/receive_event";
+        url = "http://localhost:5555/receive_event";
         Info.getInstance();
         Info.setUrl(url);
 
