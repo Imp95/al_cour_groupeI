@@ -19,20 +19,29 @@
 module.exports = {
   methods: {
     connect: function(event) {
-      var mail = document.getElementById("email").value;
+      var email = document.getElementById("email").value;
       var mdp = document.getElementById("pass").value;
 
       var xhr = new XMLHttpRequest();
-      var url = "http://192.168.43.134:5555/receive_event";
+      var url = "http://localhost:5555/receive_event";
       xhr.open("POST", url, true);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
           var json = JSON.parse(xhr.responseText);
-          console.log(json.status);
+          if (json.status) {
+            console.log(json.body.firstname + " " + json.body.name);
+          } else {
+            alert("Erreur: " + json.body);
+          }     
         }
       };
-      var data = '{"action" : "Connexion", "body" : { "email":"example1@email.com", "password":"azerty" }}';
+      var data =
+        "{" +
+        '"action":"Connexion",' +
+        '"body":{' +
+        '"email":"' + email + '",' +
+        '"password":"' + mdp + '"}}';
       xhr.send(data);
     }
   }
