@@ -21,10 +21,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import groupei.al.blablacar.Entities.Adresse;
 import groupei.al.blablacar.Entities.Annonce;
@@ -88,10 +91,16 @@ public class ContratsActivity extends AppCompatActivity {
                             JSONArray contracts = response.getJSONArray("body");
                             for(int i=0;i<contracts.length();i++){
                                 JSONObject c = contracts.getJSONObject(i);
-                                myDataset.add(new Contrat(c.getInt("id"),c.getString("status"),c.getInt("deposit_accused"),c.getInt("acknowledgement"),c.getInt("offer_id")));
+                                String dateTime = c.getString("proposed_date");
+                                SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd mm:ss", Locale.FRANCE);
+                                Date date = dateParser.parse(dateTime);
+                                myDataset.add(new Contrat(c.getInt("id"),c.getString("status"),c.getInt("offer_id"),
+                                        date,c.getInt("payment"),c.getString("departure_address"),c.getString("arrival_address")));
                             }
 
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
                     }

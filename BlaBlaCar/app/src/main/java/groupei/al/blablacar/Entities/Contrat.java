@@ -6,8 +6,6 @@ import java.util.Date;
 public class Contrat implements Serializable {
     private int ID;
     private String Status;
-    private int Accuse_de_depot;
-    private int Accuse_de_reception;
     private int Offre_acceptee;
     private Date Date_proposee;
     private int Paiement;
@@ -17,9 +15,17 @@ public class Contrat implements Serializable {
     public Contrat(int ID, String status, int accuse_de_depot, int accuse_de_reception, int offre_acceptee) {
         this.ID = ID;
         Status = status;
-        Accuse_de_depot = accuse_de_depot;
-        Accuse_de_reception = accuse_de_reception;
         Offre_acceptee = offre_acceptee;
+    }
+
+    public Contrat(int ID, String status, int offre_acceptee, Date date_proposee, int paiement, String adresse_depart, String adresse_arrivee) {
+        this.ID = ID;
+        Status = status;
+        Offre_acceptee = offre_acceptee;
+        Date_proposee = date_proposee;
+        Paiement = paiement;
+        Adresse_depart = adresse_depart;
+        Adresse_arrivee = adresse_arrivee;
     }
 
     public int getID() {
@@ -36,22 +42,6 @@ public class Contrat implements Serializable {
 
     public void setStatus(String status) {
         Status = status;
-    }
-
-    public int getAccuse_de_depot() {
-        return Accuse_de_depot;
-    }
-
-    public void setAccuse_de_depot(int accuse_de_depot) {
-        Accuse_de_depot = accuse_de_depot;
-    }
-
-    public int getAccuse_de_reception() {
-        return Accuse_de_reception;
-    }
-
-    public void setAccuse_de_reception(int accuse_de_reception) {
-        Accuse_de_reception = accuse_de_reception;
     }
 
     public int getOffre_acceptee() {

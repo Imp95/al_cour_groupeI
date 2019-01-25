@@ -22,6 +22,18 @@ public class Offre implements Serializable {
         Transporteur = transporteur;
     }
 
+    public Offre(int ID, Date date_proposee, String status, int annonce_repondu, int transporteur, String bagage, int paiement, String adresse_depart, String adresse_arrivee) {
+        this.ID = ID;
+        Date_proposee = date_proposee;
+        Status = status;
+        Annonce_repondu = annonce_repondu;
+        Transporteur = transporteur;
+        Bagage = bagage;
+        Paiement = paiement;
+        Adresse_depart = adresse_depart;
+        Adresse_arrivee = adresse_arrivee;
+    }
+
     public int getID() {
         return ID;
     }

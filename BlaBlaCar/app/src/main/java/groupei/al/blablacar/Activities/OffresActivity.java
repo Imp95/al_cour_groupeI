@@ -85,7 +85,8 @@ public class OffresActivity extends AppCompatActivity {
                                 String dateTime = o.getString("proposed_date");
                                 SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd mm:ss", Locale.FRANCE);
                                 Date date = dateParser.parse(dateTime);
-                                myDataset.add(new Offre(o.getInt("id"), date, o.getString("status"), o.getInt("ad_id"), o.getInt("carrier_id")));
+                                myDataset.add(new Offre(o.getInt("id"), date, o.getString("status"), o.getInt("ad_id"), o.getInt("carrier_id"),
+                                        o.getString("bagage"),o.getInt("payment"),o.getString("departure_address"),o.getString("arrival_address")));
                             }
 
                         } catch (JSONException e) {
