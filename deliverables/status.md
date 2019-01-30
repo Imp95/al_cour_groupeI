@@ -9,7 +9,21 @@ __Picard Marchetto Ivan__
 __Ritrovato Dylan__
 
 ### Updated
-__18:19 23/01/2019__
+__20:46 30/01/2019__
+
+## Week 05
+
+### Tasks achived :
+  -	Création partielle de l’API pour les professionnels en requêtes Postman
+  -	Progression de l’application
+  -	Création d’une API rudimentaire en Javascript
+  
+### Tasks planned for next week :
+-	Importation de CSV dans l’api pro en Javascript
+-	Modification de l’API serveur pour la rendre compatible avec l’API pro
+-	Modification de l’user dans le serveur Python
+-	Modification de l’application mobile pour la rendre compatible et cohérente avec l’API pro
+-	Terminer les algos de tri dans l’API côté serveur
 
 ## Week 04
 
