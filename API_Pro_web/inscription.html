@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>BlaBlaMove Pro</title>
+    <link rel='stylesheet' href='css/log.css' type='text/css' />
+    <script src="js/inscription.js"></script>
+</head>
+
+<body>
+    <h1>BlaBlaMove Pro</h1>
+    <h2 id="subtitle">Inscription</h2>
+
+    <label for="email">Email :</label>
+    <input type="text" id="email" name="email" required size="20">
+
+    <label for="lastname">Nom :</label>
+    <input type="text" id="lastname" name="lastname" required size="20">
+
+    <label for="firstname">Prénom :</label>
+    <input type="text" id="fisrtname" name="fisrtname" required size="20">
+
+    <label for="birthday">Date de Naissance :</label>
+    <input type="date" id="birthday" name="birthday" value="2000-01-01">
+
+    <label for="phone">Téléphone:</label>
+    <input type="tel" id="phone" name="phone" minlength=10 maxlength=10 pattern="0[0-9]{9}" required>
+
+    <label for="mdp">Mot de passe :</label>
+    <input type="password" id="mdp" name="mdp" required size="20">
+
+    <label for="mdp2">Confirmer le mot de passe :</label>
+    <input type="password" id="mdp2" name="mdp2" required size="20">
+
+    <br /><br />
+    <button type="button" id="b_inscription" onclick="myFunction();">Connexion</button>
+    <br /><br />
+    <a href="./connexion.html">Vous avez déjà un compte ? Connectez-vous ici</a>
+</body>
+
+</html>

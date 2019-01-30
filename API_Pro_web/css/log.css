@@ -1,0 +1,23 @@
+h1 {
+    color: hsl(147, 73%, 57%);
+    text-align: center;
+}
+
+#subtitle {
+    color: rgb(170, 170, 170);
+    text-align: center;
+}
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+.note {
+    font-size: .8em;
+}
