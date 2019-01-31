@@ -24,7 +24,7 @@ function connect() {
         // CHANGER DE PAGE
         localStorage.setItem("email", json.body.email);
         localStorage.setItem("firstname", json.body.firstname);
-        localStorage.setItem("amount", json.body.amout);
+        localStorage.setItem("amount", json.body.amount);
         document.location.href = "./acceuil.html";
       } else {
         alert("Erreur: " + json.body);
