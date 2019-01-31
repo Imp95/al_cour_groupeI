@@ -33,3 +33,41 @@ function disconnect() {
     localStorage.removeItem("amount");
     document.location.href = "./connexion.html";
 }
+
+function b_search() {
+    var depart = document.getElementById("depart").value;
+    var arrivee = document.getElementById("arrivee").value;
+    var espace = document.getElementById("espace").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+
+            if (json.status) {
+                // CREER LA LISTE
+                
+            } else {
+                alert("Erreur: " + json.body);
+            }
+        }
+
+    };
+    var data =
+        "{" +
+        '"action":"RechercheAnnonce",' +
+        '"body":{' +
+        '"departure_town":"' +
+        depart +
+        '",' +
+        '"arrival_town":"' +
+        arrivee +
+        '",' +
+        '"bagage":"' +
+        espace +
+        '"}}';
+    xhr.send(data);
+}
