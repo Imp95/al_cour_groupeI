@@ -1,8 +1,27 @@
 window.onload = init;
+let url;
+let firstname;
+let amount;
+let data;
 
 function init() {
-    var url = localStorage.getItem("url");
-    var firstname = localStorage.getItem("firstname");
-    var amount = localStorage.getItem("amount");
-    document.getElementById("name").innerHTML= "Bonjour " + firstname +" !";
+    url = localStorage.getItem("url");
+    firstname = localStorage.getItem("firstname");
+    amount = localStorage.getItem("amount");
+    document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
+}
+
+function b_csvfile_listener() {
+    var csvfile = document.getElementById("csvfile").files[0];
+    var reader = new FileReader();
+    console.log(csvfile.name + "\n\n" + reader.readAsText(csvfile));
+    reader.onload = function (event) {
+        data = event.target.result;
+        doStuff();
+    }
+}
+
+function doStuff() {
+    dataSplit = data.split('\n');
+    console.log(dataSplit);
 }
