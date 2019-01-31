@@ -17,6 +17,7 @@ function b_csvfile_listener() {
     console.log(csvfile.name + "\n\n" + reader.readAsText(csvfile));
     reader.onload = function (event) {
         data = event.target.result;
+        //TODO
         doStuff();
     }
 }
@@ -24,4 +25,11 @@ function b_csvfile_listener() {
 function doStuff() {
     dataSplit = data.split('\n');
     console.log(dataSplit);
+}
+
+function disconnect() {
+    localStorage.removeItem("email");
+    localStorage.removeItem("firstname");
+    localStorage.removeItem("amount");
+    document.location.href = "./connexion.html";
 }

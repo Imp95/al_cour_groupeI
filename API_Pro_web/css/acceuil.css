@@ -1,0 +1,42 @@
+h1 {
+    color: hsl(147, 73%, 57%);
+    text-align: center;
+}
+
+#welcome {
+    color: rgb(130, 130, 130);
+}
+
+#section {
+    text-align: center;
+    color: hsl(147, 45%, 47%);
+}
+
+#links {
+    text-align: center;
+}
+
+a:visited, a {
+    color:hsl(147, 57%, 46%);
+}
+
+#b_dec {
+    font-family: tahoma;
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+.note {
+    font-size: .8em;
+}
