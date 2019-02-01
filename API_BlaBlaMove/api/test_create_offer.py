@@ -19,7 +19,7 @@ def test_missing_parameters():
 def test_bad_user_mail():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"CreationOffre", "body":{"ad_id":1, "proposed_date":"2000-01-20", "carrier_email":"bad.email@naze.lol"}}',
+        data='{"action":"CreationOffre", "body":{"ad_id":1, "proposed_date":"2000-01-20", "carrier_email":"bad.email@naze.lol", "bagage":"9x9x9", "payment":46, "departure_address":"adressD", "arrival_address":"adressA"}}',
         content_type='application/json',
     )
 
@@ -32,7 +32,7 @@ def test_bad_user_mail():
 def test_bad_ad_id():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"CreationOffre", "body":{"ad_id":999, "proposed_date":"2000-01-20", "carrier_email":"example1@email.com"}}',
+        data='{"action":"CreationOffre", "body":{"ad_id":999, "proposed_date":"2000-01-20", "carrier_email":"example1@email.com", "bagage":"9x9x9", "payment":46, "departure_address":"adressD", "arrival_address":"adressA"}}',
         content_type='application/json',
     )
 
@@ -45,7 +45,7 @@ def test_bad_ad_id():
 def test_ok():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"CreationOffre", "body":{"ad_id":1, "proposed_date":"2000-01-20", "carrier_email":"example1@email.com"}}',
+        data='{"action":"CreationOffre", "body":{"ad_id":1, "proposed_date":"2000-01-20", "carrier_email":"example1@email.com", "bagage":"9x9x9", "payment":46, "departure_address":"adressD", "arrival_address":"adressA"}}',
         content_type='application/json',
     )
 
