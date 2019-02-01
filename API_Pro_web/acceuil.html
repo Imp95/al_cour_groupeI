@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>BlaBlaMove Pro</title>
     <script src="js/acceuil.js"></script>
-    <link rel='stylesheet' href='css/acceuil.css' type='text/css' />
+    <link rel='stylesheet' href='css/connect.css' type='text/css' />
 </head>
 
 <body>
@@ -18,10 +18,6 @@
     <h2 id="section">Annonces</h2>
     <br/>
 
-    <h3>Créer des offres (importer un .csv)</h3>
-    <input type="file" id="csvfile" accept=".csv"> <button id="b_csvfile" type="button" onclick="b_csvfile_listener();">Envoyer</button>
-    <br/><br/>
-
     <h3>Rechercher des annonces</h3>
     <label for="depart">Ville de départ :</label>
     <input type="text" id="depart" name="depart" required size="20">
@@ -31,6 +27,22 @@
     <input type="text" id="espace" name="espace" required size="20">
     <br/><br/>
     <button id="b_recherche" type="button" onclick="b_search();">Recherche</button>
+    <br/><br/>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Taille</th>
+                <th>Paiement</th>
+                <th>Adresse départ</th>
+                <th>Adresse arrivée</th>
+                <th>Date départ</th>
+                <th>Date arrivée</th>
+            </tr>
+        </thead>
+        <tbody id="annonces">
+        </tbody>
+    </table>
 
 </body>
 
