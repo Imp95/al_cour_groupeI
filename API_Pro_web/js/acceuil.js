@@ -11,22 +11,6 @@ function init() {
     document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
 }
 
-function b_csvfile_listener() {
-    var csvfile = document.getElementById("csvfile").files[0];
-    var reader = new FileReader();
-    console.log(csvfile.name + "\n\n" + reader.readAsText(csvfile));
-    reader.onload = function (event) {
-        data = event.target.result;
-        //TODO
-        doStuff();
-    }
-}
-
-function doStuff() {
-    dataSplit = data.split('\n');
-    console.log(dataSplit);
-}
-
 function disconnect() {
     localStorage.removeItem("email");
     localStorage.removeItem("firstname");
@@ -52,7 +36,6 @@ function b_search() {
                 var table = document.getElementById("annonces");
                 table.innerHTML = "";
                 for (var i = 0; i < json.body.length; i++) {
-                    console.log(json.body[i].id);
                     var row = table.insertRow(i);
 
                     var id = row.insertCell(0);
