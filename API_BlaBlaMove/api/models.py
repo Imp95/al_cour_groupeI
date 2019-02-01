@@ -38,7 +38,8 @@ class User(db.Model):
             "firstname":self.firstname,
             "birthday":self.birthday.strftime("%Y-%m-%d"),
             "phone_number":self.phone_number,
-            "amount":self.amount
+            "amount":self.amount,
+            "societe":self.societe
         }
         return json
 
