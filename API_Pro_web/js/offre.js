@@ -26,17 +26,25 @@ function b_csvfile_listener() {
 }
 
 function createOffers() {
+    //parsing
     dataSplit = data.split('\n');
     if (dataSplit.length > 0) {
         for (var i = 1; i < dataSplit.length; i++) {
-                var elements = dataSplit[i].split(';');
+                var elements = dataSplit[i].split(',');
                 var id = elements[0];
                 var date = elements[1];
+
                 if (id != null && date != null && !annonces.includes(id)) {
                 console.log("id : " + id + ", date : " + date);
+                var re_id = new RegExp('^[0-9]+$');
+                var re_date = new RegExp('([0-2]?[0-9]|30|31)\/((10|11|12)|0?[1-9])\/[0-9]{2} ([0|1]?[0-9]|2[0-4])\:[0-5][0-9]');
+                console.log("id check : " + re_id.test(id));
+                console.log("date check : " + re_date.test(date));
             }
         }
     }
+
+
 }
 
 function majTableau() {
