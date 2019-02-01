@@ -52,7 +52,7 @@ function b_search() {
                     a_depart.innerHTML = json.body[i].departure_address;
                     a_arrivee.innerHTML = json.body[i].arrival_address;
                     d_depart.innerHTML = json.body[i].departure_date;
-                    a_depart.innerHTML = json.body[i].arrival_date;
+                    d_arrivee.innerHTML = json.body[i].arrival_date;
                 }
             } else {
                 alert("Erreur: " + json.body);
