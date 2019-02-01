@@ -21,14 +21,22 @@ function b_csvfile_listener() {
     console.log(csvfile.name + "\n\n" + reader.readAsText(csvfile));
     reader.onload = function (event) {
         data = event.target.result;
-        //TODO
-        doStuff();
+        createOffers();
     }
 }
 
-function doStuff() {
+function createOffers() {
     dataSplit = data.split('\n');
-    console.log(dataSplit);
+    if (dataSplit.length > 0) {
+        for (var i = 1; i < dataSplit.length; i++) {
+                var elements = dataSplit[i].split(';');
+                var id = elements[0];
+                var date = elements[1];
+                if (id != null && date != null && !annonces.includes(id)) {
+                console.log("id : " + id + ", date : " + date);
+            }
+        }
+    }
 }
 
 function majTableau() {
