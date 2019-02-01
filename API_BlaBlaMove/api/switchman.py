@@ -95,15 +95,16 @@ def findAdAction(body):
     return jsonify(status = True, body = result)
 
 def createOfferAction(body):
-    from .models import Offer, User
-    if not 'ad_id' in body or not 'proposed_date' in body or not 'carrier_email' in body or not 'bagage' in body or not 'payment' in body or not 'departure_address' in body or not 'arrival_address' in body:
+    from .models import Offer, User, Ad
+    if not 'ad_id' in body or not 'carrier_email' in body or not 'proposed_date' in body:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (creation d'offre) ne sont pas presentes.")
     
     user = session.query(User).filter(User.email==body["carrier_email"]).first()
     if user is None:
         return jsonify(status = False, body = "Cet email n'existe pas !")
-
-    offerToCreate = Offer(body["proposed_date"], body["bagage"], body["payment"], body["departure_address"], body["arrival_address"], user.id, body["ad_id"])
+	
+    ad = session.query(Ad).get(body["ad_id"])
+    offerToCreate = Offer(body["proposed_date"], ad.bagage, ad.payment, ad.departure_address, ad.arrival_address, user.id, ad.id)
 
     try:
         session.add(offerToCreate)
