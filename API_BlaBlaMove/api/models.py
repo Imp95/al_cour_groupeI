@@ -15,11 +15,12 @@ class User(db.Model):
     birthday = db.Column(db.Date, nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
+    societe = db.Column(db.String(255), nullable=True)
 
     ads = db.relationship('Ad', backref="user", lazy=True)
     offers = db.relationship('Offer', backref="user", lazy=True)
 
-    def __init__(self, email, password, name, firstname, birthday, phone_number, amount):
+    def __init__(self, email, password, name, firstname, birthday, phone_number, amount, societe=None):
         self.email = email
         self.password = password
         self.name = name
@@ -27,6 +28,7 @@ class User(db.Model):
         self.birthday = birthday
         self.phone_number = phone_number
         self.amount = amount
+        self.societe = societe
 
     def toJSON(self):
         json = {

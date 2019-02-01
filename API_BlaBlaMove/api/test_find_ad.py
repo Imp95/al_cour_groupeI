@@ -53,7 +53,7 @@ def test_regular_find_1():
 
     assert response.status_code == 200
     assert data['status'] == True
-    assert len(data['body']) == 1
+    assert len(data['body']) == 2
 
 def test_regular_find_2():        
     response = app.test_client().post(

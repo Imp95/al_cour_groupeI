@@ -5,10 +5,6 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from sqlalchemy import exc, and_
 
-# debug
-from pprint import pprint
-# pprint(vars(var)) to print complexe object
-
 app = Flask(__name__)
 
 app.config.from_object('config')
@@ -81,12 +77,20 @@ def findAdAction(body):
     if not 'departure_town' in body or not 'arrival_town' in body or not 'bagage' in body:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (recherche d'annonce) ne sont pas presentes.")
 
-    ads = session.query(Ad).filter(and_(Ad.departure_address.like('%'+body["departure_town"]+'%'), Ad.arrival_address.like('%'+body["arrival_town"]+'%'), Ad.bagage.like('%'+body["bagage"]+'%'))).all()
+    ads = session.query(Ad).filter(and_(Ad.departure_address.like('%'+body["departure_town"].upper()+'%'), Ad.arrival_address.like('%'+body["arrival_town"].upper()+'%'))).all()
 
     result = []
-    for ad in ads:
-        item = ad.toJSON()
-        result.append(item)
+    if body["bagage"].split('x') == 3:
+        x0,y0,z0 = body["bagage"].split('x')   
+        for ad in ads:
+            x,y,z = ad.bagage.split('x')
+            if x <= x0 and y <= y0 and z <= z0:
+                item = ad.toJSON()
+                result.append(item)
+    else:
+        for ad in ads:
+            item = ad.toJSON()
+            result.append(item)
     
     return jsonify(status = True, body = result)
 
