@@ -40,3 +40,20 @@ label {
 .note {
     font-size: .8em;
 }
+
+table {
+    width: 100%;
+}
+  
+th {
+    height: 50px;
+}
+
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid black;
+}

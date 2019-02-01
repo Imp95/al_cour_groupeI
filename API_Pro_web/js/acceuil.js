@@ -49,7 +49,28 @@ function b_search() {
 
             if (json.status) {
                 // CREER LA LISTE
-                
+                var table = document.getElementById("annonces");
+                table.innerHTML = "";
+                for (var i = 0; i < json.body.length; i++) {
+                    console.log(json.body[i].id);
+                    var row = table.insertRow(i);
+
+                    var id = row.insertCell(0);
+                    var bagage = row.insertCell(1);
+                    var paiement = row.insertCell(2);
+                    var a_depart = row.insertCell(3);
+                    var a_arrivee = row.insertCell(4);
+                    var d_depart = row.insertCell(5);
+                    var d_arrivee = row.insertCell(6);
+
+                    id.innerHTML = json.body[i].id;
+                    bagage.innerHTML = json.body[i].bagage;
+                    paiement.innerHTML = json.body[i].payment;
+                    a_depart.innerHTML = json.body[i].departure_address;
+                    a_arrivee.innerHTML = json.body[i].arrival_address;
+                    d_depart.innerHTML = json.body[i].departure_date;
+                    a_depart.innerHTML = json.body[i].arrival_date;
+                }
             } else {
                 alert("Erreur: " + json.body);
             }
