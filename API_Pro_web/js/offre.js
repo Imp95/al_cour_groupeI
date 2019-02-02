@@ -5,6 +5,7 @@ let amount;
 let data;
 let email;
 let annonces;
+let ids;
 
 function init() {
     url = localStorage.getItem("url");
@@ -12,7 +13,15 @@ function init() {
     amount = localStorage.getItem("amount");
     email = localStorage.getItem("email");
     document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
+    ids = [];
     majTableau();
+}
+
+function disconnect() {
+    localStorage.removeItem("email");
+    localStorage.removeItem("firstname");
+    localStorage.removeItem("amount");
+    document.location.href = "./connexion.html";
 }
 
 function b_csvfile_listener() {
@@ -30,21 +39,66 @@ function createOffers() {
     dataSplit = data.split('\n');
     if (dataSplit.length > 0) {
         for (var i = 1; i < dataSplit.length; i++) {
-                var elements = dataSplit[i].split(',');
-                var id = elements[0];
-                var date = elements[1];
+            var elements = dataSplit[i].split(',');
+            var id = elements[0];
+            var date = elements[1];
 
-                if (id != null && date != null && !annonces.includes(id)) {
+            if (id != null && date != null && !ids.includes(id)) {
                 console.log("id : " + id + ", date : " + date);
                 var re_id = new RegExp('^[0-9]+$');
                 var re_date = new RegExp('([0-2]?[0-9]|30|31)\/((10|11|12)|0?[1-9])\/[0-9]{2} ([0|1]?[0-9]|2[0-4])\:[0-5][0-9]');
                 console.log("id check : " + re_id.test(id));
                 console.log("date check : " + re_date.test(date));
+
+                if (re_id.test(id) && re_date.test(date)) {
+                    var num = date.match(/\d+/g).map(Number);
+                    if (num[4] == 0) {
+                        sendOffer(id, num[0] +"/" + num[1] + "/" + num[2] + " " + num[3] + ":00");
+                    }
+                    else {
+                        sendOffer(id, num[0] +"/" + num[1] + "/" + num[2] + " " + num[3] + ":" + num[4]);
+                    }
+                }
             }
         }
     }
+}
 
+function sendOffer(id, date) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
 
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+
+            if (json.status) {
+                ids.push(id);
+                console.log("Offre créer : id " + id + " | date " + date);
+                majTableau();
+            }
+
+            else {
+                alert("Erreur: " + json.body);
+            }
+        }
+    };
+
+    var data =
+        "{" +
+        '"action":"CreationOffre",' +
+        '"body":{' +
+        '"carrier_email":"' +
+        email +
+        '",' +
+        '"ad_id":"' +
+        id +
+        '",' +
+        '"proposed_date":"' +
+        date +
+        '"}}';
+    xhr.send(data);
 }
 
 function majTableau() {
@@ -63,15 +117,23 @@ function majTableau() {
 
                 for (var i = 0; i < json.body.length; i++) {
                     annonces.push(json.body[i].ad_id);
-
+                    
+                    if (!ids.includes(json.body[i].ad_id)) {
+                        ids.push(json.body[i].ad_id);
+                    }
+                    
                     var row = table.insertRow(i);
                     var id = row.insertCell(0);
                     var annonce = row.insertCell(1);
                     var date = row.insertCell(2);
+                    var bagage = row.insertCell(3);
+                    var payment = row.insertCell(4);
 
                     id.innerHTML = json.body[i].id;
                     annonce.innerHTML = json.body[i].ad_id;
                     date.innerHTML = json.body[i].proposed_date;
+                    bagage.innerHTML = json.body[i].bagage;
+                    payment.innerHTML = json.body[i].payment;
                 }
             }
 
