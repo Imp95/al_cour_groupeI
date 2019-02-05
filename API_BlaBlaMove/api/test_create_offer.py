@@ -40,7 +40,7 @@ def test_bad_ad_id():
 
     assert response.status_code == 200
     assert data['status'] == False
-    assert data['body'] == "Probleme d'integrite de la requete."
+    assert data['body'] == "Cette annonce n'existe pas !"
 
 def test_ok():        
     response = app.test_client().post(

@@ -104,6 +104,8 @@ def createOfferAction(body):
         return jsonify(status = False, body = "Cet email n'existe pas !")
 	
     ad = session.query(Ad).get(body["ad_id"])
+    if ad is None:
+        return jsonify(status = False, body = "Cette annonce n'existe pas !")
     offerToCreate = Offer(body["proposed_date"], ad.bagage, ad.payment, ad.departure_address, ad.arrival_address, user.id, ad.id)
 
     try:
