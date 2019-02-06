@@ -12,6 +12,9 @@ function init() {
     firstname = localStorage.getItem("firstname");
     amount = localStorage.getItem("amount");
     email = localStorage.getItem("email");
+    if (firstname == null | amount == null) {
+        document.location.href = "./connexion.html";
+    }
     document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
     ids = [];
     majTableau();

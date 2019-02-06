@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>BlaBlaMove Pro</title>
+    <script src="js/historique.js"></script>
+    <link rel='stylesheet' href='css/connect.css' type='text/css' />
+</head>
+
+<body>
+    <button id=b_dec type="button" onclick="disconnect();">Déconnexion</button>
+    <h1>BlaBlaMove Pro</h1>
+    <h2 id="welcome">Hello there !</h2>
+    <div id="links">
+        <a href="./acceuil.html">Recherche Annonces</a> / <a href="./offre.html">Mes Offres</a> / <a href="./contrat.html">Mes Contrats</a>
+    </div>
+    <h2 id="section">Historique des Contrats</h2>
+    <br/>
+    <button type="button" onclick="majTableau();">Actualiser l'historique</button>
+    <br/><br/>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Paiement</th>
+                <th>Départ</th>
+                <th>Arrivée</th>
+            </tr>
+        </thead>
+        <tbody id="historique">
+        </tbody>
+    </table>
+
+</body>
+
+</html>
