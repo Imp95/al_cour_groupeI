@@ -9,7 +9,23 @@ __Picard Marchetto Ivan__
 __Ritrovato Dylan__
 
 ### Updated
-__20:46 30/01/2019__
+__20:24 06/02/2019__
+
+## Week 06
+
+### Tasks achived :
+  -	API pro en Javascript entièrement fonctionnelle, à paufiner par endroits
+
+### Tasks planned for next week :
+  - Peaufinage de l'API pro en Javascript
+  - Hebergement de l'API pro en Javascript
+  
+### Tasks planned for next week :
+-	Importation de CSV dans l’api pro en Javascript
+-	Modification de l’API serveur pour la rendre compatible avec l’API pro
+-	Modification de l’user dans le serveur Python
+-	Modification de l’application mobile pour la rendre compatible et cohérente avec l’API pro
+-	Terminer les algos de tri dans l’API côté serveur
 
 ## Week 05
 
