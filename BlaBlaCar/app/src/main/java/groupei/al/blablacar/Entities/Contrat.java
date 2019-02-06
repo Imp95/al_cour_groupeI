@@ -12,12 +12,6 @@ public class Contrat implements Serializable {
     private String Adresse_depart;  // A changer pour Address
     private String Adresse_arrivee; // A changer pour Address
 
-    public Contrat(int ID, String status, int accuse_de_depot, int accuse_de_reception, int offre_acceptee) {
-        this.ID = ID;
-        Status = status;
-        Offre_acceptee = offre_acceptee;
-    }
-
     public Contrat(int ID, String status, int offre_acceptee, Date date_proposee, int paiement, String adresse_depart, String adresse_arrivee) {
         this.ID = ID;
         Status = status;

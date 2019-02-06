@@ -14,14 +14,6 @@ public class Offre implements Serializable {
     private String Adresse_depart;  // A changer pour Address
     private String Adresse_arrivee; // A changer pour Address
 
-    public Offre(int ID, Date date_proposee, String status, int annonce_repondu, int transporteur) {
-        this.ID = ID;
-        Date_proposee = date_proposee;
-        Status = status;
-        Annonce_repondu = annonce_repondu;
-        Transporteur = transporteur;
-    }
-
     public Offre(int ID, Date date_proposee, String status, int annonce_repondu, int transporteur, String bagage, int paiement, String adresse_depart, String adresse_arrivee) {
         this.ID = ID;
         Date_proposee = date_proposee;
