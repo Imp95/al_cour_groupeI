@@ -3,6 +3,7 @@ let url;
 let firstname;
 let amount;
 let email;
+let id_c;
 
 function init() {
     url = localStorage.getItem("url");
@@ -37,7 +38,15 @@ function majTableau() {
                 annonces = [];
                 table.innerHTML = "";
 
-                for (var i = 0; i < json.body.length; i++) {      
+                for (var i = 0; i < json.body.length; i++) {
+                    id_c = json.body[i].id;
+
+                    var b_maj = document.createElement('input');
+                    b_maj.setAttribute('type','button');
+                    b_maj.onclick = function() {
+                        majContrat(id_c);
+                    } 
+
                     var row = table.insertRow(i);
                     var id = row.insertCell(0);
                     var date = row.insertCell(1);
@@ -45,6 +54,7 @@ function majTableau() {
                     var departure = row.insertCell(3);
                     var arrival = row.insertCell(4);
                     var statut = row.insertCell(5);
+                    var maj = row.insertCell(6);
 
                     id.innerHTML = json.body[i].id;
                     date.innerHTML = json.body[i].proposed_date;
@@ -57,6 +67,9 @@ function majTableau() {
                     else {
                         statut.innerHTML = "En cours d'acheminement";
                     }
+
+                    maj.appendChild(b_maj);
+
                 }
             }
 
@@ -74,4 +87,9 @@ function majTableau() {
         email +
         '"}}';
     xhr.send(data);
+}
+
+function majContrat(id) {
+    console.log("ok");
+    alert("Ok " + id);
 }
