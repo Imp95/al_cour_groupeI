@@ -42,10 +42,10 @@ function majTableau() {
                     id_c = json.body[i].id;
 
                     var b_maj = document.createElement('input');
-                    b_maj.setAttribute('type','button');
-                    b_maj.onclick = function() {
+                    b_maj.setAttribute('type', 'button');
+                    b_maj.onclick = function () {
                         majContrat(id_c);
-                    } 
+                    }
 
                     var row = table.insertRow(i);
                     var id = row.insertCell(0);
@@ -90,6 +90,39 @@ function majTableau() {
 }
 
 function majContrat(id) {
-    console.log("ok");
-    alert("Ok " + id);
+    var code = prompt("Entrer votre code", "");
+
+    if (code > 0) {
+        console.log(code)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+
+                if (json.status) {
+                   majTableau();
+                }
+
+                else {
+                    alert("Erreur: " + json.body);
+                }
+            }
+        };
+
+        var data =
+            "{" +
+            '"action":"UpdateContrat",' +
+            '"body":{' +
+            '"id_contract":"' +
+            id +
+            '",' +
+            '"preuve":' +
+            code +
+            '}}';
+        xhr.send(data);
+    }
+
 }

@@ -149,7 +149,7 @@ def seeContractsAction(body):
 
     contracts = []
     for offer in offers:
-        contract = session.query(Contract).filter(and_(Contract.offer_id==offer.id, Contract.status == 0)).first()
+        contract = session.query(Contract).filter(and_(Contract.offer_id==offer.id, Contract.status < 2)).first()
         if not contract is None:
             contracts.append(contract.toJSON())
 
