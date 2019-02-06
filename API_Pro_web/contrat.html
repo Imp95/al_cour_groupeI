@@ -13,10 +13,27 @@
     <h1>BlaBlaMove Pro</h1>
     <h2 id="welcome">Hello there !</h2>
     <div id="links">
-        <a href="./acceuil.html">Recherche Annonces</a> / <a href="./offre.html">Mes Offres</a> / <a href="./historique.html">Historique</a>
+        <a href="./acceuil.html">Recherche Annonces</a> / <a href="./offre.html">Mes Offres</a> / Mes Contrats / <a href="./historique.html">Historique</a>
     </div>
     <h2 id="section">Mes Contrats</h2>
     <br/>
+    <h3>Mes contrats en cours</h3>
+    <button type="button" onclick="majTableau();">Actualiser les contrats</button>
+    <br/><br/>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Paiement</th>
+                <th>Départ</th>
+                <th>Arrivée</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody id="contrats">
+        </tbody>
+    </table>
 
 </body>
 
