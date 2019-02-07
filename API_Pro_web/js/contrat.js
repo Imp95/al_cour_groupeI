@@ -11,7 +11,7 @@ function init() {
     amount = localStorage.getItem("amount");
     email = localStorage.getItem("email");
     if (firstname == null | amount == null) {
-        document.location.href = "./connexion.html";
+        document.location.href = "./index.html";
     }
     document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
     majTableau()
@@ -21,7 +21,7 @@ function disconnect() {
     localStorage.removeItem("email");
     localStorage.removeItem("firstname");
     localStorage.removeItem("amount");
-    document.location.href = "./connexion.html";
+    document.location.href = "./index.html";
 }
 
 function majTableau() {
