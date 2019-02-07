@@ -156,7 +156,7 @@ def seeContractsAction(body):
     return jsonify(status = True, body = contracts)
 
 def updateContractAction(body):
-    from .models import Contract
+    from .models import Contract, Offer, User
     if not 'id_contract' in body or not 'preuve' in body:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (mise a jour contrat) ne sont pas presentes.")
     
@@ -173,6 +173,9 @@ def updateContractAction(body):
     elif contract.status == 1:
         if contract.acknowledgement == body["preuve"]:
             contract.status = 2
+            offer = session.query(Offer).filter(Offer.id==contract.offer_id).first()
+            user = session.query(User).filter(User.id==offer.carrier_id).first()
+            user.amount += offer.payment
             session.commit()
         else:
             return jsonify(status = False, body = "Preuve de reception incorrecte !")

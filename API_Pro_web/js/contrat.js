@@ -101,9 +101,14 @@ function majContrat(id) {
 
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var json = JSON.parse(xhr.responseText);
-
+                console.log(json)
                 if (json.status) {
-                   majTableau();
+                    majTableau();
+                    if (json.body.status == 2) {
+                        // to replace with db call
+                        localStorage.setItem("amount", parseInt(amount) + parseInt(json.body.payment));
+                        document.location.href = "./contrat.html";
+                    }
                 }
 
                 else {
@@ -124,5 +129,4 @@ function majContrat(id) {
             '}}';
         xhr.send(data);
     }
-
 }
