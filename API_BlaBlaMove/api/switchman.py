@@ -62,7 +62,14 @@ def inscriptionAction(body):
     if not 'email' in body or not 'password' in body or not 'name' in body or not 'firstname' in body or not 'birthday' in body or not 'phone_number' in body:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (inscription) ne sont pas presentes.")
 
-    userToCreate = User(body["email"], body["password"], body["name"], body["firstname"], datetime.strptime(body["birthday"], '%Y-%m-%d'), body["phone_number"], 0)
+    societe = None
+    if 'societe' in body:
+        societe = body["societe"]
+
+    if (societe is None):
+        userToCreate = User(body["email"], body["password"], body["name"], body["firstname"], datetime.strptime(body["birthday"], '%Y-%m-%d'), body["phone_number"], 0, "")
+    else:
+        userToCreate = User(body["email"], body["password"], body["name"], body["firstname"], datetime.strptime(body["birthday"], '%Y-%m-%d'), body["phone_number"], 0, societe)
 
     try:
         session.add(userToCreate)
