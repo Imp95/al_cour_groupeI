@@ -15,12 +15,12 @@ class User(db.Model):
     birthday = db.Column(db.Date, nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
-    societe = db.Column(db.String(255), nullable=True)
+    societe = db.Column(db.String(255), nullable=False)
 
     ads = db.relationship('Ad', backref="user", lazy=True)
     offers = db.relationship('Offer', backref="user", lazy=True)
 
-    def __init__(self, email, password, name, firstname, birthday, phone_number, amount, societe=None):
+    def __init__(self, email, password, name, firstname, birthday, phone_number, amount, societe=""):
         self.email = email
         self.password = password
         self.name = name
