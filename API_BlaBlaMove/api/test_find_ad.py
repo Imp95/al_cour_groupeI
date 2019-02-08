@@ -40,12 +40,12 @@ def test_find_all():
 
     assert response.status_code == 200
     assert data['status'] == True
-    assert len(data['body']) == 5
+    assert len(data['body']) == 7
 
 def test_regular_find_1():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"RechercheAnnonce", "body":{"departure_town":"", "arrival_town":"Meat City", "bagage":"15x15x74"}}',
+        data='{"action":"RechercheAnnonce", "body":{"departure_town":"", "arrival_town":"MEULIN", "bagage":"15x15x17"}}',
         content_type='application/json',
     )
 
@@ -53,12 +53,12 @@ def test_regular_find_1():
 
     assert response.status_code == 200
     assert data['status'] == True
-    assert len(data['body']) == 2
+    assert len(data['body']) == 1
 
 def test_regular_find_2():        
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"RechercheAnnonce", "body":{"departure_town":"", "arrival_town":"Meat City", "bagage":""}}',
+        data='{"action":"RechercheAnnonce", "body":{"departure_town":"", "arrival_town":"saint-laurent", "bagage":""}}',
         content_type='application/json',
     )
 

@@ -80,7 +80,7 @@ def findAdAction(body):
     ads = session.query(Ad).filter(and_(Ad.departure_address.like('%'+body["departure_town"].upper()+'%'), Ad.arrival_address.like('%'+body["arrival_town"].upper()+'%'))).all()
 
     result = []
-    if body["bagage"].split('x') == 3:
+    if len(body["bagage"].split('x')) == 3:
         x0,y0,z0 = body["bagage"].split('x')   
         for ad in ads:
             x,y,z = ad.bagage.split('x')
