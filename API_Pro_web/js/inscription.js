@@ -13,6 +13,7 @@ function inscription() {
     var phone = document.getElementById("phone").value;
     var mdp = document.getElementById("mdp").value;
     var mdp2 = document.getElementById("mdp2").value;
+    var societe = document.getElementById("societe").value;
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -59,6 +60,9 @@ function inscription() {
         '",' +
         '"phone_number":"' +
         phone +
+        '",' +
+        '"societe":"' +
+        societe +
         '"}}';
     xhr.send(data);
 }

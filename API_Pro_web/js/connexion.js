@@ -14,18 +14,23 @@ function connect() {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
 
     if (xhr.readyState === 4 && xhr.status === 200) {
       var json = JSON.parse(xhr.responseText);
 
       if (json.status) {
-        console.log(json.body.firstname + " " + json.body.name);
-        // CHANGER DE PAGE
-        localStorage.setItem("email", json.body.email);
-        localStorage.setItem("firstname", json.body.firstname);
-        localStorage.setItem("amount", json.body.amount);
-        document.location.href = "./acceuil.html";
+        if (json.body.societe != "") {
+          console.log(json.body.firstname + " " + json.body.name);
+          // CHANGER DE PAGE
+          localStorage.setItem("email", json.body.email);
+          localStorage.setItem("firstname", json.body.firstname);
+          localStorage.setItem("amount", json.body.amount);
+          document.location.href = "./acceuil.html";
+        }
+        else {
+          alert("Erreur: Ceci n'est pas un compte pro");
+        }
       } else {
         alert("Erreur: " + json.body);
       }
