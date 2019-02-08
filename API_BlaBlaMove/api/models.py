@@ -191,10 +191,10 @@ def init_db():
     db.session.add(Offer(datetime.strptime('2018-01-18', '%Y-%m-%d'), '10x10x10', 33, '1 avenue du printemps 01000 AIX', '999 route de l\'hiver 99999 YVES', user2.id, ad1.id))
     db.session.commit()
     # Contracts
-    contract2 = Contract('2018-01-12', 111, 222, 33, '1 avenue du printemps 01000 AIX', '999 route de l\'hiver 99999 YVES', offer2.id)
+    contract2 = Contract('2018-01-12', 114218181, 202255816, 33, '1 avenue du printemps 01000 AIX', '999 route de l\'hiver 99999 YVES', offer2.id)
     contract2.status = 2
-    db.session.add(Contract('2018-01-14', 579, 975, 33, '1 avenue du printemps 01000 AIX', '999 route de l\'hiver 99999 YVES', offer1.id))
+    db.session.add(Contract('2018-01-14', 475644263, 491141063, 33, '1 avenue du printemps 01000 AIX', '999 route de l\'hiver 99999 YVES', offer1.id))
     db.session.add(contract2)
-    db.session.add(Contract('2018-01-11', 333, 444, 33, '1 avenue du printemps 01000 AIX', '999 route de l\'hiver 99999 YVES', offer3.id))
+    db.session.add(Contract('2018-01-11', 534350963, 964807063, 33, '1 avenue du printemps 01000 AIX', '999 route de l\'hiver 99999 YVES', offer3.id))
     db.session.commit()
     lg.warning('Database initialized!')

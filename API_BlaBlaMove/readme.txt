@@ -28,3 +28,5 @@ FLASK_APP=run.py flask init_db
 
 
 pytest
+____________________
+faire multiple update contrats!!!!!!

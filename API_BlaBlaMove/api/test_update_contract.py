@@ -46,7 +46,7 @@ def test_global():
     # good deposit
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"UpdateContrat", "body":{"id_contract":1, "preuve":579}}',
+        data='{"action":"UpdateContrat", "body":{"id_contract":1, "preuve":475644263}}',
         content_type='application/json',
     )
 
@@ -73,7 +73,7 @@ def test_global():
     # good acknowledgement
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"UpdateContrat", "body":{"id_contract":1, "preuve":975}}',
+        data='{"action":"UpdateContrat", "body":{"id_contract":1, "preuve":491141063}}',
         content_type='application/json',
     )
 
@@ -87,7 +87,7 @@ def test_global():
     # bad acknowledgement
     response = app.test_client().post(
         '/receive_event',
-        data='{"action":"UpdateContrat", "body":{"id_contract":1, "preuve":555}}',
+        data='{"action":"UpdateContrat", "body":{"id_contract":1, "preuve":999888555}}',
         content_type='application/json',
     )
 
