@@ -37,8 +37,8 @@ def receiveEvent():
         return updateContractAction(jsonData["body"])
     elif jsonData["action"] == "HistoriqueContrats":
         return logContractsAction(jsonData["body"])
-    elif jsonData["action"] == "majAmount":
-        return majAmountAction(jsonData["body"])
+    elif jsonData["action"] == "UpdateAmount":
+        return updateAmountAction(jsonData["body"])
     else:
         return jsonify(status = False, body = "L'action demandee n'existe pas.")
 
@@ -205,10 +205,10 @@ def logContractsAction(body):
 
     return jsonify(status = True, body = contracts)
 
-def majAmountAction(body):
+def updateAmountAction(body):
     from .models import User
     if not 'user_email' in body:
-        return jsonify(status = False, body = "Les cles obligatoires de parsage (majUtilisateur) ne sont pas presentes.")
+        return jsonify(status = False, body = "Les cles obligatoires de parsage (mise a jour montant) ne sont pas presentes.")
 
     user = session.query(User).filter(User.email==body["user_email"]).first()
 

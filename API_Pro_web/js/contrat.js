@@ -213,7 +213,7 @@ function majAmount() {
 
     var data =
         "{" +
-        '"action":"majAmount",' +
+        '"action":"UpdateAmount",' +
         '"body":{' +
         '"user_email":"' +
         email+
