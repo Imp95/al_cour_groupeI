@@ -9,7 +9,23 @@ __Picard Marchetto Ivan__
 __Ritrovato Dylan__
 
 ### Updated
-__20:24 06/02/2019__
+__20:12 13/02/2019__
+
+## Week 07
+
+### Tasks achived :
+  -	Hébergement serveur local de l'API pro JS
+  - Amélioration de l'inscription de l'API pro JS
+  - La connnection dans l'API pro JS vérifie que le compte soit professionnel
+  - Création de la route de mise à jour du solde dans l'API serveur en Python
+  -	Mise à jour du solde de l'utilisateur dans l'API pro JS via la route HTTP
+  - Mise en place d'une démo fonctionnel mais améliorable
+  - Tentative de mise en place d'un système de cohérence sur le serveur Python (via des queues)
+
+### Tasks planned for next week :
+  - Cohérence des données entre les différentes vues
+  - Téléchargement d'un csv prérempli avec les numéros d'annonces sélectionnés dans l'API pro en JS
+  - Amélioration de la démo existante
 
 ## Week 06
 
@@ -19,13 +35,6 @@ __20:24 06/02/2019__
 ### Tasks planned for next week :
   - Peaufinage de l'API pro en Javascript
   - Hebergement de l'API pro en Javascript
-  
-### Tasks planned for next week :
--	Importation de CSV dans l’api pro en Javascript
--	Modification de l’API serveur pour la rendre compatible avec l’API pro
--	Modification de l’user dans le serveur Python
--	Modification de l’application mobile pour la rendre compatible et cohérente avec l’API pro
--	Terminer les algos de tri dans l’API côté serveur
 
 ## Week 05
 
