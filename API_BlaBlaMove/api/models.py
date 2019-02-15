@@ -196,5 +196,11 @@ def init_db():
     db.session.add(Contract('2018-01-13', 475644263, 491141063, 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', offer1.id))
     db.session.add(contract2)
     db.session.add(Contract('2018-01-24', 534350963, 964807063, 20, '53 avenue de Laplaine 01111 MEULIN', '57 rue Sintillante 01111 MEULIN', offer3.id))
+    ad1.status = 1
+    ad2.status = 1
+    ad3.status = 1
+    offer1.status = 1
+    offer2.status = 1
+    offer3.status = 1
     db.session.commit()
     lg.warning('Database initialized!')
