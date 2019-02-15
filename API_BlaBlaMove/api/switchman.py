@@ -136,41 +136,51 @@ def createOfferAction(body):
     return jsonify(status = True, body = offerToCreate.toJSON())
 
 def seeOffersAction(body):
-    from .models import Offer, User
-    if not 'user_email' in body:
-        return jsonify(status = False, body = "Les cles obligatoires de parsage (voir offres) ne sont pas presentes.")
+    try: 
+        from .models import Offer, User
+        if not 'user_email' in body:
+            return jsonify(status = False, body = "Les cles obligatoires de parsage (voir offres) ne sont pas presentes.")
     
-    user = session.query(User).filter(User.email==body["user_email"]).first()
-    if user is None:
-        return jsonify(status = False, body = "Cet email n'existe pas !")
+        user = session.query(User).filter(User.email==body["user_email"]).first()
+        if user is None:
+            return jsonify(status = False, body = "Cet email n'existe pas !")
 
-    offers = session.query(Offer).filter(and_(Offer.carrier_id == user.id, Offer.status == 0)).all()
+        offers = session.query(Offer).filter(and_(Offer.carrier_id == user.id, Offer.status == 0)).all()
 
-    result = []
-    for offer in offers:
-        item = offer.toJSON()
-        result.append(item)
+        result = []
+        for offer in offers:
+            item = offer.toJSON()
+            result.append(item)
 
-    return jsonify(status = True, body = result)
+        return jsonify(status = True, body = result)
+    except (exc.InterfaceError) as e:
+        print(e)
+        session.rollback()
+        return jsonify(status = False, body = "Probleme d'interface.")
 
 def seeContractsAction(body):
-    from .models import Contract, Offer, User
-    if not 'user_email' in body:
-        return jsonify(status = False, body = "Les cles obligatoires de parsage (voir contrats) ne sont pas presentes.")
+    try:
+        from .models import Contract, Offer, User
+        if not 'user_email' in body:
+            return jsonify(status = False, body = "Les cles obligatoires de parsage (voir contrats) ne sont pas presentes.")
     
-    user = session.query(User).filter(User.email==body["user_email"]).first()
-    if user is None:
-        return jsonify(status = False, body = "Cet email n'existe pas !")
+        user = session.query(User).filter(User.email==body["user_email"]).first()
+        if user is None:
+            return jsonify(status = False, body = "Cet email n'existe pas !")
 
-    offers = session.query(Offer).filter(Offer.carrier_id == user.id).all()
+        offers = session.query(Offer).filter(Offer.carrier_id == user.id).all()
 
-    contracts = []
-    for offer in offers:
-        contract = session.query(Contract).filter(and_(Contract.offer_id==offer.id, Contract.status < 2)).first()
-        if not contract is None:
-            contracts.append(contract.toJSON())
+        contracts = []
+        for offer in offers:
+            contract = session.query(Contract).filter(and_(Contract.offer_id==offer.id, Contract.status < 2)).first()
+            if not contract is None:
+                contracts.append(contract.toJSON())
 
-    return jsonify(status = True, body = contracts)
+        return jsonify(status = True, body = contracts)
+    except (exc.InterfaceError) as e:
+        print(e)
+        session.rollback()
+        return jsonify(status = False, body = "Probleme d'interface.")
 
 def updateContractAction(body):
     from .models import Contract, Offer, User
@@ -221,13 +231,18 @@ def logContractsAction(body):
     return jsonify(status = True, body = contracts)
 
 def updateAmountAction(body):
-    from .models import User
-    if not 'user_email' in body:
-        return jsonify(status = False, body = "Les cles obligatoires de parsage (mise a jour montant) ne sont pas presentes.")
+    try:
+        from .models import User
+        if not 'user_email' in body:
+            return jsonify(status = False, body = "Les cles obligatoires de parsage (mise a jour montant) ne sont pas presentes.")
 
-    user = session.query(User).filter(User.email==body["user_email"]).first()
+        user = session.query(User).filter(User.email==body["user_email"]).first()
 
-    if user is None:
-        return jsonify(status = False, body = "Cet utilisateur n'existe pas !")
+        if user is None:
+            return jsonify(status = False, body = "Cet utilisateur n'existe pas !")
     
-    return jsonify(status = True, body = {"amount":user.amount})
+        return jsonify(status = True, body = {"amount":user.amount})
+    except (exc.AttributeError, exc.InternalError) as e:
+        print(e)
+        session.rollback()
+        return jsonify(status = False, body = "Probleme d'interne de la BD.")
