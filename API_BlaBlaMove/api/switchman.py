@@ -2,12 +2,14 @@ from flask import Flask, request
 from flask import jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from flask_cors import CORS
 from datetime import datetime
 from sqlalchemy import exc, and_
 
+lock = False
 app = Flask(__name__)
-
 app.config.from_object('config')
+CORS(app)
 
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 Session = sessionmaker(bind=engine)
@@ -15,9 +17,15 @@ session = Session()
 
 @app.route('/receive_event', methods=['POST'])
 def receiveEvent():
-
-    jsonData = request.get_json(force=True)
+    global lock
+    if not lock:
+        lock = True
+        jsonData = request.get_json(force=True)
+        lock = False
+        return switch(jsonData)
+    return jsonify(status = False, body = "Le serveur est occupé.")
     
+def switch(jsonData):
     if not 'action' in jsonData or not 'body' in jsonData:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (globale) ne sont pas presentes.")
     
