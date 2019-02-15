@@ -94,7 +94,7 @@ def findAdAction(body):
     if not 'departure_town' in body or not 'arrival_town' in body or not 'bagage' in body:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (recherche d'annonce) ne sont pas presentes.")
 
-    ads = session.query(Ad).filter(and_(Ad.departure_address.like('%'+body["departure_town"].upper()+'%'), Ad.arrival_address.like('%'+body["arrival_town"].upper()+'%'))).all()
+    ads = session.query(Ad).filter(and_(Ad.departure_address.like('%'+body["departure_town"].upper()+'%'), Ad.arrival_address.like('%'+body["arrival_town"].upper()+'%'), Ad.status == 0)).all()
 
     result = []
     if len(body["bagage"].split('x')) == 3:
