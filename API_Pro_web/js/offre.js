@@ -52,7 +52,6 @@ function goToHistorique() {
 }
 
 function b_csvfile_listener() {
-    lock = true;
     var csvfile = document.getElementById("csvfile").files[0];
     var reader = new FileReader();
     console.log(csvfile.name + "\n\n" + reader.readAsText(csvfile));
@@ -90,10 +89,10 @@ function createOffers() {
             }
         }
     }
-    lock = false;
 }
 
 function sendOffer(id, date) {
+    lock = true;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -128,6 +127,7 @@ function sendOffer(id, date) {
         date +
         '"}}';
     xhr.send(data);
+    lock = false;
 }
 
 function majTableau() {

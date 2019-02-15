@@ -2,14 +2,13 @@ from flask import Flask, request
 from flask import jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from flask_cors import CORS
 from datetime import datetime
 from sqlalchemy import exc, and_
+import random
 
 lock = False
 app = Flask(__name__)
 app.config.from_object('config')
-CORS(app)
 
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 Session = sessionmaker(bind=engine)
@@ -37,6 +36,8 @@ def switch(jsonData):
         return findAdAction(jsonData["body"])
     elif jsonData["action"] == "CreationOffre":
         return createOfferAction(jsonData["body"])
+    elif jsonData["action"] == "CreationContrat":
+        return createContractAction(jsonData["body"])
     elif jsonData["action"] == "VoirOffres":
         return seeOffersAction(jsonData["body"])
     elif jsonData["action"] == "VoirContrats":
@@ -116,7 +117,9 @@ def createOfferAction(body):
     if not 'ad_id' in body or not 'carrier_email' in body or not 'proposed_date' in body:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (creation d'offre) ne sont pas presentes.")
     
-    user = session.query(User).filter(User.email==body["carrier_email"]).first()
+    users = session.query(User).filter(User.email==body["carrier_email"])
+    print(users)
+    user = users.first()
     if user is None:
         return jsonify(status = False, body = "Cet email n'existe pas !")
 	
@@ -157,6 +160,34 @@ def seeOffersAction(body):
         print(e)
         session.rollback()
         return jsonify(status = False, body = "Probleme d'interface.")
+
+def createContractAction(body):
+    from .models import Ad, Offer, Contract
+    if not 'offer_id' in body:
+        return jsonify(status = False, body = "Les cles obligatoires de parsage (creation de contrat) ne sont pas presentes.")
+	
+    offer = session.query(Offer).get(body["offer_id"])
+    if offer is None:
+        return jsonify(status = False, body = "Cette offre n'existe pas !")
+
+    ad = session.query(Ad).get(offer.ad_id)
+    if ad is None:
+        return jsonify(status = False, body = "Cette annonce n'existe pas !")
+
+    ad.status = 1
+    offer.status = 1
+    
+    contractToCreate = Contract(offer.proposed_date, random.randint(100000000, 999999999), random.randint(100000000, 999999999), offer.payment, offer.departure_address, offer.arrival_address, offer.id)
+
+    try:
+        session.add(contractToCreate)
+        session.commit()
+    except exc.IntegrityError as e:
+        print(e)
+        session.rollback()
+        return jsonify(status = False, body = "Probleme d'integrite de la requete.")
+
+    return jsonify(status = True, body = contractToCreate.toJSON())
 
 def seeContractsAction(body):
     try:
