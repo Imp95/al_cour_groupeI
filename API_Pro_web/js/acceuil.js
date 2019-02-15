@@ -3,8 +3,10 @@ let url;
 let firstname;
 let amount;
 let data;
+let lock;
 
 function init() {
+    lock = true;
     url = localStorage.getItem("url");
     firstname = localStorage.getItem("firstname");
     amount = localStorage.getItem("amount");
@@ -12,16 +14,38 @@ function init() {
         document.location.href = "./index.html";
     }
     document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
+    lock = false;
 }
 
 function disconnect() {
-    localStorage.removeItem("email");
-    localStorage.removeItem("firstname");
-    localStorage.removeItem("amount");
-    document.location.href = "./index.html";
+    if (!lock) {
+        localStorage.removeItem("email");
+        localStorage.removeItem("firstname");
+        localStorage.removeItem("amount");
+        document.location.href = "./index.html";
+    }
+}
+
+function goToOffre() {
+    if (!lock) {
+        document.location.href = "./offre.html";
+    }
+}
+
+function goToContrat() {
+    if (!lock) {
+        document.location.href = "./contrat.html";
+    }
+}
+
+function goToHistorique() {
+    if (!lock) {
+        document.location.href = "./historique.html";
+    }
 }
 
 function b_search() {
+    lock = true;
     var depart = document.getElementById("depart").value;
     var arrivee = document.getElementById("arrivee").value;
     var espace = document.getElementById("espace").value;
@@ -77,4 +101,5 @@ function b_search() {
         espace +
         '"}}';
     xhr.send(data);
+    lock = false;
 }

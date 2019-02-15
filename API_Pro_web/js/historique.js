@@ -3,8 +3,10 @@ let url;
 let firstname;
 let amount;
 let email;
+let lock;
 
 function init() {
+    lock = true;
     url = localStorage.getItem("url");
     firstname = localStorage.getItem("firstname");
     amount = localStorage.getItem("amount");
@@ -14,16 +16,38 @@ function init() {
     }
     document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
     majTableau();
+    lock = false;
 }
 
 function disconnect() {
-    localStorage.removeItem("email");
-    localStorage.removeItem("firstname");
-    localStorage.removeItem("amount");
-    document.location.href = "./index.html";
+    if (!lock) {
+        localStorage.removeItem("email");
+        localStorage.removeItem("firstname");
+        localStorage.removeItem("amount");
+        document.location.href = "./index.html";
+    }
+}
+
+function goToAcceuil() {
+    if (!lock) {
+        document.location.href = "./acceuil.html";
+    }
+}
+
+function goToOffre() {
+    if (!lock) {
+        document.location.href = "./offre.html";
+    }
+}
+
+function goToContrat() {
+    if (!lock) {
+        document.location.href = "./contrat.html";
+    }
 }
 
 function majTableau() {
+    lock = true;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -67,4 +91,5 @@ function majTableau() {
         email +
         '"}}';
     xhr.send(data);
+    lock = false;
 }

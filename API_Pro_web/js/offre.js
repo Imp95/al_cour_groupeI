@@ -6,8 +6,10 @@ let data;
 let email;
 let annonces;
 let ids;
+let lock;
 
 function init() {
+    lock = true;
     url = localStorage.getItem("url");
     firstname = localStorage.getItem("firstname");
     amount = localStorage.getItem("amount");
@@ -18,16 +20,38 @@ function init() {
     document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
     ids = [];
     majTableau();
+    lock = false;
 }
 
 function disconnect() {
-    localStorage.removeItem("email");
-    localStorage.removeItem("firstname");
-    localStorage.removeItem("amount");
-    document.location.href = "./index.html";
+    if (!lock) {
+        localStorage.removeItem("email");
+        localStorage.removeItem("firstname");
+        localStorage.removeItem("amount");
+        document.location.href = "./index.html";
+    }
+}
+
+function goToAcceuil() {
+    if (!lock) {
+        document.location.href = "./acceuil.html";
+    }
+}
+
+function goToContrat() {
+    if (!lock) {
+        document.location.href = "./contrat.html";
+    }
+}
+
+function goToHistorique() {
+    if (!lock) {
+        document.location.href = "./historique.html";
+    }
 }
 
 function b_csvfile_listener() {
+    lock = true;
     var csvfile = document.getElementById("csvfile").files[0];
     var reader = new FileReader();
     console.log(csvfile.name + "\n\n" + reader.readAsText(csvfile));
@@ -65,6 +89,7 @@ function createOffers() {
             }
         }
     }
+    lock = false;
 }
 
 function sendOffer(id, date) {
@@ -105,6 +130,7 @@ function sendOffer(id, date) {
 }
 
 function majTableau() {
+    lock = true;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -154,4 +180,5 @@ function majTableau() {
         email +
         '"}}';
     xhr.send(data);
+    lock = false;
 }
