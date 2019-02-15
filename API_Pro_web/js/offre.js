@@ -25,6 +25,7 @@ function init() {
 
 function disconnect() {
     if (!lock) {
+        localStorage.removeItem("id");
         localStorage.removeItem("email");
         localStorage.removeItem("firstname");
         localStorage.removeItem("amount");

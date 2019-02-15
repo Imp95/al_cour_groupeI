@@ -23,6 +23,7 @@ function connect() {
         if (json.body.societe != "") {
           console.log(json.body.firstname + " " + json.body.name);
           // CHANGER DE PAGE
+          localStorage.setItem("id", json.body.id);
           localStorage.setItem("email", json.body.email);
           localStorage.setItem("firstname", json.body.firstname);
           localStorage.setItem("amount", json.body.amount);

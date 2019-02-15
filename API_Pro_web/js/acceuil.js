@@ -1,5 +1,6 @@
 window.onload = init;
 let url;
+let user_id;
 let firstname;
 let amount;
 let data;
@@ -7,6 +8,7 @@ let lock;
 
 function init() {
     lock = true;
+    user_id = localStorage.getItem("id");
     url = localStorage.getItem("url");
     firstname = localStorage.getItem("firstname");
     amount = localStorage.getItem("amount");
@@ -19,6 +21,7 @@ function init() {
 
 function disconnect() {
     if (!lock) {
+        localStorage.removeItem("id");
         localStorage.removeItem("email");
         localStorage.removeItem("firstname");
         localStorage.removeItem("amount");
@@ -63,23 +66,25 @@ function b_search() {
                 var table = document.getElementById("annonces");
                 table.innerHTML = "";
                 for (var i = 0; i < json.body.length; i++) {
-                    var row = table.insertRow(i);
+                    if (user_id != json.body[i].client_id) {
+                        var row = table.insertRow(i);
 
-                    var id = row.insertCell(0);
-                    var bagage = row.insertCell(1);
-                    var paiement = row.insertCell(2);
-                    var a_depart = row.insertCell(3);
-                    var a_arrivee = row.insertCell(4);
-                    var d_depart = row.insertCell(5);
-                    var d_arrivee = row.insertCell(6);
+                        var id = row.insertCell(0);
+                        var bagage = row.insertCell(1);
+                        var paiement = row.insertCell(2);
+                        var a_depart = row.insertCell(3);
+                        var a_arrivee = row.insertCell(4);
+                        var d_depart = row.insertCell(5);
+                        var d_arrivee = row.insertCell(6);
 
-                    id.innerHTML = json.body[i].id;
-                    bagage.innerHTML = json.body[i].bagage;
-                    paiement.innerHTML = json.body[i].payment;
-                    a_depart.innerHTML = json.body[i].departure_address;
-                    a_arrivee.innerHTML = json.body[i].arrival_address;
-                    d_depart.innerHTML = json.body[i].departure_date;
-                    d_arrivee.innerHTML = json.body[i].arrival_date;
+                        id.innerHTML = json.body[i].id;
+                        bagage.innerHTML = json.body[i].bagage;
+                        paiement.innerHTML = json.body[i].payment;
+                        a_depart.innerHTML = json.body[i].departure_address;
+                        a_arrivee.innerHTML = json.body[i].arrival_address;
+                        d_depart.innerHTML = json.body[i].departure_date;
+                        d_arrivee.innerHTML = json.body[i].arrival_date;
+                    }
                 }
             } else {
                 alert("Erreur: " + json.body);
