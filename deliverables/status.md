@@ -9,7 +9,21 @@ __Picard Marchetto Ivan__
 __Ritrovato Dylan__
 
 ### Updated
-__20:12 13/02/2019__
+__19:47 20/02/2019__
+
+## Week 08
+
+### Tasks achived :
+  -	Ajout de la route de création de contrat dans l'API serveur Python
+  - Ajout d'une sécurité rudimentaire pour s'assurer de la cohérence des données, à l'aide d'un système de verrou sur l'API Python
+  - Mise à jour des données d'initialisation de la bases de données
+  - Augmentation de la résilience du serveur Python en ajoutant des try except
+
+### Tasks planned for next week :
+  - Améliorer le système de verrou du serveur
+  - Création d'un Data Workflow
+  - Création de la vidéo de démo
+  - Préparation des slides de la soutenance
 
 ## Week 07
 
