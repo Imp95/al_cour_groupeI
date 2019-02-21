@@ -113,50 +113,44 @@ def findAdAction(body):
     return jsonify(status = True, body = result)
 
 def createOfferAction(body):
-    from .models import Offer, User, Ad
-    if not 'ad_id' in body or not 'carrier_email' in body or not 'proposed_date' in body:
-        return jsonify(status = False, body = "Les cles obligatoires de parsage (creation d'offre) ne sont pas presentes.")
-    
-    users = session.query(User).filter(User.email==body["carrier_email"])
-    print(users)
-    user = users.first()
-    if user is None:
-        return jsonify(status = False, body = "Cet email n'existe pas !")
-	
-    ad = session.query(Ad).get(body["ad_id"])
-    if ad is None:
-        return jsonify(status = False, body = "Cette annonce n'existe pas !")
-    offerToCreate = Offer(body["proposed_date"], ad.bagage, ad.payment, ad.departure_address, ad.arrival_address, user.id, ad.id)
+    try: 
+        from .models import Offer, User, Ad
+        if not 'ad_id' in body or not 'user_id' in body or not 'proposed_date' in body:
+          return jsonify(status = False, body = "Les cles obligatoires de parsage (creation d'offre) ne sont pas presentes.")
 
-    try:
+        ad = session.query(Ad).get(body["ad_id"])
+        if ad is None:
+            return jsonify(status = False, body = "Cette annonce n'existe pas !")
+        offerToCreate = Offer(body["proposed_date"], ad.bagage, ad.payment, ad.departure_address, ad.arrival_address, body["user_id"], ad.id)
+
         session.add(offerToCreate)
         session.commit()
-    except exc.IntegrityError as e:
+
+    except (exc.IntegrityError, exc.InternalError, exc.InterfaceError) as e:
         print(e)
         session.rollback()
-        return jsonify(status = False, body = "Probleme d'integrite de la requete.")
+        return jsonify(status = False, body = "Probleme interne de la DB")
 
     return jsonify(status = True, body = offerToCreate.toJSON())
 
 def seeOffersAction(body):
     try: 
         from .models import Offer, User
-        if not 'user_email' in body:
+        if not 'user_id' in body:
             return jsonify(status = False, body = "Les cles obligatoires de parsage (voir offres) ne sont pas presentes.")
-    
-        user = session.query(User).filter(User.email==body["user_email"]).first()
-        if user is None:
-            return jsonify(status = False, body = "Cet email n'existe pas !")
 
-        offers = session.query(Offer).filter(and_(Offer.carrier_id == user.id, Offer.status == 0)).all()
+        query = session.query(Offer).filter(Offer.carrier_id == body['user_id'])
 
-        result = []
-        for offer in offers:
-            item = offer.toJSON()
-            result.append(item)
+        if query != None:
+            offers = query.all()
+            result = []
+            for offer in offers:
+                if offer.status == 0:
+                    item = offer.toJSON()
+                    result.append(item)
 
         return jsonify(status = True, body = result)
-    except (exc.InterfaceError) as e:
+    except (exc.InterfaceError, exc.InternalError) as e:
         print(e)
         session.rollback()
         return jsonify(status = False, body = "Probleme d'interface.")
@@ -273,7 +267,7 @@ def updateAmountAction(body):
             return jsonify(status = False, body = "Cet utilisateur n'existe pas !")
     
         return jsonify(status = True, body = {"amount":user.amount})
-    except (exc.AttributeError, exc.InternalError) as e:
+    except (exc.InternalError, exc.OperationalError) as e:
         print(e)
         session.rollback()
         return jsonify(status = False, body = "Probleme d'interne de la BD.")

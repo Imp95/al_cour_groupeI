@@ -2,6 +2,7 @@ window.onload = init;
 let url;
 let firstname;
 let amount;
+let user_id;
 let data;
 let email;
 let annonces;
@@ -14,6 +15,7 @@ function init() {
     firstname = localStorage.getItem("firstname");
     amount = localStorage.getItem("amount");
     email = localStorage.getItem("email");
+    user_id = localStorage.getItem("id");
     if (firstname == null | amount == null) {
         document.location.href = "./index.html";
     }
@@ -58,6 +60,7 @@ function b_csvfile_listener() {
     reader.onload = function (event) {
         data = event.target.result;
         createOffers();
+        majTableau();
     }
 }
 
@@ -104,7 +107,6 @@ function sendOffer(id, date) {
             if (json.status) {
                 ids.push(id);
                 console.log("Offre créer : id " + id + " | date " + date);
-                majTableau();
             }
 
             else {
@@ -117,8 +119,8 @@ function sendOffer(id, date) {
         "{" +
         '"action":"CreationOffre",' +
         '"body":{' +
-        '"carrier_email":"' +
-        email +
+        '"user_id":"' +
+        user_id +
         '",' +
         '"ad_id":"' +
         id +
@@ -177,8 +179,8 @@ function majTableau() {
         "{" +
         '"action":"VoirOffres",' +
         '"body":{' +
-        '"user_email":"' +
-        email +
+        '"user_id":"' +
+        user_id +
         '"}}';
     xhr.send(data);
     lock = false;
