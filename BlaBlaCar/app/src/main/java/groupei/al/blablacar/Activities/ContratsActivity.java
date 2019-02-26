@@ -48,6 +48,7 @@ public class ContratsActivity extends AppCompatActivity {
     RequestHandler requestHandler;
     String url;
     Utilisateur user;
+    Boolean historique;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class ContratsActivity extends AppCompatActivity {
         Info.getInstance();
         url = Info.getUrl();
         user = Info.getUser();
-
+        historique = false;
         requestHandler = RequestHandler.getInstance(getApplicationContext());
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -64,6 +65,7 @@ public class ContratsActivity extends AppCompatActivity {
             TextView titre = (TextView) findViewById(R.id.titre_contrats);
             String new_name = (String) bundle.get("titre");
             titre.setText(new_name);
+            historique = true;
         }
         liste = (RecyclerView) findViewById(R.id.listContrats);
         liste.setHasFixedSize(true);
@@ -82,7 +84,12 @@ public class ContratsActivity extends AppCompatActivity {
         myDataset.add(contrat);
         myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);myDataset.add(contrat);*/
         //stop test stuff
-        JSONObject js=JSONSerializer.seeContratsJSON(user.getEmail());
+        JSONObject js = new JSONObject();
+        if (historique) {
+            js = JSONSerializer.seeHistoriqueContratsJSON(user.getEmail());
+        } else {
+            js = JSONSerializer.seeContratsJSON(user.getEmail());
+        }
         JsonObjectRequest jsonObjReq =  new JsonObjectRequest(Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>(){
                     @Override
@@ -112,7 +119,7 @@ public class ContratsActivity extends AppCompatActivity {
             }
         });
         requestHandler.addToRequestQueue(jsonObjReq);
-        mAdapter = new ContratAdapter(myDataset,this);
+        mAdapter = new ContratAdapter(myDataset, historique, this);
         liste.setAdapter(mAdapter);
 
 

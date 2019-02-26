@@ -15,45 +15,63 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"/>
+
     <TextView
         android:id="@+id/ariveeTextField3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Arrivee"
+        android:layout_below="@id/departTextField3"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/departTextField3"/>
+        android:text="Arrivee" />
+
     <TextView
         android:id="@+id/payTextField3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Paiment"
+        android:layout_below="@id/dateTextField3"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="21dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/dateTextField3"/>
+        android:text="Paiment" />
+
     <TextView
         android:id="@+id/dateTextField3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"
+        android:layout_below="@id/ariveeTextField3"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="18dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/ariveeTextField3"/>
+        android:text="Date" />
+
     <Button
         android:id="@+id/addToPanierButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
         android:layout_below="@id/ariveeTextField3"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginRight="3dp"
         android:layout_marginBottom="5dp"
-        android:layout_alignParentRight="true"/>
+        android:text="Send" />
+
+    <EditText
+        android:id="@+id/CodeField"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/addToPanierButton3"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
+        android:layout_toStartOf="@+id/addToPanierButton3"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="9" />
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import groupei.al.blablacar.R;
 public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHolder> {
     private List<Contrat> mDataset;
     private Activity parent;
+    private Boolean historique;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -29,6 +31,7 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
         public RelativeLayout mView;
         public TextView departTextField,ariveeTextField,payTextField,dateTextField;
         public Button addToPanierButton;
+        public EditText codeField;
         public MyViewHolder(RelativeLayout v) {
             super(v);
             mView = v;
@@ -41,13 +44,15 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
             payTextField = (TextView) mView.findViewById(R.id.payTextField3);
             dateTextField = (TextView) mView.findViewById(R.id.dateTextField3);
             addToPanierButton = (Button) mView.findViewById(R.id.addToPanierButton3);
+            codeField = (EditText) mView.findViewById(R.id.CodeField);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ContratAdapter(List<Contrat> myDataset, Activity activity) {
+    public ContratAdapter(List<Contrat> myDataset, Boolean h, Activity activity) {
         mDataset = myDataset;
-        parent=activity;
+        parent = activity;
+        historique = h;
     }
 
     // Create new views (invoked by the layout manager)
@@ -63,7 +68,7 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder,final int position) {
+    public void onBindViewHolder(final MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Contrat contrat = mDataset.get(position);
@@ -72,13 +77,20 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
         holder.ariveeTextField.setText("Arrivee : " + contrat.getAdresse_arrivee());
         holder.payTextField.setText("Paiment : " + contrat.getPaiement()+" points");
         holder.dateTextField.setText("Date : " + format.format(contrat.getDate_proposee()));
-        holder.addToPanierButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(parent,OffreViewActivity.class);
-                intent.putExtra("contrat",mDataset.get(position));
-            }
-        });
+        if (!historique) {
+            holder.addToPanierButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int x = Integer.parseInt(holder.codeField.getText().toString());
+                    if (x >= 100000000 && x <= 999999999) {
+                        System.out.println("code : " + x);
+                    }
+                }
+            });
+        } else {
+            holder.codeField.setVisibility(View.INVISIBLE);
+            holder.addToPanierButton.setVisibility(View.INVISIBLE);
+        }
 
     }
 

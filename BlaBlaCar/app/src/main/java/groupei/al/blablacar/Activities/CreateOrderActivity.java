@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -76,8 +77,9 @@ public class CreateOrderActivity extends AppCompatActivity {
         depart = (TextView) findViewById(R.id.depart);
         arrivee = (TextView) findViewById(R.id.arrivee);
 
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         id.setText(id.getText().toString() + annonce.getID());
-        date.setText(date.getText().toString() + annonce.getDate_Debut() + "\net le " + annonce.getDate_Fin());
+        date.setText(date.getText().toString() + format.format(annonce.getDate_Debut()) + "\net le " + format.format(annonce.getDate_Fin()));
         bagage.setText(bagage.getText().toString() + "\n" + annonce.getBagage());
         paiement.setText(paiement.getText().toString() + "\n" + annonce.getPaiement());
         depart.setText(depart.getText().toString() + annonce.getAdresse_depart());
