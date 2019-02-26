@@ -27,7 +27,9 @@ def receiveEvent():
 def switch(jsonData):
     if not 'action' in jsonData or not 'body' in jsonData:
         return jsonify(status = False, body = "Les cles obligatoires de parsage (globale) ne sont pas presentes.")
-    
+
+    print("Action reçu : " + jsonData["action"])
+
     if jsonData["action"] == "Connexion":
         return connexionAction(jsonData["body"])
     elif jsonData["action"] == "Inscription":

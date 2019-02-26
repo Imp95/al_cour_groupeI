@@ -69,8 +69,8 @@ class Ad(db.Model):
     def toJSON(self):
         json = {
             "id":self.id,
-            "departure_date":self.departure_date.strftime("%Y-%m-%d"),
-            "arrival_date":self.arrival_date.strftime("%Y-%m-%d"),
+            "departure_date":self.departure_date.strftime("%d-%m-%Y"),
+            "arrival_date":self.arrival_date.strftime("%d-%m-%Y"),
             "bagage":self.bagage,
             "payment":self.payment,
             "status":self.status,
@@ -105,7 +105,7 @@ class Offer(db.Model):
     def toJSON(self):
         json = {
             "id":self.id,
-            "proposed_date":self.proposed_date.strftime("%Y-%m-%d"),
+            "proposed_date":self.proposed_date.strftime("%d-%m-%Y %H:%M"),
             "status":self.status,
             "bagage":self.bagage,
             "payment":self.payment,
@@ -141,7 +141,7 @@ class Contract(db.Model):
     def toJSON(self):
         json = {
             "id":self.id,
-            "proposed_date":self.proposed_date.strftime("%Y-%m-%d"),
+            "proposed_date":self.proposed_date.strftime("%d-%m-%Y %H:%M"),
             "status":self.status,
             "deposit_accused":self.deposit_accused,
             "acknowledgement":self.acknowledgement,
@@ -158,7 +158,7 @@ def init_db():
     # Users
     user1 = User('example1@email.com', 'azerty', 'Doe', 'John', datetime.strptime('1980-01-20', '%Y-%m-%d'), '0122334455', 0, "delete")
     user2 = User('example2@email.com', 'password', 'Valjean', 'Jean', datetime.strptime('1977-03-18', '%Y-%m-%d'), '0322334459', 50, "delete")
-    user3 = User('example3@email.com', 'pass', 'Gasaï', 'Yuno', datetime.strptime('1999-11-22', '%Y-%m-%d'), '0999999999', 999)
+    user3 = User('example3@email.com', 'pass', 'Gasaï', 'Yuno', datetime.strptime('1999-11-22', '%Y-%m-%d'), '0999999999', 260)
     user4 = User('example4@email.com', 'passu', 'Marie', 'Julien', datetime.strptime('1999-11-14', '%Y-%m-%d'), '0999777999', 99, "delete")
     user5 = User('example5@email.com', 'azerty', 'Duminy', 'Gaétan', datetime.strptime('1995-06-18', '%Y-%m-%d'), '0601020304', 150, "Pro société")
     db.session.add(user1)
@@ -168,34 +168,37 @@ def init_db():
     db.session.add(user5)
     db.session.commit()
     # Ads
-    ad1 = Ad(datetime.strptime('2018-01-13', '%Y-%m-%d'), datetime.strptime('2018-01-14', '%Y-%m-%d'), '15x15x15', 80, 0, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', user1.id)
-    ad2 = Ad(datetime.strptime('2018-01-22', '%Y-%m-%d'), datetime.strptime('2018-01-23', '%Y-%m-%d'), '15x15x15', 50, 0, '53 avenue de Laplaine 01111 MEULIN', '42 place Elegante 69000 LYON', user4.id)
-    ad3 = Ad(datetime.strptime('2018-01-24', '%Y-%m-%d'), datetime.strptime('2018-01-25', '%Y-%m-%d'), '15x15x22', 20, 0, '53 avenue de Laplaine 01111 MEULIN', '57 rue Sintillante 01111 MEULIN', user4.id)
-    ad4 = Ad(datetime.strptime('2018-01-23', '%Y-%m-%d'), datetime.strptime('2018-01-25', '%Y-%m-%d'), '50x30x40', 50, 0, '3 rue Liberté 06000 NICE', '22 avenue Paradis 91000 PARIS', user2.id)
-    ad5 = Ad(datetime.strptime('2018-01-22', '%Y-%m-%d'), datetime.strptime('2018-01-24', '%Y-%m-%d'), '50x30x40', 50, 0, '20 boulevard Saint-Roch 06000 NICE', '108 rue Belleville 31000 TOULOUSE', user3.id)
+    ad1 = Ad(datetime.strptime('13-01-2019', '%d-%m-%Y'), datetime.strptime('14-01-2019', '%d-%m-%Y'), '15x15x15', 80, 0, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', user1.id)
+    ad2 = Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('23-01-2019', '%d-%m-%Y'), '15x15x15', 50, 0, '53 avenue de Laplaine 01111 MEULIN', '42 place Elegante 69000 LYON', user4.id)
+    ad3 = Ad(datetime.strptime('24-01-2019', '%d-%m-%Y'), datetime.strptime('26-01-2019', '%d-%m-%Y'), '15x15x22', 20, 0, '53 avenue de Laplaine 01111 MEULIN', '57 rue Sintillante 01111 MEULIN', user4.id)
+    ad4 = Ad(datetime.strptime('23-01-2019', '%d-%m-%Y'), datetime.strptime('25-01-2019', '%d-%m-%Y'), '50x30x40', 50, 0, '3 rue Liberté 06000 NICE', '22 avenue Paradis 91000 PARIS', user2.id)
+    ad5 = Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('24-01-2019', '%d-%m-%Y'), '50x30x40', 50, 0, '20 boulevard Saint-Roch 06000 NICE', '108 rue Belleville 31000 TOULOUSE', user3.id)
     db.session.add(ad1)
     db.session.add(ad2)
     db.session.add(ad3)
     db.session.add(ad4)
     db.session.add(ad5)
-    db.session.add(Ad(datetime.strptime('2018-01-18', '%Y-%m-%d'), datetime.strptime('2018-01-20', '%Y-%m-%d'), '15x15x30', 20, 0, '3 rue ferry 06700 SAINT-LAURENT', '3 rue crocus 06700 SAINT-LAURENT', user2.id))
-    db.session.add(Ad(datetime.strptime('2018-01-22', '%Y-%m-%d'), datetime.strptime('2018-01-24', '%Y-%m-%d'), '15x15x74', 35, 0, '3 rue bonaparte 03333 VILLENEUVE', '3 rue ibiscus 06700 SAINT-LAURENT', user1.id))
+    db.session.add(Ad(datetime.strptime('18-01-2019', '%d-%m-%Y'), datetime.strptime('20-01-2019', '%d-%m-%Y'), '15x15x30', 20, 0, '3 rue ferry 06700 SAINT-LAURENT', '3 rue crocus 06700 SAINT-LAURENT', user2.id))
+    db.session.add(Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('24-01-2019', '%d-%m-%Y'), '15x15x74', 35, 0, '3 rue bonaparte 03333 VILLENEUVE', '3 rue ibiscus 06700 SAINT-LAURENT', user1.id))
+    ad8 = Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('24-01-2019', '%d-%m-%Y'), '80x60x50', 70, 0, '3 rue bonaparte 03333 VILLENEUVE', '3 rue ibiscus 06700 SAINT-LAURENT', user1.id)
+    db.session.add(ad8)
     db.session.commit()
     # Offers
-    offer1 = Offer(datetime.strptime('2018-01-13', '%Y-%m-%d'), '15x15x15', 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', user2.id, ad1.id)
-    offer2 = Offer(datetime.strptime('2018-01-22', '%Y-%m-%d'), '15x15x15', 50, '53 avenue de Laplaine 01111 MEULIN', '42 place Elegante 69000 LYON', user4.id, ad2.id)
-    offer3 = Offer(datetime.strptime('2018-01-24', '%Y-%m-%d'), '15x15x22', 20, '53 avenue de Laplaine 01111 MEULIN', '57 rue Sintillante 01111 MEULIN', user1.id, ad3.id)
+    offer1 = Offer(datetime.strptime('13-01-2019 16:00', '%d-%m-%Y %H:%M'), '15x15x15', 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', user2.id, ad1.id)
+    offer2 = Offer(datetime.strptime('22-01-2019 11:00', '%d-%m-%Y %H:%M'), '15x15x15', 50, '53 avenue de Laplaine 01111 MEULIN', '42 place Elegante 69000 LYON', user4.id, ad2.id)
+    offer3 = Offer(datetime.strptime('24-01-2019 08:30', '%d-%m-%Y %H:%M'), '15x15x22', 20, '53 avenue de Laplaine 01111 MEULIN', '57 rue Sintillante 01111 MEULIN', user1.id, ad3.id)
     db.session.add(offer1)
     db.session.add(offer2)
     db.session.add(offer3)
-    db.session.add(Offer(datetime.strptime('2018-01-18', '%Y-%m-%d'), '15x15x15', 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', user2.id, ad1.id))
+    db.session.add(Offer(datetime.strptime('18-01-2019 08:20', '%d-%m-%Y %H:%M'), '15x15x15', 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', user2.id, ad1.id))
+    db.session.add(Offer(datetime.strptime('23-01-2019 11:00', '%d-%m-%Y %H:%M'), '80x60x50', 70, '3 rue bonaparte 03333 VILLENEUVE', '3 rue ibiscus 06700 SAINT-LAURENT', user3.id, ad8.id))
     db.session.commit()
     # Contracts
-    contract2 = Contract('2018-01-22', 114218181, 202255816, 50, '53 avenue de Laplaine 01111 MEULIN', '42 place Elegante 69000 LYON', offer2.id)
+    contract2 = Contract(datetime.strptime('13-01-2019 16:00', '%d-%m-%Y %H:%M'), 114218181, 202255816, 50, '53 avenue de Laplaine 01111 MEULIN', '42 place Elegante 69000 LYON', offer2.id)
     contract2.status = 2
-    db.session.add(Contract('2018-01-13', 475644263, 491141063, 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', offer1.id))
+    db.session.add(Contract(datetime.strptime('22-01-2019 11:00', '%d-%m-%Y %H:%M'), 475644263, 491141063, 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', offer1.id))
     db.session.add(contract2)
-    db.session.add(Contract('2018-01-24', 534350963, 964807063, 20, '53 avenue de Laplaine 01111 MEULIN', '57 rue Sintillante 01111 MEULIN', offer3.id))
+    db.session.add(Contract(datetime.strptime('24-01-2019 08:30', '%d-%m-%Y %H:%M'), 534350963, 964807063, 20, '53 avenue de Laplaine 01111 MEULIN', '57 rue Sintillante 01111 MEULIN', offer3.id))
     ad1.status = 1
     ad2.status = 1
     ad3.status = 1
