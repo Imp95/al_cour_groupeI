@@ -68,7 +68,9 @@ function createOffers() {
     //parsing
     dataSplit = data.split('\n');
     if (dataSplit.length > 0) {
-        for (var i = 1; i < dataSplit.length; i++) {
+        list_date = [];
+        list_id = [];
+        for (i = 1; i < dataSplit.length; i++) {
             var elements = dataSplit[i].split(',');
             var id = elements[0];
             var date = elements[1];
@@ -82,15 +84,17 @@ function createOffers() {
 
                 if (re_id.test(id) && re_date.test(date)) {
                     var num = date.match(/\d+/g).map(Number);
+                    list_id.push(id);
                     if (num[4] == 0) {
-                        sendOffer(id, num[0] +"/" + num[1] + "/" + num[2] + " " + num[3] + ":00");
+                        list_date.push(num[2] +"-" + num[1] + "-" + num[0] + " " + num[3] + ":00");
                     }
                     else {
-                        sendOffer(id, num[0] +"/" + num[1] + "/" + num[2] + " " + num[3] + ":" + num[4]);
+                        list_date.push(num[2] +"-" + num[1] + "-" + num[0] + " " + num[3] + ":" + num[4]);
                     }
                 }
             }
         }
+        sendOffer(list_id, list_date);
     }
 }
 
@@ -117,15 +121,15 @@ function sendOffer(id, date) {
 
     var data =
         "{" +
-        '"action":"CreationOffre",' +
+        '"action":"CreationPlusieursOffres",' +
         '"body":{' +
         '"user_id":"' +
         user_id +
         '",' +
-        '"ad_id":"' +
+        '"list_ad_id":"' +
         id +
         '",' +
-        '"proposed_date":"' +
+        '"list_proposed_date":"' +
         date +
         '"}}';
     xhr.send(data);

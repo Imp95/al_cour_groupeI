@@ -38,6 +38,8 @@ def switch(jsonData):
         return findAdAction(jsonData["body"])
     elif jsonData["action"] == "CreationOffre":
         return createOfferAction(jsonData["body"])
+    elif jsonData["action"] == "CreationPlusieursOffres":
+        return createManyOffersAction(jsonData["body"])
     elif jsonData["action"] == "CreationContrat":
         return createContractAction(jsonData["body"])
     elif jsonData["action"] == "VoirOffres":
@@ -126,6 +128,32 @@ def createOfferAction(body):
         offerToCreate = Offer(body["proposed_date"], ad.bagage, ad.payment, ad.departure_address, ad.arrival_address, body["user_id"], ad.id)
 
         session.add(offerToCreate)
+        session.commit()
+
+    except (exc.IntegrityError, exc.InternalError, exc.InterfaceError) as e:
+        print(e)
+        session.rollback()
+        return jsonify(status = False, body = "Probleme interne de la DB")
+
+    return jsonify(status = True, body = offerToCreate.toJSON())
+
+def createManyOffersAction(body):
+    try: 
+        from .models import Offer, User, Ad
+        if not 'list_ad_id' in body or not 'user_id' in body or not 'list_proposed_date' in body:
+          return jsonify(status = False, body = "Les cles obligatoires de parsage (creation d'offres) ne sont pas presentes.")
+
+        list_ad = body["list_ad_id"].split(",")
+        print (list_ad)
+        list_date = body["list_proposed_date"].split(",")
+        print (list_date)
+        for i in range(len(list_ad)):
+            ad = session.query(Ad).get(list_ad[i])
+            proposed_date = list_date[i]
+            if ad is None:
+                return jsonify(status = False, body = "Cette annonce n'existe pas !")
+            offerToCreate = Offer(proposed_date, ad.bagage, ad.payment, ad.departure_address, ad.arrival_address, body["user_id"], ad.id)
+            session.add(offerToCreate)
         session.commit()
 
     except (exc.IntegrityError, exc.InternalError, exc.InterfaceError) as e:
