@@ -1,69 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@color/grey"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@color/grey">
 
     <TextView
         android:id="@+id/departTextField2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Depart"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="Depart" />
+
     <TextView
         android:id="@+id/ariveeTextField2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Arrivee"
+        android:layout_below="@id/departTextField2"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="19dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/departTextField2"/>
+        android:text="Arrivee" />
+
     <TextView
         android:id="@+id/payTextField2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Paiment"
+        android:layout_below="@id/dateTextField2"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/dateTextField2"/>
+        android:text="Paiment" />
+
     <TextView
         android:id="@+id/bagageTextField2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bagage"
+        android:layout_below="@id/dateTextField2"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="63dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/dateTextField2"/>
+        android:text="Bagage" />
+
     <TextView
         android:id="@+id/dateTextField2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@id/ariveeTextField2"/>
-    <Button
-        android:id="@+id/addToPanierButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-"
         android:layout_below="@id/ariveeTextField2"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="24dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_alignParentRight="true"/>
+        android:text="Date" />
+
+    <Button
+        android:id="@+id/addToPanierButton2"
+        android:layout_width="10dp"
+        android:layout_height="13dp"
+        android:layout_below="@id/ariveeTextField2"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="5dp" />
 </RelativeLayout>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -31,82 +36,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ContratViewActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ContratViewActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="110" selection-start-line="110" selection-end-line="110" />
-              <folding>
-                <element signature="e#3793#4687#0" expanded="true" />
-                <element signature="e#4686#4687#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AcceuilActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/AcceuilActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="72" column="47" selection-start-line="72" selection-start-column="47" selection-end-line="72" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OffresActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/OffresActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="85" column="100" selection-start-line="85" selection-start-column="100" selection-end-line="85" selection-end-column="100" />
-              <folding>
-                <element signature="e#2986#4312#0" expanded="true" />
-                <element signature="e#4311#4312#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Utilisateur.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Entities/Utilisateur.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JSONSerializer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/JSONSerializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="102" selection-start-line="102" selection-end-line="102" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InscriptionActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/InscriptionActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="127" column="50" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateOrderActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/CreateOrderActivity.java">
+      <file leaf-file-name="OffreAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/OffreAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
-              <caret line="113" column="21" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="21" />
+              <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnnonceAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/AnnonceAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="80" column="89" lean-forward="true" selection-start-line="80" selection-start-column="89" selection-end-line="80" selection-end-column="89" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContratAdapter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/ContratAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="73" column="90" selection-start-line="73" selection-start-column="90" selection-end-line="73" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -1989,7 +1941,16 @@
         <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/InscriptionActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/CreateOrderActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/offre_view.xml" />
         <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/OffresActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ChoixAnnoncesActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ContratsActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/OffreAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activty_contrat_view.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/annonce_view.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/AnnonceAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/ContratAdapter.java" />
       </list>
     </option>
   </component>
@@ -2031,6 +1992,30 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="blablacar" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="Activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="blablacar" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="mipmap" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
@@ -2184,11 +2169,11 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.32987553" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" weight="0.32987553" />
-      <window_info active="true" anchor="bottom" id="Logcat" visible="true" weight="0.32987553" />
+      <window_info anchor="bottom" id="Logcat" visible="true" weight="0.32987553" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Build" weight="0.32987553" />
       <window_info anchor="right" id="Gradle" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -2216,49 +2201,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/AnnonceViewActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/CreateOrderActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="391">
+          <caret line="113" column="21" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/AnotherActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ContratsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ChoixAnnoncesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-952">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ContratViewActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
-          <folding>
-            <element signature="e#3793#4687#0" expanded="true" />
-            <element signature="e#4686#4687#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/AcceuilActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
-          <caret line="72" column="47" selection-start-line="72" selection-start-column="47" selection-end-line="72" selection-end-column="47" />
+          <caret line="127" column="50" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/InscriptionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -2276,35 +2236,203 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/InscriptionActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/my_edit_view.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/my_text_view.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/offre_view.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/AnnonceViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="59" />
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/AnotherActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ContratsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="94" column="100" selection-start-line="94" selection-start-column="100" selection-end-line="94" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ChoixAnnoncesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="66" column="78" selection-start-line="66" selection-start-column="78" selection-end-line="66" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/AcceuilActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
-          <caret line="127" column="50" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="50" />
+          <caret line="72" column="47" selection-start-line="72" selection-start-column="47" selection-end-line="72" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/CreateOrderActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/ContratViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="113" column="21" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="21" />
+        <state relative-caret-position="476">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
+          <folding>
+            <element signature="e#3793#4687#0" expanded="true" />
+            <element signature="e#4686#4687#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/OffresActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="85" column="100" selection-start-line="85" selection-start-column="100" selection-end-line="85" selection-end-column="100" />
+        <state relative-caret-position="292">
+          <caret line="85" column="94" selection-start-line="85" selection-start-column="94" selection-end-line="85" selection-end-column="94" />
           <folding>
             <element signature="e#2986#4312#0" expanded="true" />
             <element signature="e#4311#4312#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Activities/RechercheActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="75" column="76" selection-start-line="75" selection-start-column="76" selection-end-line="75" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Entities/Offre.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+          <folding>
+            <element signature="e#1093#1094#0" expanded="true" />
+            <element signature="e#1129#1130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_create_order.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_contrats.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_choix_annonces.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_acceuil.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_offres.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_other.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_recherche.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/annonce_view.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activty_contrat_view.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/OffreAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/AnnonceAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="80" column="89" lean-forward="true" selection-start-line="80" selection-start-column="89" selection-end-line="80" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/groupei/al/blablacar/Tools/ContratAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="73" column="90" selection-start-line="73" selection-start-column="90" selection-end-line="73" selection-end-column="90" />
         </state>
       </provider>
     </entry>

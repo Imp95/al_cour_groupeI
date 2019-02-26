@@ -29,56 +29,61 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"/>
+
         <TextView
             android:id="@+id/ariveeTextField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Arrivee"
+            android:layout_below="@id/departTextField"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="18dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_below="@id/departTextField"/>
+            android:text="Arrivee" />
+
         <TextView
             android:id="@+id/dateTextField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date"
+            android:layout_below="@id/ariveeTextField"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_below="@id/ariveeTextField"/>
+            android:text="Date" />
+
         <TextView
             android:id="@+id/payTextField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paiment"
+            android:layout_below="@id/dateTextField"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_below="@id/dateTextField"/>
+            android:text="Paiment" />
+
         <TextView
             android:id="@+id/telClTextField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telephone client"
+            android:layout_below="@id/payTextField"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="24dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_below="@id/payTextField"/>
+            android:text="Telephone client" />
+
         <TextView
             android:id="@+id/telDestTextField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telephone destinataire"
+            android:layout_below="@id/telClTextField"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="24dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_below="@id/telClTextField"/>
+            android:text="Telephone destinataire" />
     </RelativeLayout>
     <TextView
         android:id="@+id/statusfield"

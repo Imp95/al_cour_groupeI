@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -72,11 +73,12 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.MyViewHo
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Annonce annonce = mDataset.get(position);
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         holder.departTextField.setText("Depart : " + annonce.getAdresse_depart());
         holder.ariveeTextField.setText("Arrivee : " + annonce.getAdresse_arrivee());
         holder.payTextField.setText("Paiment : " + annonce.getPaiement()+" points");
         holder.bagageTextField.setText("Bagage : " + annonce.getBagage());
-        holder.dateTextField.setText("Date : " + annonce.getDate_Debut());
+        holder.dateTextField.setText("Date : " + format.format(annonce.getDate_Debut()));
         holder.addToPanierButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

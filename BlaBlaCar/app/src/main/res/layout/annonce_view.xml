@@ -15,55 +15,60 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"/>
+
     <TextView
         android:id="@+id/ariveeTextField1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Arrivee"
+        android:layout_below="@id/departTextField1"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="28dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/departTextField1"/>
+        android:text="Arrivee" />
+
     <TextView
         android:id="@+id/payTextField1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Paiment"
+        android:layout_below="@id/dateTextField1"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="18dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/dateTextField1"/>
+        android:text="Paiment" />
+
     <TextView
         android:id="@+id/bagageTextField1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bagage"
+        android:layout_below="@id/dateTextField1"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="63dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/dateTextField1"/>
+        android:text="Bagage" />
+
     <TextView
         android:id="@+id/dateTextField1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"
+        android:layout_below="@id/ariveeTextField1"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="24dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_below="@id/ariveeTextField1"/>
+        android:text="Date" />
+
     <Button
         android:id="@+id/addToPanierButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
         android:layout_below="@id/ariveeTextField1"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="92dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_alignParentRight="true"/>
+        android:text="+" />
 </RelativeLayout>

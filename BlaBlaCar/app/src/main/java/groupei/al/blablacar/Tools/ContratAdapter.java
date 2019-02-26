@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import groupei.al.blablacar.Activities.OffreViewActivity;
@@ -66,10 +67,11 @@ public class ContratAdapter extends RecyclerView.Adapter<ContratAdapter.MyViewHo
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Contrat contrat = mDataset.get(position);
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy  hh:mm");
         holder.departTextField.setText("Depart : " + contrat.getAdresse_depart());
         holder.ariveeTextField.setText("Arrivee : " + contrat.getAdresse_arrivee());
         holder.payTextField.setText("Paiment : " + contrat.getPaiement()+" points");
-        holder.dateTextField.setText("Date : " + contrat.getDate_proposee());
+        holder.dateTextField.setText("Date : " + format.format(contrat.getDate_proposee()));
         holder.addToPanierButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

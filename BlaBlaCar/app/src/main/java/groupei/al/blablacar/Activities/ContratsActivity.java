@@ -92,7 +92,7 @@ public class ContratsActivity extends AppCompatActivity {
                             for(int i=0;i<contracts.length();i++){
                                 JSONObject c = contracts.getJSONObject(i);
                                 String dateTime = c.getString("proposed_date");
-                                SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd mm:ss", Locale.FRANCE);
+                                SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy hh:mm", Locale.FRANCE);
                                 Date date = dateParser.parse(dateTime);
                                 myDataset.add(new Contrat(c.getInt("id"),c.getString("status"),c.getInt("offer_id"),
                                         date,c.getInt("payment"),c.getString("departure_address"),c.getString("arrival_address")));

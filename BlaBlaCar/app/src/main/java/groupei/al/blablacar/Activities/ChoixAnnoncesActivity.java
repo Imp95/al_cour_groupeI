@@ -64,7 +64,7 @@ public class ChoixAnnoncesActivity extends AppCompatActivity {
         for (int i = 0; i < jsonAnnonces.length(); i++) {
             try {
                 JSONObject annonce = jsonAnnonces.getJSONObject(i);
-                SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+                SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE);
 
                 String depart = annonce.getString("departure_date");
                 String arrivee = annonce.getString("arrival_date");
