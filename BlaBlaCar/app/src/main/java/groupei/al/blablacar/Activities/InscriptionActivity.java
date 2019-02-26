@@ -87,10 +87,11 @@ public class InscriptionActivity extends AppCompatActivity {
                                 String dateTime = ((String) body.get("birthday"));
                                 SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
                                 Date date = dateParser.parse(dateTime);
+                                int id = body.getInt("id");
                                 String email = body.getString("email");
                                 int amount = body.getInt("amount");
 
-                                Utilisateur user = new Utilisateur(email, body.getString("name"), body.getString("firstname"),
+                                Utilisateur user = new Utilisateur(id ,email, body.getString("name"), body.getString("firstname"),
                                         date, body.getString("phone_number"), amount);
                                 Info.setUser(user);
 

@@ -72,7 +72,7 @@ public class OffresActivity extends AppCompatActivity {
         myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);myDataset.add(offre);
         */
         //stop test stuff
-        JSONObject js=JSONSerializer.seeOffersJSON(user.getEmail());
+        JSONObject js=JSONSerializer.seeOffersJSON(user.getId());
         JsonObjectRequest jsonObjReq =  new JsonObjectRequest(Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>(){
                     @Override
@@ -83,7 +83,7 @@ public class OffresActivity extends AppCompatActivity {
                                 JSONObject o = offers.getJSONObject(i);
                                 Log.d("dateOffresBug", o.getString("proposed_date"));
                                 String dateTime = o.getString("proposed_date");
-                                SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd mm:ss", Locale.FRANCE);
+                                SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.FRANCE);
                                 Date date = dateParser.parse(dateTime);
                                 myDataset.add(new Offre(o.getInt("id"), date, o.getString("status"), o.getInt("ad_id"), o.getInt("carrier_id"),
                                         o.getString("bagage"),o.getInt("payment"),o.getString("departure_address"),o.getString("arrival_address")));

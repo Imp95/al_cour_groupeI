@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         loginHandler = new LoginHandlerMock();
         error = (TextView) findViewById(R.id.errorText);
         error.setTextColor(Color.rgb(255,0,0));
-        url = "http://localhost:5555/receive_event";
+        url = "http://10.0.2.2:5555/receive_event";
         Info.getInstance();
         Info.setUrl(url);
 
@@ -116,10 +116,11 @@ public class MainActivity extends AppCompatActivity {
                             String dateTime = ((String) body.get("birthday"));
                             SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
                             Date date = dateParser.parse(dateTime);
+                            int id = body.getInt("id");
                             String email = body.getString("email");
                             int amount = body.getInt("amount");
 
-                            Utilisateur user = new Utilisateur(email, body.getString("name"), body.getString("firstname"),
+                            Utilisateur user = new Utilisateur(id, email, body.getString("name"), body.getString("firstname"),
                                     date, body.getString("phone_number"), amount);
                             Info.setUser(user);
 

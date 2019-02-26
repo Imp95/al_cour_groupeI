@@ -101,7 +101,7 @@ public class CreateOrderActivity extends AppCompatActivity {
     private void changerActivityValider(View view, List<Annonce> panier, Annonce annonce) {
         // A implementer quand la route sera disponible
         EditText dispo = (EditText) findViewById(R.id.dispo);
-        JSONObject js = JSONSerializer.getCreateOfferJSON(annonce.getID(), Info.getUser().getEmail(), dispo.getText().toString());
+        JSONObject js = JSONSerializer.getCreateOfferJSON(annonce.getID(), Info.getUser().getId(), dispo.getText().toString());
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>() {

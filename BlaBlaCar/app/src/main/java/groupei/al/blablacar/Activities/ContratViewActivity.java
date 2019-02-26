@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import groupei.al.blablacar.Entities.Contrat;
+import groupei.al.blablacar.Entities.Info;
 import groupei.al.blablacar.R;
 import groupei.al.blablacar.Tools.JSONSerializer;
 
@@ -79,7 +80,8 @@ public class ContratViewActivity extends AppCompatActivity {
 
     private void sendValidationCode(){
         JSONObject js=JSONSerializer.getUpdateContratJSON(contrat,codeField.getText().toString());
-        String url ="http://192.168.0.42:80/receive_event";
+        Info.getInstance();
+        String url = Info.getUrl();
         JsonObjectRequest jsonObjReq =  new JsonObjectRequest(Request.Method.POST, url, js,
                 new Response.Listener<JSONObject>(){
                     @Override

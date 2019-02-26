@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Utilisateur implements Serializable {
+    private int Id;
     private String Email;
     private String Nom;
     private String Prenom;
@@ -11,13 +12,22 @@ public class Utilisateur implements Serializable {
     private String Telephone;
     private int Solde;
 
-    public Utilisateur(String email, String nom, String prenom, Date date_de_naissance, String telephone, int solde) {
+    public Utilisateur(int id, String email, String nom, String prenom, Date date_de_naissance, String telephone, int solde) {
+        Id = id;
         Email = email;
         Nom = nom;
         Prenom = prenom;
         Date_de_naissance = date_de_naissance;
         Telephone = telephone;
         Solde = solde;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = Id;
     }
 
     public String getEmail() {

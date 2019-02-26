@@ -86,12 +86,12 @@ public class JSONSerializer {
         return json;
     }
 
-    public static JSONObject getCreateOfferJSON(int id_annonce, String email, String dispo) {
+    public static JSONObject getCreateOfferJSON(int id_annonce, int id, String dispo) {
         JSONObject json_body = new JSONObject();
         JSONObject json = new JSONObject();
         try {
             json_body.put("ad_id", id_annonce);
-            json_body.put("carrier_email", email);
+            json_body.put("user_id", id);
             json_body.put("proposed_date", dispo);
             json.put("action", "CreationOffre");
             json.put("body", json_body);
@@ -101,11 +101,11 @@ public class JSONSerializer {
         return json;
     }
 
-    public static JSONObject seeOffersJSON(String email) {
+    public static JSONObject seeOffersJSON(int id) {
         JSONObject json_body = new JSONObject();
         JSONObject json = new JSONObject();
         try {
-            json_body.put("user_email", email);
+            json_body.put("user_id", id);
             json.put("action", "VoirOffres");
             json.put("body", json_body);
         } catch (JSONException e) {
