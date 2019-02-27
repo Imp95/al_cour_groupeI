@@ -60,7 +60,6 @@ function b_csvfile_listener() {
     reader.onload = function (event) {
         data = event.target.result;
         createOffers();
-        majTableau();
     }
 }
 
