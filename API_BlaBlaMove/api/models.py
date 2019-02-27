@@ -172,7 +172,7 @@ def init_db():
     ad2 = Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('23-01-2019', '%d-%m-%Y'), '15x15x15', 50, 0, '53 avenue de Laplaine 01111 MEULIN', '42 place Elegante 69000 LYON', user4.id)
     ad3 = Ad(datetime.strptime('24-01-2019', '%d-%m-%Y'), datetime.strptime('26-01-2019', '%d-%m-%Y'), '15x15x22', 20, 0, '53 avenue de Laplaine 01111 MEULIN', '57 rue Sintillante 01111 MEULIN', user4.id)
     ad4 = Ad(datetime.strptime('23-01-2019', '%d-%m-%Y'), datetime.strptime('25-01-2019', '%d-%m-%Y'), '50x30x40', 50, 0, '3 rue Liberté 06000 NICE', '22 avenue Paradis 91000 PARIS', user2.id)
-    ad5 = Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('24-01-2019', '%d-%m-%Y'), '50x30x40', 50, 0, '20 boulevard Saint-Roch 06000 NICE', '108 rue Belleville 31000 TOULOUSE', user3.id)
+    ad5 = Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('24-01-2019', '%d-%m-%Y'), '50x30x40', 50, 0, '20 boulevard Saint-Roch 06000 NICE', '108 rue Belleville 31000 TOULOUSE', user5.id)
     db.session.add(ad1)
     db.session.add(ad2)
     db.session.add(ad3)
@@ -193,7 +193,7 @@ def init_db():
     db.session.add(offer2)
     db.session.add(offer3)
     db.session.add(Offer(datetime.strptime('18-01-2019 08:20', '%d-%m-%Y %H:%M'), '15x15x15', 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', user2.id, ad1.id))
-    db.session.add(Offer(datetime.strptime('23-01-2019 11:00', '%d-%m-%Y %H:%M'), '80x60x50', 70, '3 rue bonaparte 03333 VILLENEUVE', '3 rue ibiscus 06700 SAINT-LAURENT', user3.id, ad8.id))
+    db.session.add(Offer(datetime.strptime('23-01-2019 11:00', '%d-%m-%Y %H:%M'), '50x30x40', 50, '20 boulevard Saint-Roch 06000 NICE', '108 rue Belleville 31000 TOULOUSE', user3.id, ad8.id))
     db.session.commit()
     # Contracts
     contract2 = Contract(datetime.strptime('13-01-2019 16:00', '%d-%m-%Y %H:%M'), 114218181, 202255816, 50, '53 avenue de Laplaine 01111 MEULIN', '42 place Elegante 69000 LYON', offer2.id)
