@@ -9,7 +9,15 @@ __Picard Marchetto Ivan__
 __Ritrovato Dylan__
 
 ### Updated
-__19:47 20/02/2019__
+__22:58 27/02/2019__
+
+## Week 09
+
+### Tasks achived :
+  -	Corrections des bugs de l'application Pro en JS
+  - API serveur python terminée
+  - Application Android terminée
+  - Création de la vidéo
 
 ## Week 08
 
