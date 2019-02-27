@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -133,4 +134,14 @@ public class ContratsActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent msg) {
+        switch(keyCode) {
+            case(KeyEvent.KEYCODE_BACK):
+                Intent myIntent = new Intent(this,AcceuilActivity.class);
+                startActivity(myIntent);
+                finish();
+        }
+        return false;
+    }
 }

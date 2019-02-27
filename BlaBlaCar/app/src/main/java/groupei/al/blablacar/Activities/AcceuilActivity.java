@@ -108,10 +108,14 @@ public class AcceuilActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response) {
+                        System.out.println("recu: " + response.toString());
                         try {
-                            System.out.println("Points user: " + response.getInt("amount"));
-                            Info.getUser().setSolde(response.getInt("amount"));
-
+                            JSONObject body = (JSONObject) response.get("body");
+                            int solde = (int) body.get("amount");
+                            System.out.println("Points user: " + solde);
+                            Info.getUser().setSolde(solde);
+                            TextView nombre = (TextView) findViewById(R.id.nombre);
+                            nombre.setText("" + Info.getUser().getSolde());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
