@@ -140,4 +140,31 @@ public class JSONSerializer {
         }
         return json;
     }
+
+    public static JSONObject updateContratJSON(int id_contract, int preuve) {
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("id_contract", id_contract);
+            json_body.put("preuve", preuve);
+            json.put("action", "UpdateContrat");
+            json.put("body", json_body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    public static JSONObject updateSoldeJSON(String user_email) {
+        JSONObject json_body = new JSONObject();
+        JSONObject json = new JSONObject();
+        try {
+            json_body.put("user_email", user_email);
+            json.put("action", "UpdateAmount");
+            json.put("body", json_body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
 }

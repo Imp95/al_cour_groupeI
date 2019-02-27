@@ -3,24 +3,38 @@ package groupei.al.blablacar.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import groupei.al.blablacar.Entities.Info;
+import groupei.al.blablacar.Entities.Utilisateur;
 import groupei.al.blablacar.R;
+import groupei.al.blablacar.Tools.JSONSerializer;
+import groupei.al.blablacar.Tools.RequestHandler;
 
 public class AcceuilActivity extends AppCompatActivity {
+    RequestHandler requestHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceuil);
+        requestHandler = RequestHandler.getInstance(getApplicationContext());
         Info.getInstance();
+        updateScore();
 
         TextView nombre = (TextView) findViewById(R.id.nombre);
         nombre.setText("" + Info.getUser().getSolde());
-
         Button chercher = (Button) findViewById(R.id.chercher);
         chercher.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +97,34 @@ public class AcceuilActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ContratsActivity.class);
         intent.putExtra("titre", "Historique des contrats");
         startActivity(intent);
+    }
+
+    private void updateScore(){
+        Info.getInstance();
+        String url = Info.getUrl();
+        JSONObject js=JSONSerializer.updateSoldeJSON(Info.getUser().getEmail());
+        JsonObjectRequest jsonObjReq =  new JsonObjectRequest(
+                Request.Method.POST, url, js,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            System.out.println("Points user: " + response.getInt("amount"));
+                            Info.getUser().setSolde(response.getInt("amount"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("UpdateSolde", "Error: " + error.getMessage());
+            }
+        });
+
+        requestHandler.addToRequestQueue(jsonObjReq);
     }
 
 }

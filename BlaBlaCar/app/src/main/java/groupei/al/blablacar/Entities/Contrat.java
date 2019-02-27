@@ -5,14 +5,14 @@ import java.util.Date;
 
 public class Contrat implements Serializable {
     private int ID;
-    private String Status;
+    private int Status;
     private int Offre_acceptee;
     private Date Date_proposee;
     private int Paiement;
     private String Adresse_depart;  // A changer pour Address
     private String Adresse_arrivee; // A changer pour Address
 
-    public Contrat(int ID, String status, int offre_acceptee, Date date_proposee, int paiement, String adresse_depart, String adresse_arrivee) {
+    public Contrat(int ID, int status, int offre_acceptee, Date date_proposee, int paiement, String adresse_depart, String adresse_arrivee) {
         this.ID = ID;
         Status = status;
         Offre_acceptee = offre_acceptee;
@@ -30,11 +30,11 @@ public class Contrat implements Serializable {
         this.ID = ID;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return Status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         Status = status;
     }
 

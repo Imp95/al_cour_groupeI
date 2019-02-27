@@ -101,7 +101,7 @@ public class ContratsActivity extends AppCompatActivity {
                                 String dateTime = c.getString("proposed_date");
                                 SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy hh:mm", Locale.FRANCE);
                                 Date date = dateParser.parse(dateTime);
-                                myDataset.add(new Contrat(c.getInt("id"),c.getString("status"),c.getInt("offer_id"),
+                                myDataset.add(new Contrat(c.getInt("id"),c.getInt("status"),c.getInt("offer_id"),
                                         date,c.getInt("payment"),c.getString("departure_address"),c.getString("arrival_address")));
                             }
 
@@ -119,10 +119,8 @@ public class ContratsActivity extends AppCompatActivity {
             }
         });
         requestHandler.addToRequestQueue(jsonObjReq);
-        mAdapter = new ContratAdapter(myDataset, historique, this);
+        mAdapter = new ContratAdapter(myDataset, historique, this, requestHandler);
         liste.setAdapter(mAdapter);
-
-
     }
 
     @Override

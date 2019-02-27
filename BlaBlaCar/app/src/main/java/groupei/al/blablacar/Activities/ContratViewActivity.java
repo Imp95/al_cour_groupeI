@@ -62,7 +62,7 @@ public class ContratViewActivity extends AppCompatActivity {
         telClTextField.setText("Telephone client : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());
         telDestTextField.setText("Telephone destinataire : "+contrat.getOffre_acceptee().getTransporteur().getTelephone());*/
         statusfield.setText("Status :\n"+contrat.getStatus());
-        if(contrat.getStatus()!="2"){
+        if(contrat.getStatus() != 2){
             codeField.setVisibility(View.VISIBLE);
             validButton.setVisibility(View.VISIBLE);
         }else{
@@ -87,8 +87,8 @@ public class ContratViewActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            contrat.setStatus(response.getString("status"));
-                            if(contrat.getStatus()!="2"){
+                            contrat.setStatus(response.getInt("status"));
+                            if(contrat.getStatus()!= 2){
                                 codeField.setVisibility(View.VISIBLE);
                                 validButton.setVisibility(View.VISIBLE);
                             }else{
