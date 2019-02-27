@@ -110,6 +110,7 @@ function sendOffer(id, date) {
             if (json.status) {
                 ids.push(id);
                 console.log("Offre créer : id " + id + " | date " + date);
+                document.location.href = "./offre.html";
             }
 
             else {

@@ -11,11 +11,12 @@ function init() {
     url = localStorage.getItem("url");
     firstname = localStorage.getItem("firstname");
     email = localStorage.getItem("email");
+    amount = localStorage.getItem("amount");
     if (firstname == null) {
         document.location.href = "./index.html";
     }
-    majAmount()
-    majTableau()
+    document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
+    majTableau();
     lock = false;
 }
 
@@ -128,9 +129,10 @@ function majContrat(id) {
                 var json = JSON.parse(xhr.responseText);
                 console.log(json)
                 if (json.status) {
-                    majTableau();
                     if (json.body.status == 2) {
-                        // to replace with db call
+                        majAmount();
+                    }
+                    else {
                         document.location.href = "./contrat.html";
                     }
                 }
@@ -164,11 +166,7 @@ function majAmount() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
             localStorage.setItem("amount", json.body.amount);
-            amount = localStorage.getItem("amount");
-            if (amount == null) {
-                document.location.href = "./index.html";
-            }
-            document.getElementById("welcome").innerHTML = "Bonjour " + firstname + ", votre solde est de " + amount + " points.";
+            document.location.href = "./contrat.html";
         }
     };
 
