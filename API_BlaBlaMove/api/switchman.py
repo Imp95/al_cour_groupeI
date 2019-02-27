@@ -203,6 +203,13 @@ def createContractAction(body):
     
     contractToCreate = Contract(offer.proposed_date, random.randint(100000000, 999999999), random.randint(100000000, 999999999), offer.payment, offer.departure_address, offer.arrival_address, offer.id)
 
+    query = session.query(Offer).filter(Offer.ad_id == body['offer_id'])
+    if query != None:
+            offers = query.all()
+            result = []
+            for o in offers:
+                o.status = 1
+
     try:
         session.add(contractToCreate)
         session.commit()

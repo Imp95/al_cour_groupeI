@@ -181,7 +181,9 @@ def init_db():
     db.session.add(Ad(datetime.strptime('18-01-2019', '%d-%m-%Y'), datetime.strptime('20-01-2019', '%d-%m-%Y'), '15x15x30', 20, 0, '3 rue ferry 06700 SAINT-LAURENT', '3 rue crocus 06700 SAINT-LAURENT', user2.id))
     db.session.add(Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('24-01-2019', '%d-%m-%Y'), '15x15x74', 35, 0, '3 rue bonaparte 03333 VILLENEUVE', '3 rue ibiscus 06700 SAINT-LAURENT', user1.id))
     ad8 = Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('24-01-2019', '%d-%m-%Y'), '80x60x50', 70, 0, '3 rue bonaparte 03333 VILLENEUVE', '3 rue ibiscus 06700 SAINT-LAURENT', user1.id)
+    ad9 = Ad(datetime.strptime('22-01-2019', '%d-%m-%Y'), datetime.strptime('24-01-2019', '%d-%m-%Y'), '80x60x50', 70, 0, '10 rue Laville 91000 PARIS', '38 rue Foch 06000 NICE', user1.id)
     db.session.add(ad8)
+    db.session.add(ad9)
     db.session.commit()
     # Offers
     offer1 = Offer(datetime.strptime('13-01-2019 16:00', '%d-%m-%Y %H:%M'), '15x15x15', 80, '3 rue liberté 03330 BELETTES', '3 rue de l\'élite 09333 SAINT-GRACIEN', user2.id, ad1.id)
